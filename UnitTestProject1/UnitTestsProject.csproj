@@ -56,7 +56,7 @@
     <Compile Include="UnitTestsGame.cs" />
     <Compile Include="UnitTestsImage.cs" />
     <Compile Include="UnitTestsTwitter.cs" />
-    <Compile Include="UnitTestsFlicker.cs" />
+    <Compile Include="UnitTestsFlickr.cs" />
     <Compile Include="UnitTestsChess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
