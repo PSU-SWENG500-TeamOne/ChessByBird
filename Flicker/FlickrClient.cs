@@ -17,9 +17,17 @@ namespace ChessByBird.FlickerProject
 
         public static bool getFlickerPic()
         {
+            //failure -- jsonFlickrApi({"stat":"fail", "code":99, "message":"Insufficient permissions. Method requires read privileges; none granted."})
             string urlJson = String.Format("http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=f9530d496325c2983a4fe9b9e51b1e86");
             WebClient serviceRequest = new WebClient();
             string responseJson = serviceRequest.DownloadString(new Uri(urlJson));
+
+            dynamic JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
+                if (JSONDoc.Count > 0)
+                {
+                   string nodeName = JSONDoc["nodeName"];
+                }
+
             return true;
         }
 
@@ -27,5 +35,7 @@ namespace ChessByBird.FlickerProject
         {
             return true;
         }
+
+
     }
 }
