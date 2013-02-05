@@ -28,7 +28,7 @@ using ChessByBird.FlickerProject;
 namespace UnitTestsProject
 {
     [TestClass]
-    public class UnitTestsFlicker
+    public class UnitTestsFlickr
     {
         [TestMethod]
         public void TestMethodImageEntity()
@@ -37,13 +37,13 @@ namespace UnitTestsProject
         }
 
         [TestMethod]
-        public void TestMethodGetFlickerPic()
+        public void TestMethodGetFlickrPic()
         {
 
         }
 
         [TestMethod]
-        public void TestMethodPostFlickerPic()
+        public void TestMethodPostFlickrPic()
         {
 
         }
