@@ -17,7 +17,7 @@ namespace ChessByBird.FlickerProject
 
         public static bool getFlickerPic()
         {
-            string urlJson = String.Format("https://www.flickr.com");
+            string urlJson = String.Format("http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=f9530d496325c2983a4fe9b9e51b1e86");
             WebClient serviceRequest = new WebClient();
             string responseJson = serviceRequest.DownloadString(new Uri(urlJson));
             return true;
