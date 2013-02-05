@@ -7,6 +7,20 @@
  *  Project: Chess By Bird Capstone group project
 *********************************************/
 
+//Assert.AreEqual();            //Verifies that specified values are equal.
+//Assert.AreNotEqual();         //Verifies that specified values are not equal.
+//Assert.AreSame();             //Verifies that specified object variables refer to the same object.
+//Assert.AreNotSame();          //Verifies that specified object variables refer to different objects.
+//Assert.Equals();              //Determines whether two objects are equal.
+//Assert.Fail();                //Fails an assertion without checking any conditions.
+//Assert.Inconclusive();        //Indicates that an assertion cannot be proven true or false. Also used to indicate an assertion that has not yet been implemented.   
+//Assert.IsFalse();             //Verifies that a specified condition is false.
+//Assert.IsInstanceOfType();    //Verifies that a specified object is an instance of a specified type.
+//Assert.IsNotInstanaceOfType(); //Verifies that a specified object is not an instance of a specified type.
+//Assert.IsNotNull();           //Verifies that a specified object is not null.
+//Assert.IsNull();              //Verifies that a specified object is null.
+//Assert.IsTrue();              //Verifies that a specified condition is true.
+
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChessByBird.ChessProject;
@@ -18,22 +32,52 @@ namespace UnitTestsProject
     public class UnitTestsChess
     {
 
+        #region Entity Test Checks
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethodGameEntity()
         {
-            //Assert.AreEqual();            //Verifies that specified values are equal.
-            //Assert.AreNotEqual();         //Verifies that specified values are not equal.
-            //Assert.AreSame();             //Verifies that specified object variables refer to the same object.
-            //Assert.AreNotSame();          //Verifies that specified object variables refer to different objects.
-            //Assert.Equals();              //Determines whether two objects are equal.
-            //Assert.Fail();                //Fails an assertion without checking any conditions.
-            //Assert.Inconclusive();        //Indicates that an assertion cannot be proven true or false. Also used to indicate an assertion that has not yet been implemented.   
-            //Assert.IsFalse();             //Verifies that a specified condition is false.
-            //Assert.IsInstanceOfType();    //Verifies that a specified object is an instance of a specified type.
-            //Assert.IsNotInstanaceOfType(); //Verifies that a specified object is not an instance of a specified type.
-            //Assert.IsNotNull();           //Verifies that a specified object is not null.
-            //Assert.IsNull();              //Verifies that a specified object is null.
-            //Assert.IsTrue();              //Verifies that a specified condition is true.
+
+        }
+
+        [TestMethod]
+        public void TestMethodFenEntity()
+        {
+
+        }
+
+        [TestMethod]
+        public void TestMethodBoardEntity()
+        {
+
+        }
+
+        [TestMethod]
+        public void TestMethodPiecesEntity()
+        {
+
+        }
+        #endregion
+        [TestMethod]
+        public void TestMethodCheckValidMove()
+        {
+
+        }
+
+        [TestMethod]
+        public void TestMethodProcessMovePiece()
+        {
+
+        }
+
+        [TestMethod]
+        public void TestMethodProcessChessCheckMate()
+        {
+
+        }
+
+        [TestMethod]
+        public void TestMethodProcessGame()
+        {
 
         }
     }

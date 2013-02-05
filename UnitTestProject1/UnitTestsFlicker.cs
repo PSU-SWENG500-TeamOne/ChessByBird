@@ -31,7 +31,7 @@ namespace UnitTestsProject
     public class UnitTestsFlicker
     {
         [TestMethod]
-        public void TestMethodFlickerImage()
+        public void TestMethodImageEntity()
         {
 
         }
