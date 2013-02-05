@@ -50,6 +50,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="UnitTestChessByBird.cs" />
+    <Compile Include="UnitTestPieces.cs" />
+    <Compile Include="UnitTestsBoard.cs" />
+    <Compile Include="UnitTestsGame.cs" />
     <Compile Include="UnitTestsImage.cs" />
     <Compile Include="UnitTestsTwitter.cs" />
     <Compile Include="UnitTestsFlicker.cs" />
