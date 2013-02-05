@@ -65,9 +65,9 @@
       <Project>{3b640cdb-09cb-4dcf-9938-065edbfaf827}</Project>
       <Name>ChessProject</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Flicker\FlickerProject.csproj">
+    <ProjectReference Include="..\Flicker\FlickrProject.csproj">
       <Project>{5f37fa41-3aea-4b5d-b1f8-1743364dace9}</Project>
-      <Name>FlickerProject</Name>
+      <Name>FlickrProject</Name>
     </ProjectReference>
     <ProjectReference Include="..\ImageGenerator\ImageProject.csproj">
       <Project>{a7aba97f-cc71-40d4-b3f4-5799a945970f}</Project>

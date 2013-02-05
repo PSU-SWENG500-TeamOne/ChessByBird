@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterProject", "Twitter\TwitterProject.csproj", "{9D1C593B-ED2D-4EDF-BCFB-994679D10480}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlickerProject", "Flicker\FlickerProject.csproj", "{5F37FA41-3AEA-4B5D-B1F8-1743364DACE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlickrProject", "Flicker\FlickrProject.csproj", "{5F37FA41-3AEA-4B5D-B1F8-1743364DACE9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessProject", "Chess\ChessProject.csproj", "{3B640CDB-09CB-4DCF-9938-065EDBFAF827}"
 EndProject
