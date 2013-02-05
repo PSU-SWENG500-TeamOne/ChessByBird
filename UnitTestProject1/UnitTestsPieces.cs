@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTestsProject
 {
     [TestClass]
-    public class UnitTestPieces
+    public class UnitTestsPieces
     {
         [TestMethod]
         public void TestMethodPieceEntity()

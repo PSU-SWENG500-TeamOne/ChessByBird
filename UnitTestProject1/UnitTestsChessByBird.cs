@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTestsProject
 {
     [TestClass]
-    public class UnitTestChessByBird
+    public class UnitTestsChessByBird
     {
         [TestMethod]
         public void TestMethodSendMoveAnnouncement()
