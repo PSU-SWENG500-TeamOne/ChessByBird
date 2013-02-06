@@ -22,7 +22,8 @@ namespace ChessByBird.ChessProject
     {
         public Form1()
         {
-            InitializeComponent();
+          // InitializeComponent();
+           System.Console.WriteLine("hello");
         }
     }
 }
