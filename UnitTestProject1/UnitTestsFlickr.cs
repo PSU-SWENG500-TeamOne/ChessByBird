@@ -31,8 +31,6 @@ namespace UnitTestsProject
     public class UnitTestsFlickr
     {
 
-        FlickrClient fc = new FlickrClient;
-
         [TestMethod]
         public void TestMethodImageEntity()
         {
@@ -42,13 +40,13 @@ namespace UnitTestsProject
         [TestMethod]
         public void TestMethodGetFlickrPic()
         {
-
+            Assert.IsTrue(FlickrClient.getFlickrPic());
         }
 
         [TestMethod]
         public void TestMethodPostFlickrPic()
         {
-
+            Assert.IsTrue(FlickrClient.postFlickrPic());
         }
     }
 }
