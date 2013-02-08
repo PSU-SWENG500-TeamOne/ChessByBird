@@ -7,8 +7,8 @@
     <ProjectGuid>{5F37FA41-3AEA-4B5D-B1F8-1743364DACE9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChessByBird.FlickerProject</RootNamespace>
-    <AssemblyName>FlickerProject</AssemblyName>
+    <RootNamespace>ChessByBird.FlickrProject</RootNamespace>
+    <AssemblyName>FlickrProject</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

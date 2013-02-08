@@ -16,14 +16,14 @@ using System.Net;
 using System.Json;
 
 
-namespace ChessByBird.FlickerProject
+namespace ChessByBird.FlickrProject
 {
-    class FlickrClient
+    public class FlickrClient
     {
          
         Image newImage = Image.FromFile("SampImage.jpg");
 
-        public static bool getFlickerPic()
+        public static bool getFlickrPic()
         {
             try{
             //failure -- jsonFlickrApi({"stat":"fail", "code":99, "message":"Insufficient permissions. Method requires read privileges; none granted."})
@@ -45,7 +45,7 @@ namespace ChessByBird.FlickerProject
 
         }
 
-        public static bool postFlickerPic()
+        public static bool postFlickrPic()
         {
             try
             {

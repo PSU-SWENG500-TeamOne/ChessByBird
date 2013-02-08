@@ -23,13 +23,16 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChessByBird.FlickerProject;
+using ChessByBird.FlickrProject;
 
 namespace UnitTestsProject
 {
     [TestClass]
     public class UnitTestsFlickr
     {
+
+        FlickrClient fc = new FlickrClient;
+
         [TestMethod]
         public void TestMethodImageEntity()
         {

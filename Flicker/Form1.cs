@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ChessByBird.FlickerProject
+namespace ChessByBird.FlickrProject
 {
     public partial class Form1 : Form
     {
@@ -27,7 +27,7 @@ namespace ChessByBird.FlickerProject
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            FlickrClient.getFlickerPic();
+            FlickrClient.getFlickrPic();
         }
     }
 }
