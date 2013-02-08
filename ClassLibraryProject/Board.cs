@@ -17,5 +17,27 @@ namespace ChessByBird.ClassLibraryProject
 {
     public class Board
     {
+        // Properties
+        private bool BlackCheck;
+        private bool WhiteCheck;
+        private Array[] Squares;
+
+        //TODO: Finish Constructor
+        public Board() { }
+
+        public bool movePiece(int sourceColumn, int sourceRow, int DestinColumn, int DestinRow)
+        {
+            return true;
+        }
+
+        public bool validateMove(int sourceColumn, int sourceRow, int DestinColumn, int DestinRow, String FEN)
+        {
+            return true;
+        }
+
+
+
+
+
     }
 }
