@@ -7,7 +7,7 @@
     <ProjectGuid>{D32FD626-5C1F-493C-9780-0771B585F213}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibraryProject</RootNamespace>
+    <RootNamespace>ChessByBird.ClassLibraryProject</RootNamespace>
     <AssemblyName>ClassLibraryProject</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Pieces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

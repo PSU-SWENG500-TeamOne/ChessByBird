@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibraryProject
+namespace ChessByBird.ClassLibraryProject
 {
-    public class Class1
+    class Pieces
     {
     }
 }
