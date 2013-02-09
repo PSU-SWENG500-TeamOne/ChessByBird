@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Net;
 using System.Json;
+using System.IO;
 
 
 namespace ChessByBird.FlickrProject
@@ -21,11 +22,11 @@ namespace ChessByBird.FlickrProject
     public class FlickrClient
     {
          
-        Image newImage = Image.FromFile("SampImage.jpg");
-
+  
         public static bool getFlickrPic()
         {
             try{
+
             //failure -- jsonFlickrApi({"stat":"fail", "code":99, "message":"Insufficient permissions. Method requires read privileges; none granted."})
             string urlJson = String.Format("http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=f9530d496325c2983a4fe9b9e51b1e86");
             WebClient serviceRequest = new WebClient();
@@ -49,6 +50,10 @@ namespace ChessByBird.FlickrProject
         {
             try
             {
+                String assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
+
+                Image chessGameboardImage = Image.FromFile(assetPath);
+
                 //failure -- jsonFlickrApi({"stat":"fail", "code":99, "message":"Insufficient permissions. Method requires read privileges; none granted."})
                 string urlJson = String.Format("http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=f9530d496325c2983a4fe9b9e51b1e86");
                 WebClient serviceRequest = new WebClient();
@@ -61,7 +66,17 @@ namespace ChessByBird.FlickrProject
                 }
                 return true;
             }
+            catch (FileNotFoundException ex)
+            {
+                //TODO: Email or log ex
+                return false;
+            }
             catch (WebException ex)
+            {
+                //TODO: Email or log ex
+                return false;
+            }
+            catch (Exception ex)
             {
                 //TODO: Email or log ex
                 return false;
