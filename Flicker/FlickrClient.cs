@@ -98,7 +98,7 @@ namespace ChessByBird.FlickrProject
             String username;
             dynamic JSONDoc;
 
-            //Non-web based app
+            //Non-web based app usng OAuth with Flickr
             /* http://flickr.com/services/auth/?api_key=[api_key]&perms=[perms]&frob=[frob]&api_sig=[api_sig] */
 
             //This process is documented http://www.flickr.com/services/api/auth.oauth.html#request_token
