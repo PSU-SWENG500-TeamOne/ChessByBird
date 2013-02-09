@@ -51,9 +51,10 @@ namespace ChessByBird.FlickrProject
             try
             {
                 String assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
-
                 Image chessGameboardImage = Image.FromFile(assetPath);
 
+                /* http://www.flickr.com/services/api/upload.api.html
+                 * http://api.flickr.com/services/upload/ */
                 //failure -- jsonFlickrApi({"stat":"fail", "code":99, "message":"Insufficient permissions. Method requires read privileges; none granted."})
                 string urlJson = String.Format("http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=f9530d496325c2983a4fe9b9e51b1e86");
                 WebClient serviceRequest = new WebClient();
@@ -83,6 +84,13 @@ namespace ChessByBird.FlickrProject
             }
         }
 
-
+        public static bool authenticateFlickr()
+        {
+            //Non-web based app
+            //Need api key and auth secret
+            /* http://flickr.com/services/auth/?api_key=[api_key]&perms=[perms]&frob=[frob]&api_sig=[api_sig] */
+            
+            return true;
+        }
     }
 }

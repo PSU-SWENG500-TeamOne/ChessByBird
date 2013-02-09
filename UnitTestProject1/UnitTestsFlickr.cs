@@ -48,5 +48,11 @@ namespace UnitTestsProject
         {
             Assert.IsTrue(FlickrClient.postFlickrPic());
         }
+
+        [TestMethod]
+        public void TestAuthenticateFlickr()
+        {
+            Assert.IsTrue(FlickrClient.authenticateFlickr());
+        }
     }
 }
