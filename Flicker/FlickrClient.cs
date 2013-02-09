@@ -86,49 +86,79 @@ namespace ChessByBird.FlickrProject
 
         public static bool authenticateFlickr()
         {
+            WebClient serviceRequest = new WebClient();
+            String responseJson;
+            String flickrURLSigningRequest;
+            String oauth_callback_confirmed;
+            String oauth_token;
+            String oauth_token_secret;
+            String oauth_verifier;
+            String fullname;
+            String user_nsid;
+            String username;
+            dynamic JSONDoc;
+
             //Non-web based app
             /* http://flickr.com/services/auth/?api_key=[api_key]&perms=[perms]&frob=[frob]&api_sig=[api_sig] */
 
+            //This process is documented http://www.flickr.com/services/api/auth.oauth.html#request_token
+
             //Step 1 Get a Request Token Flickr returns Request Token
-            String flickrURLSigningRequest = "http://www.flickr.com/services/oauth/request_token";
-            flickrURLSigningRequest += "?oauth_nonce="; //89601180
-            flickrURLSigningRequest += "&oauth_timestamp="; //1305583298
-            flickrURLSigningRequest += "&oauth_consumer_key="; //653e7a6ecc1d528c516cc8f92cf98611
+            //TODO: figure out all the flickr values below
+            flickrURLSigningRequest = "http://www.flickr.com/services/oauth/request_token";
+            flickrURLSigningRequest += "?oauth_nonce="; //e.g. 89601180
+            flickrURLSigningRequest += "&oauth_timestamp="; //e.g. 1305583298
+            flickrURLSigningRequest += "&oauth_consumer_key="; //e.g. 653e7a6ecc1d528c516cc8f92cf98611
             flickrURLSigningRequest += "&oauth_signature_method=HMAC-SHA1";
             flickrURLSigningRequest += "&oauth_version=1.0";
-            flickrURLSigningRequest += "&oauth_callback="; //http%3A%2F%2Fwww.example.com
+            flickrURLSigningRequest += "&oauth_callback="; //e.g. http%3A%2F%2Fwww.example.com
 
-            //TODO: Handle Flickr Token response
-            //oauth_callback_confirmed=true
-            //&oauth_token=72157626737672178-022bbd2f4c2f3432
-            //&oauth_token_secret=fccb68c4e6103197
+            //Handle Flickr Token response
+            responseJson = serviceRequest.DownloadString(new Uri(flickrURLSigningRequest));
+            JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
+            if (JSONDoc.Count > 0)
+            {
+                oauth_callback_confirmed = JSONDoc["oauth_callback_confirmed"];  //e.g. true
+                oauth_token = JSONDoc["oauth_token"];  //e.g. 72157626737672178-022bbd2f4c2f3432
+                oauth_token_secret = JSONDoc["oauth_token_secret"]; //e.g. fccb68c4e6103197
+            }
 
             //Step 2 Get a Authorization Flickr returns callback authorization
             flickrURLSigningRequest = "http://www.flickr.com/services/oauth/authorize";
-            flickrURLSigningRequest += "?oauth_token="; //72157626737672178-022bbd2f4c2f3432
+            flickrURLSigningRequest += "?oauth_token="; //e.g. 72157626737672178-022bbd2f4c2f3432
             
-            //TODO: Handle Flickr Authorization response
-            //http://www.example.com/
-            //?oauth_token=72157626737672178-022bbd2f4c2f3432
-            //&oauth_verifier=5d1b96a26b494074
+            //Handle Flickr Authorization response
+            responseJson = serviceRequest.DownloadString(new Uri(flickrURLSigningRequest));
+            JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
+            if (JSONDoc.Count > 0)
+            {
+                //http://www.example.com/
+                oauth_token = JSONDoc["oauth_token"];  //e.g. 72157626737672178-022bbd2f4c2f3432
+                oauth_verifier = JSONDoc["oauth_verifier"]; //e.g. 5d1b96a26b494074
+            }
 
             //Step 3 Exchange the Request Token for an Access Token
             flickrURLSigningRequest = "http://www.flickr.com/services/oauth/access_token";
-            flickrURLSigningRequest += "?oauth_nonce="; //89601180
-            flickrURLSigningRequest += "&oauth_timestamp="; //1305583298
-            flickrURLSigningRequest += "&oauth_verifier="; //5d1b96a26b494074
-            flickrURLSigningRequest += "&oauth_consumer_key="; //653e7a6ecc1d528c516cc8f92cf98611
+            flickrURLSigningRequest += "?oauth_nonce="; //e.g. 89601180
+            flickrURLSigningRequest += "&oauth_timestamp="; //e.g. 1305583298
+            flickrURLSigningRequest += "&oauth_verifier="; //e.g. 5d1b96a26b494074
+            flickrURLSigningRequest += "&oauth_consumer_key="; //e.g. 653e7a6ecc1d528c516cc8f92cf98611
             flickrURLSigningRequest += "&oauth_signature_method=HMAC-SHA1";
             flickrURLSigningRequest += "&oauth_version=1.0";
-            flickrURLSigningRequest += "&oauth_token="; //72157626737672178-022bbd2f4c2f3432
-            flickrURLSigningRequest += "&oauth_signature="; //UD9TGXzrvLIb0Ar5ynqvzatM58U%3D
+            flickrURLSigningRequest += "&oauth_token="; //e.g. 72157626737672178-022bbd2f4c2f3432
+            flickrURLSigningRequest += "&oauth_signature="; //e.g. UD9TGXzrvLIb0Ar5ynqvzatM58U%3D
 
-            //TODO: Handle Flickr response
-            //fullname=Jamal%20Fanaian
-            //&oauth_token=72157626318069415-087bfc7b5816092c
-            //&oauth_token_secret=a202d1f853ec69de
-            //&user_nsid=21207597%40N07
-            //&username=jamalfanaian
+            //Handle Flickr Access Token response
+            responseJson = serviceRequest.DownloadString(new Uri(flickrURLSigningRequest));
+            JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
+            if (JSONDoc.Count > 0)
+            {
+                fullname = JSONDoc["fullname"];  //e.g. fullname=Jamal%20Fanaian
+                oauth_token = JSONDoc["oauth_token"]; //e.g. 72157626737672178-022bbd2f4c2f3432
+                oauth_token_secret = JSONDoc["oauth_token_secret"]; //e.g. a202d1f853ec69de
+                user_nsid = JSONDoc["user_nsid"]; //e.g. 21207597%40N07
+                username = JSONDoc["username"]; //e.g. jamalfanaian
+            }
 
             return true;
 
