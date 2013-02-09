@@ -87,10 +87,52 @@ namespace ChessByBird.FlickrProject
         public static bool authenticateFlickr()
         {
             //Non-web based app
-            //Need api key and auth secret
             /* http://flickr.com/services/auth/?api_key=[api_key]&perms=[perms]&frob=[frob]&api_sig=[api_sig] */
+
+            //Step 1 Get a Request Token Flickr returns Request Token
+            String flickrURLSigningRequest = "http://www.flickr.com/services/oauth/request_token";
+            flickrURLSigningRequest += "?oauth_nonce="; //89601180
+            flickrURLSigningRequest += "&oauth_timestamp="; //1305583298
+            flickrURLSigningRequest += "&oauth_consumer_key="; //653e7a6ecc1d528c516cc8f92cf98611
+            flickrURLSigningRequest += "&oauth_signature_method=HMAC-SHA1";
+            flickrURLSigningRequest += "&oauth_version=1.0";
+            flickrURLSigningRequest += "&oauth_callback="; //http%3A%2F%2Fwww.example.com
+
+            //TODO: Handle Flickr Token response
+            //oauth_callback_confirmed=true
+            //&oauth_token=72157626737672178-022bbd2f4c2f3432
+            //&oauth_token_secret=fccb68c4e6103197
+
+            //Step 2 Get a Authorization Flickr returns callback authorization
+            flickrURLSigningRequest = "http://www.flickr.com/services/oauth/authorize";
+            flickrURLSigningRequest += "?oauth_token="; //72157626737672178-022bbd2f4c2f3432
             
+            //TODO: Handle Flickr Authorization response
+            //http://www.example.com/
+            //?oauth_token=72157626737672178-022bbd2f4c2f3432
+            //&oauth_verifier=5d1b96a26b494074
+
+            //Step 3 Exchange the Request Token for an Access Token
+            flickrURLSigningRequest = "http://www.flickr.com/services/oauth/access_token";
+            flickrURLSigningRequest += "?oauth_nonce="; //89601180
+            flickrURLSigningRequest += "&oauth_timestamp="; //1305583298
+            flickrURLSigningRequest += "&oauth_verifier="; //5d1b96a26b494074
+            flickrURLSigningRequest += "&oauth_consumer_key="; //653e7a6ecc1d528c516cc8f92cf98611
+            flickrURLSigningRequest += "&oauth_signature_method=HMAC-SHA1";
+            flickrURLSigningRequest += "&oauth_version=1.0";
+            flickrURLSigningRequest += "&oauth_token="; //72157626737672178-022bbd2f4c2f3432
+            flickrURLSigningRequest += "&oauth_signature="; //UD9TGXzrvLIb0Ar5ynqvzatM58U%3D
+
+            //TODO: Handle Flickr response
+            //fullname=Jamal%20Fanaian
+            //&oauth_token=72157626318069415-087bfc7b5816092c
+            //&oauth_token_secret=a202d1f853ec69de
+            //&user_nsid=21207597%40N07
+            //&username=jamalfanaian
+
             return true;
+
+           
         }
     }
 }
