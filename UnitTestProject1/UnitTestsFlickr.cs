@@ -23,13 +23,14 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChessByBird.FlickerProject;
+using ChessByBird.FlickrProject;
 
 namespace UnitTestsProject
 {
     [TestClass]
     public class UnitTestsFlickr
     {
+
         [TestMethod]
         public void TestMethodImageEntity()
         {
@@ -39,13 +40,19 @@ namespace UnitTestsProject
         [TestMethod]
         public void TestMethodGetFlickrPic()
         {
-
+            Assert.IsTrue(FlickrClient.getFlickrPic("8461965291"));
         }
 
         [TestMethod]
         public void TestMethodPostFlickrPic()
         {
+            Assert.IsTrue(FlickrClient.postFlickrPic());
+        }
 
+        [TestMethod]
+        public void TestAuthenticateFlickr()
+        {
+            Assert.IsTrue(FlickrClient.authenticateFlickr());
         }
     }
 }

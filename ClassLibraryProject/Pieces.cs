@@ -6,29 +6,28 @@
  *  Professor: Mohamad Kassab
  *  Project: Chess By Bird Capstone group project
 *********************************************/
+
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace ChessByBird.FlickrProject
+namespace ChessByBird.ClassLibraryProject
 {
-    public partial class Form1 : Form
+    class Pieces
     {
-        public Form1()
+        public enum chessPieceColor { white, black }
+        public enum chessPieceType { King, Queen, Rook, Bishop, Knight, Pawn, None}
+        
+        //TODO: Finish constructor method
+        public Pieces()
         {
-            InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        //TODO: Finish method
+        public void GetPieceType()
         {
-            //FlickrClient.getFlickrPic("8461965291");
-            FlickrClient.postFlickrPic();
         }
     }
 }

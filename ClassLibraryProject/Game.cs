@@ -8,27 +8,17 @@
 *********************************************/
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace ChessByBird.FlickrProject
+namespace ChessByBird.ClassLibraryProject
 {
-    public partial class Form1 : Form
+    class Game
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        public String whiteplayer{ get; set; }
+        public String blackplayer { get; set; }
+        public String FEN;
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //FlickrClient.getFlickrPic("8461965291");
-            FlickrClient.postFlickrPic();
-        }
     }
 }

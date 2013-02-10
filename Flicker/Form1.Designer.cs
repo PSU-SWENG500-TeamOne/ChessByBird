@@ -1,4 +1,4 @@
-﻿namespace ChessByBird.FlickerProject
+﻿namespace ChessByBird.FlickrProject
 {
     partial class Form1
     {
