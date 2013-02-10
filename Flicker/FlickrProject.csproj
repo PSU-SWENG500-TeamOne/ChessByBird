@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DigitalAssets\ChessGameboard.PNG" />
+    <Content Include="oauth-info.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
