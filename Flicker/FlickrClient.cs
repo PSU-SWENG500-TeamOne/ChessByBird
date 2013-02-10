@@ -17,6 +17,7 @@ using System.Json;
 using System.IO;
 using System.Web;
 using System.Collections.Specialized;
+using FlickrNet;
 
 namespace ChessByBird.FlickrProject
 {
@@ -26,21 +27,22 @@ namespace ChessByBird.FlickrProject
   
         public static bool getFlickrPic()
         {
-            try{
+            string consumerKey = "8d25fce60055946ae5f7e1dff9a5b955";
 
-            //failure -- jsonFlickrApi({"stat":"fail", "code":99, "message":"Insufficient permissions. Method requires read privileges; none granted."})
-            string urlJson = String.Format("http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=f9530d496325c2983a4fe9b9e51b1e86");
-            WebClient serviceRequest = new WebClient();
-            string responseJson = serviceRequest.DownloadString(new Uri(urlJson));
+            try
+            {
 
-            dynamic JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
-                if (JSONDoc.Count > 0)
-                {
-                   string nodeName = JSONDoc["nodeName"];
-                }
+                Flickr flickr = new Flickr(consumerKey);
+
+                // Get information about photo 936265426
+                PhotoInfo photoInfo = flickr.PhotosGetInfo("8461965291");  //ChessBoard
+
+                // Display the title
+                string photTitle = photoInfo.Title;
                 return true;
             }
-            catch (WebException ex) {
+            catch (WebException ex)
+            {
                 //TODO: Email or log ex
                 return false;
             }
