@@ -31,6 +31,7 @@ namespace ChessByBird.FlickrProject
         public static bool getFlickrPic(string PhotoID)
         {
             string consumerKey = "8d25fce60055946ae5f7e1dff9a5b955";
+
             try
             {
                 Flickr flickr = new Flickr(consumerKey);
@@ -51,23 +52,23 @@ namespace ChessByBird.FlickrProject
 
         public static bool postFlickrPic()
         {
+            string consumerKey = "8d25fce60055946ae5f7e1dff9a5b955";
+            string consumerSecret = "0d89b50f8cc4ab5f";
+
             try
             {
                 String assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
                 Image chessGameboardImage = Image.FromFile(assetPath);
 
-                /* http://www.flickr.com/services/api/upload.api.html
-                 * http://api.flickr.com/services/upload/ */
-                //failure example -- jsonFlickrApi({"stat":"fail", "code":99, "message":"Insufficient permissions. Method requires read privileges; none granted."})
-                string urlJson = String.Format("http://www.flickr.com/services/rest/?method=flickr.test.echo&format=json&api_key=f9530d496325c2983a4fe9b9e51b1e86");
-                WebClient serviceRequest = new WebClient();
-                string responseJson = serviceRequest.DownloadString(new Uri(urlJson));
+                Flickr flickr = new Flickr(consumerKey, consumerSecret);
+                OAuthRequestToken OAuthRequestToken = flickr.OAuthGetRequestToken("oob");
 
-                dynamic JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
-                if (JSONDoc.Count > 0)
-                {
-                    string nodeName = JSONDoc["nodeName"];
-                }
+                string file = assetPath;
+                string title = "Test Chess Photo";
+                string descripton = "This is the description of the photo";
+                string tags = "tag1,tag2,tag3";
+                string photoId = flickr.UploadPicture(file, title, descripton, tags);
+
                 return true;
             }
             catch (FileNotFoundException ex)
