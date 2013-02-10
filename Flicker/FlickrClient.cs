@@ -119,8 +119,6 @@ namespace ChessByBird.FlickrProject
             string signature = oauth.GenerateSignature(rq, callback, consumerKey, consumerSecret, null, null, "GET", timestamp,
                 nonce, OAuthBase.SignatureTypes.HMACSHA1, out url, out url2);
 
-            url3 = HttpUtility.UrlEncode(url2);
-
             flickrURLSigningRequest = "http://www.flickr.com/services/oauth/request_token";
             flickrURLSigningRequest += "?oauth_nonce=" +  HttpUtility.UrlEncode(nonce);
             flickrURLSigningRequest += "&oauth_timestamp=" + timestamp;
