@@ -119,7 +119,7 @@ namespace ChessByBird.FlickrProject
 
             flickrURLSigningRequest = "http://www.flickr.com/services/oauth/request_token";
             flickrURLSigningRequest += "?oauth_nonce=" + nonce;
-            flickrURLSigningRequest += "&oauth_timestamp=" + timeStamp;
+            flickrURLSigningRequest += "&oauth_timestamp=" + timestamp;
             flickrURLSigningRequest += "&oauth_consumer_key=" + consumerKey; 
             flickrURLSigningRequest += "&oauth_signature_method=HMAC-SHA1";
             flickrURLSigningRequest += "&oauth_version=1.0";
