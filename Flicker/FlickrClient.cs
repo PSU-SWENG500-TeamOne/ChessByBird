@@ -61,7 +61,12 @@ namespace ChessByBird.FlickrProject
                 Image chessGameboardImage = Image.FromFile(assetPath);
 
                 Flickr flickr = new Flickr(consumerKey, consumerSecret);
+                //Step 1 REquest Token
                 OAuthRequestToken OAuthRequestToken = flickr.OAuthGetRequestToken("oob");
+                //Step 2 Auth
+                string Verifier = flickr.OAuthCalculateAuthorizationUrl(OAuthRequestToken.Token, AuthLevel.Write);
+                //Stpe 3 Access Token
+                OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(OAuthRequestToken.Token, OAuthRequestToken.TokenSecret, Verifier); 
 
                 string file = assetPath;
                 string title = "Test Chess Photo";
