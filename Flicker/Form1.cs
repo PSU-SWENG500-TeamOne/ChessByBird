@@ -27,7 +27,7 @@ namespace ChessByBird.FlickrProject
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            FlickrClient.authenticateFlickr();
+            FlickrClient.getFlickrPic("8461965291");
         }
     }
 }

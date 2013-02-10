@@ -23,22 +23,22 @@ namespace ChessByBird.FlickrProject
 {
     public class FlickrClient
     {
-         
+         //PhotoSearchOptions options = new PhotoSearchOptions();
+        //options.PerPage = 100;
+        //options.Tags = "CBB";
+
   
-        public static bool getFlickrPic()
+        public static bool getFlickrPic(string PhotoID)
         {
             string consumerKey = "8d25fce60055946ae5f7e1dff9a5b955";
-
             try
             {
-
                 Flickr flickr = new Flickr(consumerKey);
-
-                // Get information about photo 936265426
-                PhotoInfo photoInfo = flickr.PhotosGetInfo("8461965291");  //ChessBoard
+                PhotoInfo photoInfo = flickr.PhotosGetInfo(PhotoID);  //ChessBoard
 
                 // Display the title
-                string photTitle = photoInfo.Title;
+                string photoTitle = photoInfo.Title;
+                string photoDescription = photoInfo.Description;  //This has the FEN move
                 return true;
             }
             catch (WebException ex)

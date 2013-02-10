@@ -40,7 +40,7 @@ namespace UnitTestsProject
         [TestMethod]
         public void TestMethodGetFlickrPic()
         {
-            Assert.IsTrue(FlickrClient.getFlickrPic());
+            Assert.IsTrue(FlickrClient.getFlickrPic("8461965291"));
         }
 
         [TestMethod]
