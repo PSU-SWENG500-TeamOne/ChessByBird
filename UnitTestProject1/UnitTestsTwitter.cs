@@ -22,14 +22,33 @@
 //Assert.IsTrue();              //Verifies that a specified condition is true.
 
 using System;
+using System.IO;
+using System.Xml.Serialization;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChessByBird.TwitterProject;
+using System.Threading;
+using System.Reflection;
 
 namespace UnitTestsProject
 {
     [TestClass]
     public class UnitTestsTwitter
     {
+        private static OAuthInfo GetOAuthInfo()
+        {
+            var tokensFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "oauth-info.xml");
+
+            if (!File.Exists(tokensFile))
+                Assert.Fail("Cannot find oauth parameter file.");
+
+            var serializer = new XmlSerializer(typeof(OAuthInfo));
+            using (var stream = File.OpenRead(tokensFile))
+                return (OAuthInfo)serializer.Deserialize(stream);
+
+        }
+
         [TestMethod]
         public void TestMethodPictureEntity()
         {
@@ -45,13 +64,32 @@ namespace UnitTestsProject
         [TestMethod]
         public void TestMethodGetTweet()
         {
+            var oauth = GetOAuthInfo();
 
+            var twitter = new TinyTwitter(oauth);
+
+            //get tweet #299722128025063425
+            var tweet = twitter.GetSpecificTweet(299722128025063425);
+            string actualText = "@ZacharyACarson this is a tweet! heres a link to something on flickr: http://www.flickr.com/photos/straymuffin/89009605/";
+            Assert.AreEqual(tweet.ToString(), actualText);
+            
         }
 
         [TestMethod]
-        public void TestMethodPostTweet()
+        public void TestMethodPostTweetAndReadTimeline()
         {
+            var oauth = GetOAuthInfo();
 
+            var twitter = new TinyTwitter(oauth);
+
+            var status = Guid.NewGuid().ToString();
+            twitter.UpdateStatus(status);
+
+            // Wait a little to let twitter update timelines
+            Thread.Sleep(TimeSpan.FromSeconds(5));
+
+            var tweets = twitter.GetHomeTimeline();
+            Assert.AreEqual(status, tweets.First().Text);
         }
 
     }

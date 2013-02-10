@@ -44,11 +44,14 @@ namespace ChessByBird.TwitterProject
                         Console.WriteLine("Now gathering info about tweet #" + x.Id.ToString() +".");
                         Console.WriteLine("  --  The sender of this tweet was '" + x.ScreenName + " and it was in reply to " + x.inReplyToID + "'.");
                         Console.WriteLine("  --  The text of this tweet was: '" + x.Text + "'.");
-                        Console.WriteLine("  --  The move attached to this tweet was " + moveString + "'.");
+                        Console.WriteLine("  --  The move attached to this tweet was " + moveString + ".");
                         
                     }
                 );
             Console.WriteLine("This concludes the current mentions");
+
+            //var tweet = twitter.GetSpecificTweet(299722128025063425);
+
 
             var status = Guid.NewGuid().ToString();
             twitter.UpdateStatus(status);

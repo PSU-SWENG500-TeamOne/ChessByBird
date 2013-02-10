@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
+using System.Json;
 
 namespace ChessByBird.TwitterProject
 {
@@ -59,6 +60,32 @@ namespace ChessByBird.TwitterProject
 		{
 			return GetTimeline("http://api.twitter.com/1/statuses/user_timeline.xml", sinceId, count);
 		}
+
+        public IEnumerable<Tweet> GetSpecificTweet(long tweetID)
+        {
+            string url = "https://api.twitter.com/1.1/statuses/show.json";
+            var builder = new RequestBuilder(oauth, "GET", url);
+
+            builder.AddParameter("id", tweetID.ToString());
+
+            var response = builder.Execute();
+
+            using (var stream = response.GetResponseStream())
+            {
+                var xml = XDocument.Load(new XmlTextReader(stream));
+                return xml.Descendants("status")
+                    .Select(x => new Tweet
+                    {
+                        Id = long.Parse(x.Element("id").Value),
+                        CreatedAt = DateTime.ParseExact(x.Element("created_at").Value, "ddd MMM dd HH:mm:ss zz00 yyyy", CultureInfo.InvariantCulture).ToLocalTime(),
+                        UserName = x.Element("user").Element("name").Value,
+                        ScreenName = x.Element("user").Element("screen_name").Value,
+                        Text = x.Element("text").Value,
+                        inReplyToID = x.Element("in_reply_to_status_id").Value
+                    })
+                    .ToArray();
+            }
+        }
 
 		private IEnumerable<Tweet> GetTimeline(string url, long? sinceId, int? count)
 		{
@@ -136,6 +163,7 @@ namespace ChessByBird.TwitterProject
 
 				return request.GetResponse();
 			}
+
 
 			private void WriteRequestBody(HttpWebRequest request)
 			{
