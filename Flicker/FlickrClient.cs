@@ -99,8 +99,8 @@ namespace ChessByBird.FlickrProject
             string username;
             string timestamp; // timestamp
             string nonce; //nonce valu
-            string consumerKey = "JHPlyU7np5Q0Q5dXiYVZQ";
-            string consumerSecret = "e6vURFcT29XFwVmnYgK3NuNHbAjJofIs18JU6DkGEc";
+            string consumerKey = "8d25fce60055946ae5f7e1dff9a5b955";
+            string consumerSecret = "0d89b50f8cc4ab5f";
             string callback = "oob"; //Out of Band
             dynamic JSONDoc;
 
@@ -111,18 +111,20 @@ namespace ChessByBird.FlickrProject
 
             //Step 1 Get a Request Token Flickr returns Request Token
             OAuthBase oauth = new OAuthBase();
+           
             timestamp = oauth.GenerateTimeStamp();
             nonce = oauth.GenerateNonce();
             Uri rq = new Uri("http://www.flickr.com/services/oauth/request_token");
             string url, url2;
-            string signature = oauth.GenerateSignature(rq, consumerKey, consumerSecret, null, null, "POST", timestamp, nonce, out url, out url2);
+            string signature = oauth.GenerateSignature(rq, consumerKey, consumerSecret, null, null, "GET", timestamp,
+                nonce, OAuthBase.SignatureTypes.HMACSHA1, out url, out url2);
 
             flickrURLSigningRequest = "http://www.flickr.com/services/oauth/request_token";
-            flickrURLSigningRequest += "?oauth_nonce=" + nonce;
+            flickrURLSigningRequest += "?oauth_nonce=" +  HttpUtility.UrlEncode(nonce);
             flickrURLSigningRequest += "&oauth_timestamp=" + timestamp;
-            flickrURLSigningRequest += "&oauth_consumer_key=" + consumerKey;
+            flickrURLSigningRequest += "&oauth_consumer_key=" +  HttpUtility.UrlEncode(consumerKey);
             flickrURLSigningRequest += "&oauth_signature_method=HMAC-SHA1";
-            flickrURLSigningRequest += "&oauth_version=1.0";
+            flickrURLSigningRequest += "&oauth_version=1.0"; 
             flickrURLSigningRequest += "&oauth_signature=" + HttpUtility.UrlEncode(signature);
             flickrURLSigningRequest += "&oauth_callback=" + callback; 
 
