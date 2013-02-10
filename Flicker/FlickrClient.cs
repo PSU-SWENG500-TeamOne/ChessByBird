@@ -16,7 +16,7 @@ using System.Net;
 using System.Json;
 using System.IO;
 using System.Web;
-
+using System.Collections.Specialized;
 
 namespace ChessByBird.FlickrProject
 {
@@ -89,11 +89,12 @@ namespace ChessByBird.FlickrProject
         {
             WebClient serviceRequest = new WebClient();
             string responseJson;
+            string responseString;
             string flickrURLSigningRequest;
             string oauth_callback_confirmed;
-            string oauth_token;
-            string oauth_token_secret;
-            string oauth_verifier;
+            string oauth_token = "";
+            string oauth_token_secret = "";
+            string oauth_verifier = "";
             string fullname;
             string user_nsid;
             string username;
@@ -115,7 +116,7 @@ namespace ChessByBird.FlickrProject
             timestamp = oauth.GenerateTimeStamp();
             nonce = oauth.GenerateNonce();
             Uri rq = new Uri("http://www.flickr.com/services/oauth/request_token");
-            string url, url2, url3;
+            string url, url2;
             string signature = oauth.GenerateSignature(rq, callback, consumerKey, consumerSecret, null, null, "GET", timestamp,
                 nonce, OAuthBase.SignatureTypes.HMACSHA1, out url, out url2);
 
@@ -128,52 +129,51 @@ namespace ChessByBird.FlickrProject
             flickrURLSigningRequest += "&oauth_signature=" + HttpUtility.UrlEncode(signature);
             flickrURLSigningRequest += "&oauth_callback=" + callback; 
 
-            //Handle Flickr Token response
-            responseJson = serviceRequest.DownloadString(new Uri(flickrURLSigningRequest));
-            JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
-            if (JSONDoc.Count > 0)
+            //Handle Flickr Token string response
+            //example: oauth_callback_confirmed=true&oauth_token=72157632733281181-a1c53ea7076c8abe& =5869e241190f0b76"
+            NameValueCollection query = HttpUtility.ParseQueryString(serviceRequest.DownloadString(new Uri(flickrURLSigningRequest)));
+            if (query.Count > 0)
             {
-                oauth_callback_confirmed = JSONDoc["oauth_callback_confirmed"];  //e.g. true
-                oauth_token = JSONDoc["oauth_token"];  //e.g. 72157626737672178-022bbd2f4c2f3432
-                oauth_token_secret = JSONDoc["oauth_token_secret"]; //e.g. fccb68c4e6103197
+                oauth_callback_confirmed = query["oauth_callback_confirmed"];  //e.g. true
+                oauth_token = query["oauth_token"];  //e.g. 72157632733281181-a1c53ea7076c8abe
+                oauth_token_secret = query["oauth_token_secret"]; //e.g. 5869e241190f0b76
             }
 
             //Step 2 Get a Authorization Flickr returns callback authorization
             flickrURLSigningRequest = "http://www.flickr.com/services/oauth/authorize";
-            flickrURLSigningRequest += "?oauth_token="; //e.g. 72157626737672178-022bbd2f4c2f3432
+            flickrURLSigningRequest += "?oauth_token=" + HttpUtility.UrlEncode(oauth_token); //e.g. 72157626737672178-022bbd2f4c2f3432
+            flickrURLSigningRequest += "&perms=write";  //Privileges
             
             //Handle Flickr Authorization response
-            responseJson = serviceRequest.DownloadString(new Uri(flickrURLSigningRequest));
-            JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
-            if (JSONDoc.Count > 0)
+            query = HttpUtility.ParseQueryString(serviceRequest.DownloadString(new Uri(flickrURLSigningRequest)));
+            if (query.Count > 0)
             {
-                //http://www.example.com/
-                oauth_token = JSONDoc["oauth_token"];  //e.g. 72157626737672178-022bbd2f4c2f3432
-                oauth_verifier = JSONDoc["oauth_verifier"]; //e.g. 5d1b96a26b494074
+                oauth_token = query["oauth_token"];  
+                oauth_verifier = query["oauth_verifier"]; 
             }
 
             //Step 3 Exchange the Request Token for an Access Token
             flickrURLSigningRequest = "http://www.flickr.com/services/oauth/access_token";
-            flickrURLSigningRequest += "?oauth_nonce="; //e.g. 89601180
-            flickrURLSigningRequest += "&oauth_timestamp="; //e.g. 1305583298
-            flickrURLSigningRequest += "&oauth_verifier="; //e.g. 5d1b96a26b494074
-            flickrURLSigningRequest += "&oauth_consumer_key="; //e.g. 653e7a6ecc1d528c516cc8f92cf98611
+            flickrURLSigningRequest += "?oauth_nonce=" + HttpUtility.UrlEncode(nonce);
+            flickrURLSigningRequest += "&oauth_timestamp=" + timestamp;
+            flickrURLSigningRequest += "&oauth_verifier=" + oauth_verifier; //???
+            flickrURLSigningRequest += "&oauth_consumer_key=" + HttpUtility.UrlEncode(consumerKey); 
             flickrURLSigningRequest += "&oauth_signature_method=HMAC-SHA1";
             flickrURLSigningRequest += "&oauth_version=1.0";
-            flickrURLSigningRequest += "&oauth_token="; //e.g. 72157626737672178-022bbd2f4c2f3432
-            flickrURLSigningRequest += "&oauth_signature="; //e.g. UD9TGXzrvLIb0Ar5ynqvzatM58U%3D
+            flickrURLSigningRequest += "&oauth_token=" + oauth_token; 
+            flickrURLSigningRequest += "&oauth_signature=" + HttpUtility.UrlEncode(signature); 
 
             //Handle Flickr Access Token response
-            responseJson = serviceRequest.DownloadString(new Uri(flickrURLSigningRequest));
-            JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
-            if (JSONDoc.Count > 0)
-            {
-                fullname = JSONDoc["fullname"];  //e.g. fullname=Jamal%20Fanaian
-                oauth_token = JSONDoc["oauth_token"]; //e.g. 72157626737672178-022bbd2f4c2f3432
-                oauth_token_secret = JSONDoc["oauth_token_secret"]; //e.g. a202d1f853ec69de
-                user_nsid = JSONDoc["user_nsid"]; //e.g. 21207597%40N07
-                username = JSONDoc["username"]; //e.g. jamalfanaian
-            }
+            //responseJson = serviceRequest.DownloadString(new Uri(flickrURLSigningRequest));
+            //JSONDoc = (JsonObject)JsonObject.Parse(responseJson);
+            //if (JSONDoc.Count > 0)
+            //{
+            //    fullname = JSONDoc["fullname"]; 
+            //    oauth_token = JSONDoc["oauth_token"]; 
+            //    oauth_token_secret = JSONDoc["oauth_token_secret"]; 
+            //    user_nsid = JSONDoc["user_nsid"]; 
+            //    username = JSONDoc["username"]; 
+            //}
 
             return true;
 
