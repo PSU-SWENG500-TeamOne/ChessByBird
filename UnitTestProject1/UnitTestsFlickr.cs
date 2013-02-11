@@ -38,9 +38,20 @@ namespace UnitTestsProject
         }
 
         [TestMethod]
-        public void TestMethodGetFlickrPic()
+        public void TestMethodGetFlickrPicValid()
         {
-            Assert.IsTrue(FlickrClient.getFlickrPic("8461965291"));
+            string photoDescription;  //This will hold the Chess FEN or Error message
+            Assert.IsTrue(FlickrClient.getFlickrPic("8461965291", out photoDescription));
+            //Make sure the value returned are equal
+            Assert.AreEqual("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", photoDescription);
+        }
+
+        [TestMethod]
+        public void TestMethodGetFlickrPicInvalid()
+        {
+            string photoDescription;  //This will hold the Chess FEN or Error message
+            Assert.IsFalse(FlickrClient.getFlickrPic("1234567890", out photoDescription));
+            Assert.AreEqual("Error: Could not get the Image from Flickr", photoDescription);
         }
 
         [TestMethod]

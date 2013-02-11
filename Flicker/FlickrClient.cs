@@ -26,25 +26,26 @@ namespace ChessByBird.FlickrProject
          //PhotoSearchOptions options = new PhotoSearchOptions();
         //options.PerPage = 100;
         //options.Tags = "CBB";
-
   
-        public static bool getFlickrPic(string PhotoID)
+        public static bool getFlickrPic(string photoID, out string photoDescription)
         {
             string consumerKey = "8d25fce60055946ae5f7e1dff9a5b955";
-
             try
             {
                 Flickr flickr = new Flickr(consumerKey);
-                PhotoInfo photoInfo = flickr.PhotosGetInfo(PhotoID);  //ChessBoard
-
-                // Display the title
+                PhotoInfo photoInfo = flickr.PhotosGetInfo(photoID);  //ChessBoard
                 string photoTitle = photoInfo.Title;
-                string photoDescription = photoInfo.Description;  //This has the FEN move
+                photoDescription = photoInfo.Description;  //This has the FEN move
                 return true;
             }
-            catch (WebException ex)
+            catch (WebException)
             {
-                //TODO: Email or log ex
+                photoDescription = "Error: Could not get the Image from Flickr";
+                return false;
+            }
+            catch (Exception)
+            {
+                photoDescription = "Error: Could not get the Image from Flickr";
                 return false;
             }
 
@@ -76,7 +77,7 @@ namespace ChessByBird.FlickrProject
 
                 string file = assetPath;
                 string title = "Test Chess Photo";
-                string descripton = "This is the description of the photo";
+                string descripton = "Move2: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
                 string tags = "tag1,tag2,tag3";
                 string photoId = flickr.UploadPicture(file, title, descripton, tags);
 
