@@ -56,10 +56,12 @@
     <Compile Include="UnitTestsBoard.cs" />
     <Compile Include="UnitTestsGame.cs" />
     <Compile Include="UnitTestsImage.cs" />
-    <Compile Include="UnitTestsTwitter.cs" />
     <Compile Include="UnitTestsFlickr.cs" />
     <Compile Include="UnitTestsChess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTestsTwitter.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Chess\ChessProject.csproj">
