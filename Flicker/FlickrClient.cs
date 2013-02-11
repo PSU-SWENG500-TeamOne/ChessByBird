@@ -68,14 +68,10 @@ namespace ChessByBird.FlickrProject
                 //System.Diagnostics.Process.Start(url);
                
                 //Step 3 Access Token
-                //string Verifier = "244-040-435";
-                //string Token = "72157632741560142-76d6212140a1f3bf";
-                //string TokenSecret = "53ae3f7e58e24e2e";
-                //OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(Token,TokenSecret, Verifier); 
-
-                OAuthAccessToken AccessToken = new OAuthAccessToken();
-                AccessToken.Token = "72157632734925979-90e9a569b563b919";
-                AccessToken.TokenSecret = "8b330063711bb116";
+                string Verifier = "244-040-435";
+                string Token = "72157632741560142-76d6212140a1f3bf";
+                string TokenSecret = "53ae3f7e58e24e2e";
+                OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(Token,TokenSecret, Verifier); 
 
                 string file = assetPath;
                 string title = "Test Chess Photo";
