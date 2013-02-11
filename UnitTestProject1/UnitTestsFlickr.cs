@@ -41,9 +41,9 @@ namespace UnitTestsProject
         public void TestMethodGetFlickrPicValid()
         {
             string photoDescription;  //This will hold the Chess FEN or Error message
-            Assert.IsTrue(FlickrClient.getFlickrPic("8461965291", out photoDescription));
+            Assert.IsTrue(FlickrClient.getFlickrPic("8465703185", out photoDescription));
             //Make sure the value returned is equal
-            Assert.AreEqual("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", photoDescription);
+            Assert.AreEqual("Move3: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1", photoDescription);
         }
 
         [TestMethod]
