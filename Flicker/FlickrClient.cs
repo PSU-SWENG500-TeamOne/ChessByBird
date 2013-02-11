@@ -61,16 +61,21 @@ namespace ChessByBird.FlickrProject
                 Flickr flickr = new Flickr(consumerKey, consumerSecret);
                 //Step 1 REquest Token
                 //OAuthRequestToken OAuthRequestToken = flickr.OAuthGetRequestToken("oob");
+
                 //Step 2 Auth
                 //string url = flickr.OAuthCalculateAuthorizationUrl(OAuthRequestToken.Token, AuthLevel.Write);
                 //This step is needed to get the verifier code only once for the application
                 //System.Diagnostics.Process.Start(url);
                
                 //Step 3 Access Token
-                string Verifier = "835-917-255";
-                string Token = "72157632739913072-35bba6996eed66fb";
-                string TokenSecret = "13515722b8628fc7";
-                OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(Token,TokenSecret, Verifier); 
+                //string Verifier = "244-040-435";
+                //string Token = "72157632741560142-76d6212140a1f3bf";
+                //string TokenSecret = "53ae3f7e58e24e2e";
+                //OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(Token,TokenSecret, Verifier); 
+
+                OAuthAccessToken AccessToken = new OAuthAccessToken();
+                AccessToken.Token = "72157632734925979-90e9a569b563b919";
+                AccessToken.TokenSecret = "8b330063711bb116";
 
                 string file = assetPath;
                 string title = "Test Chess Photo";
