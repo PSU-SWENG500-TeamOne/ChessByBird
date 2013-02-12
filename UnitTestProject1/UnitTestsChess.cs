@@ -58,13 +58,13 @@ namespace UnitTestsProject
         }
         #endregion
         [TestMethod]
-        public void TestMethodCheckValidMove()
+        public void TestValidMove()
         {
 
         }
 
         [TestMethod]
-        public void TestMethodProcessMovePiece()
+        public void TestProcessMovePiece()
         {
 
         }
@@ -76,9 +76,27 @@ namespace UnitTestsProject
         }
 
         [TestMethod]
-        public void TestMethodProcessGame()
+        public void TestProcessGame()
         {
 
         }
+        [TestMethod]
+        public void TestInValidMove()
+        {
+
+        }
+        [TestMethod]
+        public void TestEngineCheck()
+        {
+
+        }
+        [TestMethod]
+        public void TestNewFEN()
+        {
+
+        }
+        [TestMethod]
+        public void TestSetMove()
+        {
     }
 }

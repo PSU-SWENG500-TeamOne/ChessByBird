@@ -18,6 +18,7 @@ oauth-info.xml
 *.cache
 *.ilk
 *.log
+*.cd
 [Bb]in
 [Dd]ebug*/
 *.lib
