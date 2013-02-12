@@ -20,7 +20,6 @@ namespace ChessByBird.TwitterProject
             if (JSONDoc.Count > 0)
             {
                 string nodeName = JSONDoc["nodeName"];
-                string node = null;
             }
 
             return true;
