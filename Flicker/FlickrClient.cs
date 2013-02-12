@@ -77,6 +77,7 @@ namespace ChessByBird.FlickrProject
                 flickr.OAuthAccessToken = "72157632734925979-90e9a569b563b919";
                 flickr.OAuthAccessTokenSecret = "8b330063711bb116";
 
+                //TODO: Image must be set to public 
                 string file = assetPath;
                 string title = "Test Chess Photo";
                 string tags = "tag1,tag2,tag3";
