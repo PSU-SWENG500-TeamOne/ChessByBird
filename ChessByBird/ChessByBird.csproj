@@ -39,7 +39,12 @@
     <Compile Include="Flickr\FlickrClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FlickrNet, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Flicker\DLL\FlickrNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DigitalAssets\ChessGameboard.PNG" />

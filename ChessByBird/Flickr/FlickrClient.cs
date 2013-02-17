@@ -13,7 +13,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Net;
-using System.Json;
 using System.IO;
 using System.Web;
 using System.Collections.Specialized;
@@ -23,11 +22,6 @@ namespace ChessByBird.FlickrProject
 {
     public class FlickrClient
     {
-
-        static void Main()
-        {
-
-        }
   
         public static bool getFlickrPic(string photoID, out string photoDescription)
         {
