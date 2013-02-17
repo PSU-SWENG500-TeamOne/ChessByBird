@@ -30,9 +30,9 @@ namespace ChessByBird.FlickrProject
         /// <returns>The FEN Chess Move</returns>
         public static string getFlickrPic(string photoID)
         {
-            string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
             try
             {
+                string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
                 Flickr flickr = new Flickr(consumerKey);
                 PhotoInfo photoInfo = flickr.PhotosGetInfo(photoID);  //ChessBoard
                 string photoTitle = photoInfo.Title;
@@ -51,11 +51,10 @@ namespace ChessByBird.FlickrProject
         /// <param name="move">Chess FEN Move to add to Photo Description</param>
         public static void postFlickrPic(string assetPath, string move)
         {
-            string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
-            string consumerSecret = ConfigurationManager.AppSettings["consumerSecret"];
-
             try
             {
+                string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
+                string consumerSecret = ConfigurationManager.AppSettings["consumerSecret"];
                 Flickr flickr = new Flickr(consumerKey, consumerSecret);
                 //Step 1 Request a Token
                 //OAuthRequestToken OAuthRequestToken = flickr.OAuthGetRequestToken("oob");
