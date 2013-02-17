@@ -8,5 +8,12 @@ namespace ChessByBird
 {
     class ChessByBird
     {
+
+        static void Main()
+        {
+            //ProcessChess()
+            //ProcessTweet()
+            //ProcessImage()
+        }
     }
 }
