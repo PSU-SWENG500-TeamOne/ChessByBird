@@ -14,6 +14,7 @@ namespace ChessByBird
 
         static void Main()
         {
+            //TODO: these will all be removed later
             string move;
             string PhotoID = "";
             string assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
@@ -21,11 +22,12 @@ namespace ChessByBird
             try
             {
                 //Loop Check for Tweet
-                move = FlickrClient.getFlickrPic(PhotoID);
-                    //ProcessChess()
+                    //If it is the first move do not the getFlickr Pic
+                    move = FlickrClient.getFlickrPic(PhotoID);
+                    //ProcessChess(move)
                     //ProcessImage()
                     //PostTweet()
-                FlickrClient.postFlickrPic(assetPath, PhotoID);
+                    FlickrClient.postFlickrPic(assetPath, PhotoID);
             }
             //Catch all issues
             catch { }
