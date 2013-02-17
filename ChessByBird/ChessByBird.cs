@@ -26,8 +26,8 @@ namespace ChessByBird
                         gameBoardState = FlickrClient.getFlickrPic(PhotoID);
                     //updatedGameBoardState = ProcessChess(chessMove, gameBoardState)
                     //assetPath = ProcessImage(updatedGameBoardState)
-                    //URL = FlickrClient.postFlickrPic(assetPath, gameBoardState);
-                    //PostTweet(URL)                    
+                    Uri imageUri = FlickrClient.postFlickrPic(assetPath, gameBoardState);
+                //PostTweet(imageUri)                    
                 //end loop
             }
             //Catch all issues
