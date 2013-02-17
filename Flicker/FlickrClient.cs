@@ -23,6 +23,11 @@ namespace ChessByBird.FlickrProject
 {
     public class FlickrClient
     {
+
+        static void Main()
+        {
+
+        }
   
         public static bool getFlickrPic(string photoID, out string photoDescription)
         {
