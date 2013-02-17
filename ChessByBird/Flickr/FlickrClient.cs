@@ -15,48 +15,47 @@ using System.Drawing;
 using System.Net;
 using System.IO;
 using System.Web;
-using System.Collections.Specialized;
 using FlickrNet;
+using System.Configuration;
 
 namespace ChessByBird.FlickrProject
 {
     public class FlickrClient
     {
-  
-        public static bool getFlickrPic(string photoID, out string photoDescription)
+
+        /// <summary>
+        /// Using the PhotoID gets the Photo Description (Contains FEN Move) from Flickr
+        /// </summary>
+        /// <param name="photoID">The Flickr Photo ID to get</param>
+        /// <returns>The FEN Chess Move</returns>
+        public static string getFlickrPic(string photoID)
         {
-            string consumerKey = "8d25fce60055946ae5f7e1dff9a5b955";
+            string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
             try
             {
                 Flickr flickr = new Flickr(consumerKey);
                 PhotoInfo photoInfo = flickr.PhotosGetInfo(photoID);  //ChessBoard
                 string photoTitle = photoInfo.Title;
-                photoDescription = photoInfo.Description;  //This has the FEN move
-                return true;
-            }
-            catch (WebException)
-            {
-                photoDescription = "Error: Could not get the Image from Flickr";
-                return false;
+                return photoInfo.Description;  //This has the FEN move
             }
             catch (Exception)
             {
-                photoDescription = "Error: Could not get the Image from Flickr";
-                return false;
+                throw new System.ArgumentException("Cannot get Flickr image", "flickr");
             }
-
         }
 
-        public static bool postFlickrPic(string photoDescription)
+        /// <summary>
+        /// This will post the picture to flickr with a photo description the FEN Move
+        /// </summary>
+        /// <param name="assetPath">Flie Location of Image</param>
+        /// <param name="move">Chess FEN Move to add to Photo Description</param>
+        public static void postFlickrPic(string assetPath, string move)
         {
-            string consumerKey = "8d25fce60055946ae5f7e1dff9a5b955";
-            string consumerSecret = "0d89b50f8cc4ab5f";
+            string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
+            string consumerSecret = ConfigurationManager.AppSettings["consumerSecret"];
 
             try
             {
-                String assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
-                Image chessGameboardImage = Image.FromFile(assetPath);
-
                 Flickr flickr = new Flickr(consumerKey, consumerSecret);
                 //Step 1 Request a Token
                 //OAuthRequestToken OAuthRequestToken = flickr.OAuthGetRequestToken("oob");
@@ -65,7 +64,7 @@ namespace ChessByBird.FlickrProject
                 //string url = flickr.OAuthCalculateAuthorizationUrl(OAuthRequestToken.Token, AuthLevel.Write);
                 //This step is needed to get the verifier code only once for the application
                 //System.Diagnostics.Process.Start(url);
-               
+
                 //Step 3 Get the Access Token for the application
                 //string Verifier = "244-040-435";
                 //string requestToken = "72157632741560142-76d6212140a1f3bf";
@@ -73,31 +72,18 @@ namespace ChessByBird.FlickrProject
                 //OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(requestToken, requestTokenSecret, Verifier);
 
                 //This is the Application Access Token
-                flickr.OAuthAccessToken = "72157632734925979-90e9a569b563b919";
-                flickr.OAuthAccessTokenSecret = "8b330063711bb116";
+                string OAuthAccessToken = ConfigurationManager.AppSettings["OAuthAccessToken"];
+                string OAuthAccessTokenSecret = ConfigurationManager.AppSettings["OAuthAccessTokenSecret"];
 
                 //TODO: Image must be set to public 
                 string file = assetPath;
                 string title = "Test Chess Photo";
                 string tags = "tag1,tag2,tag3";
-                string photoId = flickr.UploadPicture(file, title, photoDescription, tags);
-
-                return true;
+                string photoId = flickr.UploadPicture(file, title, move, tags);
             }
-            catch (FileNotFoundException ex)
+            catch (Exception)
             {
-                //TODO: Email or log ex
-                return false;
-            }
-            catch (WebException ex)
-            {
-                //TODO: Email or log ex
-                return false;
-            }
-            catch (Exception ex)
-            {
-                //TODO: Email or log ex
-                return false;
+                throw new System.ArgumentException("Cannot save Flickr image", "flickr");
             }
         }
 
