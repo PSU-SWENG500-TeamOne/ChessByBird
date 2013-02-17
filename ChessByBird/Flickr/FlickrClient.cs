@@ -72,7 +72,7 @@ namespace ChessByBird.FlickrProject
                 //string requestTokenSecret = "53ae3f7e58e24e2e";
                 //OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(requestToken, requestTokenSecret, Verifier);
 
-                //This the Application Access Token
+                //This is the Application Access Token
                 flickr.OAuthAccessToken = "72157632734925979-90e9a569b563b919";
                 flickr.OAuthAccessTokenSecret = "8b330063711bb116";
 
