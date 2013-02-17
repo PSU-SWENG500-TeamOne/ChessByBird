@@ -15,22 +15,25 @@ namespace ChessByBird
         static void Main()
         {
             //TODO: these will all be removed later
-            string move;
+            string gameBoardState ="";
             string PhotoID = "";
             string assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
   
             try
             {
-                //Loop Check for Tweet
+                //Loop Check for getTweet()
                     //If it is the first move do not the getFlickr Pic
-                    move = FlickrClient.getFlickrPic(PhotoID);
-                    //ProcessChess(move)
-                    //ProcessImage()
-                    //PostTweet()
-                    FlickrClient.postFlickrPic(assetPath, PhotoID);
+                        gameBoardState = FlickrClient.getFlickrPic(PhotoID);
+                    //updatedGameBoardState = ProcessChess(chessMove, gameBoardState)
+                    //assetPath = ProcessImage(updatedGameBoardState)
+                    //URL = FlickrClient.postFlickrPic(assetPath, gameBoardState);
+                    //PostTweet(URL)                    
+                //end loop
             }
             //Catch all issues
-            catch { }
+            catch {
+                //PostTweet(Issue) 
+            }
         }
     }
 }

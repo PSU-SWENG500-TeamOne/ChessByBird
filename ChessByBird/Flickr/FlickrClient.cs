@@ -48,8 +48,8 @@ namespace ChessByBird.FlickrProject
         /// This will post the picture to flickr with a photo description the FEN Move
         /// </summary>
         /// <param name="assetPath">Flie Location of Image</param>
-        /// <param name="move">Chess FEN Move to add to Photo Description</param>
-        public static void postFlickrPic(string assetPath, string move)
+        /// <param name="GameBoardState">Chess FEN Move to add to Photo Description</param>
+        public static Uri postFlickrPic(string assetPath, string GameBoardState)
         {
             try
             {
@@ -78,7 +78,10 @@ namespace ChessByBird.FlickrProject
                 string file = assetPath;
                 string title = "Test Chess Photo";
                 string tags = "tag1,tag2,tag3";
-                string photoId = flickr.UploadPicture(file, title, move, tags);
+                string photoId = flickr.UploadPicture(file, title, GameBoardState, tags);
+                //TODO - fix to use proper Uri
+                Uri siteUri = new Uri("http://www.flickr.com/");
+                return siteUri;
             }
             catch (Exception)
             {
