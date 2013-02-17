@@ -36,9 +36,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChessByBird.cs" />
+    <Compile Include="Flickr\FlickrClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DigitalAssets\ChessGameboard.PNG" />
+    <Content Include="DLL\FlickrNet.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Chess\" />
+    <Folder Include="Image\" />
+    <Folder Include="Twitter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
