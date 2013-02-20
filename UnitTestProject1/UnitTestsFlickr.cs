@@ -40,10 +40,15 @@ namespace UnitTestsProject
         [TestMethod]
         public void TestMethodGetFlickrPicValid()
         {
-            string photoDescription;  //This will hold the Chess FEN or Error message
-            photoDescription = FlickrClient.getFlickrPic("8465703185");
-            //Make sure the value returned is equal
-            Assert.AreEqual("Move3: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1", photoDescription);
+            try{
+                string photoDescription;  //This will hold the Chess FEN or Error message
+                photoDescription = FlickrClient.getFlickrPic("8465703185");
+                //Make sure the value returned is equal
+                Assert.AreEqual("Move3: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1", photoDescription);
+            }
+            catch (Exception) {
+             Assert.Fail(); 
+         }
         }
 
         [TestMethod]
@@ -58,10 +63,16 @@ namespace UnitTestsProject
         }
 
         [TestMethod]
-        public void TestMethodPostFlickrPic()
+        public void TestMethodPostFlickrPicValid()
         {
-            //string descripton = "Move3: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
-            //Assert.IsTrue(FlickrClient.postFlickrPic(descripton));
+         try{
+           string GameBoardState = "Move3: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
+           Uri URL =  FlickrClient.postFlickrPic(@"..\..\DigitalAssets\ChessGameboard.PNG", GameBoardState);
+           Assert.IsNotNull(URL);
+         }
+         catch (Exception) {
+             Assert.Fail();
+         }
         }
 
     }
