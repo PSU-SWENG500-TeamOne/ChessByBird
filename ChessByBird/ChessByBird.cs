@@ -18,7 +18,7 @@ namespace ChessByBird
             string gameBoardState ="";
             string PhotoID = "";
             string assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
-  
+   
             try
             {
                 //Loop Check for getTweet()
