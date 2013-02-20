@@ -36,6 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChessByBird.cs" />
+    <Compile Include="Entities\Board.cs" />
+    <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\Pieces.cs" />
     <Compile Include="Flickr\FlickrClient.cs" />
   </ItemGroup>
   <ItemGroup>
