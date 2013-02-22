@@ -24,6 +24,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChessByBird.ChessProject;
+using ChessProject.Engine;
 
 
 namespace UnitTestsProject
@@ -33,70 +34,78 @@ namespace UnitTestsProject
     {
 
         #region Entity Test Checks
-        [TestMethod]
-        public void TestMethodGameEntity()
-        {
+        //  [TestMethod]
+        //public void TestMethodGameEntity()
+        //{
 
-        }
+        //}
 
-        [TestMethod]
-        public void TestMethodFenEntity()
-        {
+        //[TestMethod]
+        //public void TestMethodFenEntity()
+        //{
 
-        }
+        //}
 
-        [TestMethod]
-        public void TestMethodBoardEntity()
-        {
+        //[TestMethod]
+        //public void TestMethodBoardEntity()
+        //{
 
-        }
+        //}
 
-        [TestMethod]
-        public void TestMethodPiecesEntity()
-        {
+        //[TestMethod]
+        //public void TestMethodPiecesEntity()
+        //{
 
-        }
+        //}
         #endregion
         [TestMethod]
         public void TestValidMove()
         {
-
+            var engine = new Engine();
+            Assert.IsTrue(engine.IsValidMove(3, 6, 3, 4));
         }
 
+        //[TestMethod]
+        //public void TestProcessMovePiece()
+        //{
+
+        //}
+
+        //[TestMethod]
+        //public void TestMethodProcessChessCheckMate()
+        //{
+        //   // var engine = new Engine();
+            
+        //}
+
+        //[TestMethod]
+        //public void TestProcessGame()
+        //{
+
+        //}
         [TestMethod]
-        public void TestProcessMovePiece()
+        public void TestIsNotValidMove()
         {
-
-        }
-
-        [TestMethod]
-        public void TestMethodProcessChessCheckMate()
-        {
-
-        }
-
-        [TestMethod]
-        public void TestProcessGame()
-        {
-
-        }
-        [TestMethod]
-        public void TestInValidMove()
-        {
+            var engine = new Engine();
+            Assert.IsFalse(engine.IsValidMove(3, 4, 3,6));
 
         }
         [TestMethod]
         public void TestEngineCheck()
         {
-
+           var engine = new Engine();
+            Assert.IsNotNull(engine);
+            var newengine = new Engine("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+            Assert.IsNotNull(newengine);
         }
-        [TestMethod]
-        public void TestNewFEN()
-        {
+        //[TestMethod]
+        //public void TestNewFEN()
+        //{
 
-        }
-        [TestMethod]
-        public void TestSetMove()
-        {
+        //}
+  //      [TestMethod]
+  //      public void TestSetMove()
+  //      {
+  //      }
     }
 }
