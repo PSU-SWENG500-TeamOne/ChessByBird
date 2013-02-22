@@ -20,7 +20,9 @@ namespace ChessByBird.ChessProject
             System.Console.WriteLine("DRIVER for ChessImplementation");
             Engine engine = new Engine();
             Game game = new Game();
-          
+            
+            Board newboard = engine.ChessBoard;
+            
             System.Console.ReadKey();
            
         }
