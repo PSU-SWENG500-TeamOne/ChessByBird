@@ -1,5 +1,6 @@
 Thumbs.db
 oauth-info.xml
+*.config
 *.obj
 *.exe
 *.pdb
