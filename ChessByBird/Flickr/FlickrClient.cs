@@ -52,8 +52,8 @@ namespace ChessByBird.FlickrProject
         {
             try
             {
-                string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
-                string consumerSecret = ConfigurationManager.AppSettings["consumerSecret"];
+                string consumerKey = ConfigurationManager.AppSettings["FlickrConsumerKey"];
+                string consumerSecret = ConfigurationManager.AppSettings["FlickrConsumerSecret"];
                 Flickr flickr = new Flickr(consumerKey, consumerSecret);
                 //Step 1 Request a Token
                 //OAuthRequestToken OAuthRequestToken = flickr.OAuthGetRequestToken("oob");
@@ -70,8 +70,8 @@ namespace ChessByBird.FlickrProject
                 //OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(requestToken, requestTokenSecret, Verifier);
 
                 //This is the Application Access Token
-                string OAuthAccessToken = ConfigurationManager.AppSettings["OAuthAccessToken"];
-                string OAuthAccessTokenSecret = ConfigurationManager.AppSettings["OAuthAccessTokenSecret"];
+                string OAuthAccessToken = ConfigurationManager.AppSettings["FlickrOAuthAccessToken"];
+                string OAuthAccessTokenSecret = ConfigurationManager.AppSettings["FlickrOAuthAccessTokenSecret"];
 
                 //TODO: Image must be set to public 
                 string file = assetPath;
