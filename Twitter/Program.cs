@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using TweetSharp;
 
 namespace ChessByBird.TwitterProject
 {
@@ -20,11 +21,13 @@ namespace ChessByBird.TwitterProject
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
+            var twitService = new TweetSharp.TwitterService(); //todo: set up access to keys, start using 1.1 api
 
             var oauth = GetOAuthInfo();
             var twitter = new TinyTwitter(oauth);
             var startingtime = DateTime.Now;
             
+
 
             //while (true)
             //{
