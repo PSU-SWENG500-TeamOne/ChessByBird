@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Configuration;
 using TweetSharp;
 
 namespace ChessByBird.TwitterProject
@@ -21,7 +22,36 @@ namespace ChessByBird.TwitterProject
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            var twitService = new TweetSharp.TwitterService(); //todo: set up access to keys, start using 1.1 api
+
+            string tConsumerKey ="";
+            string tConsumerSecret ="";
+            string tAccessToken ="";
+            string tAccessSecret ="";
+
+            try
+            {
+                tConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"];
+                tConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
+                tAccessToken = ConfigurationManager.AppSettings["TwitterAccessToken"];
+                tAccessSecret = ConfigurationManager.AppSettings["TwitterAccessSecret"];
+            }
+            catch (Exception)
+            {
+                throw new System.ArgumentException("Error with Twitter keys", "twitter");
+            }
+
+            //build twitter connection
+            var twitService = new TweetSharp.TwitterService(tConsumerKey, tConsumerSecret, tAccessToken, tAccessSecret);
+
+            //build options to check for mentions
+            var mentionsOptions = new TweetSharp.ListTweetsMentioningMeOptions();
+            mentionsOptions.Count=20;
+            mentionsOptions.SinceId = 300328033800306680;
+
+            //get the mentions
+            var mentions = twitService.ListTweetsMentioningMe(mentionsOptions);
+
+            var listOfStuff = mentions.ToList();
 
             var oauth = GetOAuthInfo();
             var twitter = new TinyTwitter(oauth);
