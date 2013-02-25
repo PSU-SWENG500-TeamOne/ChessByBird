@@ -31,7 +31,7 @@ namespace ChessByBird.FlickrProject
         {
             try
             {
-                string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
+                string consumerKey = ConfigurationManager.AppSettings["FlickrConsumerKey"];
                 Flickr flickr = new Flickr(consumerKey);
                 PhotoInfo photoInfo = flickr.PhotosGetInfo(photoID);  //ChessBoard
                 string photoTitle = photoInfo.Title;
