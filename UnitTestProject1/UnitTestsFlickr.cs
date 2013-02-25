@@ -24,6 +24,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChessByBird.FlickrProject;
+using System.IO;
 
 namespace UnitTestsProject
 {
@@ -66,8 +67,9 @@ namespace UnitTestsProject
         public void TestMethodPostFlickrPicValid()
         {
          try{
+           String assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
            string GameBoardState = "Move3: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
-           Uri URL =  FlickrClient.postFlickrPic(@"..\..\DigitalAssets\ChessGameboard.PNG", GameBoardState);
+           Uri URL = FlickrClient.postFlickrPic(assetPath, GameBoardState);
            Assert.IsNotNull(URL);
          }
          catch (Exception) {

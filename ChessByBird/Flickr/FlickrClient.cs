@@ -70,8 +70,8 @@ namespace ChessByBird.FlickrProject
                 //OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(requestToken, requestTokenSecret, Verifier);
 
                 //This is the Application Access Token
-                string OAuthAccessToken = ConfigurationManager.AppSettings["FlickrOAuthAccessToken"];
-                string OAuthAccessTokenSecret = ConfigurationManager.AppSettings["FlickrOAuthAccessTokenSecret"];
+                flickr.OAuthAccessToken = ConfigurationManager.AppSettings["FlickrOAuthAccessToken"];
+                flickr.OAuthAccessTokenSecret = ConfigurationManager.AppSettings["FlickrOAuthAccessTokenSecret"];
 
                 //TODO: Image must be set to public 
                 string file = assetPath;
