@@ -49,10 +49,38 @@ namespace ChessByBird.TwitterProject
             mentionsOptions.SinceId = 300328033800306680;
 
             //get the mentions
-            var mentions = twitService.ListTweetsMentioningMe(mentionsOptions);
+            IEnumerable<TwitterStatus> mentions = twitService.ListTweetsMentioningMe(mentionsOptions);
 
-            var listOfStuff = mentions.ToList();
+            List<TwitterStatus> listOfStuff = mentions.ToList();
+            listOfStuff.ForEach(
+                x =>
+                {
+                    Console.WriteLine("Now gathering info about tweet #{0}.",x.Id);
+                    Console.WriteLine("It is in response to tweet #{0}.",x.InReplyToStatusId);
+                    
+                    var thatTweet = twitService.GetTweet(new GetTweetOptions { Id = (long)x.InReplyToStatusId });
 
+                    Console.WriteLine("That tweet's text was {0}", thatTweet.Text);
+                    Console.WriteLine("More importantly, heres the url it was referencing {0}", thatTweet.Entities.Urls[0].ExpandedValue);
+
+                    string moveString = "not found";
+
+                    if (x.Text.Contains("*"))
+                    {
+                        int startIndex = x.Text.IndexOf("*");
+                        int endIndex = x.Text.LastIndexOf("*");
+                        moveString = x.Text.Substring(startIndex, endIndex - startIndex + 1);
+                    }
+                    Console.WriteLine("The move attached to this tweet was {0}.", moveString);
+                }
+            );
+            Console.WriteLine("End of new API stuff");
+            
+            
+            
+            
+            
+            
             var oauth = GetOAuthInfo();
             var twitter = new TinyTwitter(oauth);
             var startingtime = DateTime.Now;
