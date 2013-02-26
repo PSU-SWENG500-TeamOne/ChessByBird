@@ -21,18 +21,23 @@ namespace ChessByBird
    
             try
             {
-                //Loop Check for getTweet()
+                //Initialize the twitter object - can remember what it has looked it
+                do
+                {
+                    System.Threading.Thread.Sleep(25000);   //Sleep 25 seconds
+                    //getTweet() //returns - two player, URL(PhotoID) and proposed move
                     //If it is the first move do not the getFlickr Pic
-                        gameBoardState = FlickrClient.getFlickrPic(PhotoID);
+                    gameBoardState = FlickrClient.getFlickrPic(PhotoID);
                     //updatedGameBoardState = ProcessChess(chessMove, gameBoardState)
                     //assetPath = ProcessImage(updatedGameBoardState)
                     Uri imageUri = FlickrClient.postFlickrPic(assetPath, gameBoardState);
-                //PostTweet(imageUri)                    
-                //end loop
+                    //PostTweet(imageUri, players, original tweetID) 
+                }
+                while (true);
             }
             //Catch all issues
             catch {
-                //PostTweet(Issue) 
+                //PostTweet(Issue, original tweetID) 
             }
         }
     }
