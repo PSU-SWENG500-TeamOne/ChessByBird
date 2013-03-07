@@ -38,9 +38,29 @@ namespace ChessByBird.Twitter
 
 
 
-        public static Dictionary<String,String> getTweetInfo()
+        public static Dictionary<String,String> getTweetInfo(long tweetID)
         {
-            Dictionary<String,String> usefulInfo = new Dictionary<String,String>();
+            
+            Dictionary<String,String> usefulInfo = new Dictionary<String,String>(); //dictionary shall contain player1, player2, image url, move string
+            TwitterService ts = buildService();
+
+            //gets 3 tweets: the one requested, the one before it (for the image url) and the one before that (for other player)
+            var thatTweet = ts.GetTweet(new GetTweetOptions { Id = tweetID });
+            var respondingTo = ts.GetTweet(new GetTweetOptions { Id = (long)thatTweet.InReplyToStatusId });
+            var previousMove = ts.GetTweet(new GetTweetOptions { Id = (long)respondingTo.InReplyToStatusId });
+
+            string moveString = "not found";
+            if (thatTweet.Text.Contains("*"))
+            {
+                int startIndex = thatTweet.Text.IndexOf("*");
+                int endIndex = thatTweet.Text.LastIndexOf("*");
+                moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1);
+            }
+
+            usefulInfo.Add("currentPlayer", thatTweet.User.ScreenName);
+            usefulInfo.Add("otherPlayer", previousMove.User.ScreenName);
+            usefulInfo.Add("imageURL", thatTweet.Entities.Urls[0].ExpandedValue);
+            usefulInfo.Add("moveString", moveString);
 
             return usefulInfo;
         }
@@ -51,6 +71,8 @@ namespace ChessByBird.Twitter
 
             return sentSuccessfully;
         }
+
+
 
         static TweetSharp.TwitterService buildService()
         {
@@ -76,7 +98,7 @@ namespace ChessByBird.Twitter
             return twitService;
         }
 
-        static void Main()
+        static void MainJunk()
         {
 
             areNewTweets(500328033800306680);
