@@ -42,6 +42,7 @@
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Pieces.cs" />
     <Compile Include="Flickr\FlickrClient.cs" />
+    <Compile Include="Twitter\TwitterClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FlickrNet, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
@@ -68,7 +69,6 @@
   <ItemGroup>
     <Folder Include="Chess\" />
     <Folder Include="Image\" />
-    <Folder Include="Twitter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

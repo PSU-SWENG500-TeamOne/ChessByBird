@@ -21,7 +21,7 @@ namespace ChessByBird
    
             try
             {
-                //Loop Check for getTweet()
+                //Loop Check for areNewTweets()
                     //If it is the first move do not the getFlickr Pic
                         gameBoardState = FlickrClient.getFlickrPic(PhotoID);
                     //updatedGameBoardState = ProcessChess(chessMove, gameBoardState)
