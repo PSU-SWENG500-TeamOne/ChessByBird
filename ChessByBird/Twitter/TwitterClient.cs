@@ -40,36 +40,55 @@ namespace ChessByBird.Twitter
 
         public static Dictionary<String,String> getTweetInfo(long tweetID)
         {
-            
-            Dictionary<String,String> usefulInfo = new Dictionary<String,String>(); //dictionary shall contain player1, player2, image url, move string
-            TwitterService ts = buildService();
-
-            //gets 3 tweets: the one requested, the one before it (for the image url) and the one before that (for other player)
-            var thatTweet = ts.GetTweet(new GetTweetOptions { Id = tweetID });
-            var respondingTo = ts.GetTweet(new GetTweetOptions { Id = (long)thatTweet.InReplyToStatusId });
-            var previousMove = ts.GetTweet(new GetTweetOptions { Id = (long)respondingTo.InReplyToStatusId });
-
-            string moveString = "not found";
-            if (thatTweet.Text.Contains("*"))
+            try
             {
-                int startIndex = thatTweet.Text.IndexOf("*");
-                int endIndex = thatTweet.Text.LastIndexOf("*");
-                moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1);
+                Dictionary<String, String> usefulInfo = new Dictionary<String, String>(); //dictionary shall contain player1, player2, image url, move string
+                TwitterService ts = buildService();
+
+                //gets 3 tweets: the one requested, the one before it (for the image url) and the one before that (for other player)
+                var thatTweet = ts.GetTweet(new GetTweetOptions { Id = tweetID });
+                var respondingTo = ts.GetTweet(new GetTweetOptions { Id = (long)thatTweet.InReplyToStatusId });
+                var previousMove = ts.GetTweet(new GetTweetOptions { Id = (long)respondingTo.InReplyToStatusId });
+
+                string moveString = "not found";
+                if (thatTweet.Text.Contains("*"))
+                {
+                    int startIndex = thatTweet.Text.IndexOf("*");
+                    int endIndex = thatTweet.Text.LastIndexOf("*");
+                    moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1);
+                }
+
+                usefulInfo.Add("currentPlayer", thatTweet.User.ScreenName);
+                usefulInfo.Add("otherPlayer", previousMove.User.ScreenName);
+                usefulInfo.Add("imageURL", thatTweet.Entities.Urls[0].ExpandedValue);
+                usefulInfo.Add("moveString", moveString);
+
+                return usefulInfo;
             }
-
-            usefulInfo.Add("currentPlayer", thatTweet.User.ScreenName);
-            usefulInfo.Add("otherPlayer", previousMove.User.ScreenName);
-            usefulInfo.Add("imageURL", thatTweet.Entities.Urls[0].ExpandedValue);
-            usefulInfo.Add("moveString", moveString);
-
-            return usefulInfo;
+            catch (Exception)
+            {
+                throw new System.ArgumentException("Cannot get tweet information", "twitter");
+            }
+            
         }
 
-        public static Boolean postTweet()
-        {
-            Boolean sentSuccessfully = false;
 
-            return sentSuccessfully;
+
+        public static Boolean postTweet(long replyToMe, string theMessage)
+        {
+            try
+            {
+                Boolean sentSuccessfully = false;
+                TwitterService ts = buildService(); ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
+                sentSuccessfully = true;
+                return sentSuccessfully;
+            }
+            catch (Exception)
+            {
+                throw new System.ArgumentException("Cannot send Twitter status", "twitter");
+            }
+ 
+            
         }
 
 
