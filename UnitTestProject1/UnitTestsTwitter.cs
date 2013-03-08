@@ -27,69 +27,52 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChessByBird.TwitterProject;
+using ChessByBird.Twitter;
+//using ChessByBird.TwitterProject;
 using System.Threading;
 using System.Reflection;
+using TweetSharp;
 
 namespace UnitTestsProject
 {
     [TestClass]
     public class UnitTestsTwitter
     {
-        private static OAuthInfo GetOAuthInfo()
+               
+        [TestMethod]
+        public void t_NewMentions()
         {
-            var tokensFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "oauth-info.xml");
-
-            if (!File.Exists(tokensFile))
-                Assert.Fail("Cannot find oauth parameter file.");
-
-            var serializer = new XmlSerializer(typeof(OAuthInfo));
-            using (var stream = File.OpenRead(tokensFile))
-                return (OAuthInfo)serializer.Deserialize(stream);
-
+            long results = ChessByBird.Twitter.TwitterClient.areNewTweets(800); //really low number, will just grab the first mention ever
+            Assert.AreEqual(results, 300330024228253697);
         }
 
         [TestMethod]
-        public void TestMethodPictureEntity()
+        public void t_NoNewMentions()
         {
-
+            long results = ChessByBird.Twitter.TwitterClient.areNewTweets(9223372036854775807); //highest possible long value. no mentions after him!
+            Assert.AreEqual(results, 0);
         }
 
         [TestMethod]
-        public void TestMethodURLEntity()
+        public void t_GetTweet()
         {
+            Dictionary<string,string> resultsDictionary = ChessByBird.Twitter.TwitterClient.getTweetInfo(299722128025063425);
 
+            Dictionary<string,string> expectedDictionary = new Dictionary<string,string>();
+            expectedDictionary.Add("currentPlayer", "ChessByBird");
+            expectedDictionary.Add("otherPlayer", "ZacharyACarson");
+            expectedDictionary.Add("imageURL", "not found");
+            expectedDictionary.Add("moveString", "not found");
+
+            Assert.AreEqual(expectedDictionary,resultsDictionary);           
         }
 
         [TestMethod]
-        public void TestMethodGetTweet()
+        public void t_PostTweet()
         {
-            var oauth = GetOAuthInfo();
+            bool results = ChessByBird.Twitter.TwitterClient.postTweet(299722128025063425, "hey @zacharyacarson it worked! test post from the new api");
 
-            var twitter = new TinyTwitter(oauth);
-
-            //get tweet #299722128025063425
-            var tweet = twitter.GetSpecificTweet(299722128025063425);
-            string actualText = "@ZacharyACarson this is a tweet! heres a link to something on flickr: http://www.flickr.com/photos/straymuffin/89009605/";
-            Assert.AreEqual(tweet.ToString(), actualText);
-            
-        }
-
-        [TestMethod]
-        public void TestMethodPostTweetAndReadTimeline()
-        {
-            var oauth = GetOAuthInfo();
-
-            var twitter = new TinyTwitter(oauth);
-
-            var status = Guid.NewGuid().ToString();
-            twitter.UpdateStatus(status);
-
-            // Wait a little to let twitter update timelines
-            Thread.Sleep(TimeSpan.FromSeconds(5));
-
-            var tweets = twitter.GetHomeTimeline();
-            Assert.AreEqual(status, tweets.First().Text);
+            Assert.IsTrue(results);
         }
 
     }
