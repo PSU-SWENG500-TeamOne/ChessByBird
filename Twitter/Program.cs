@@ -23,10 +23,10 @@ namespace ChessByBird.TwitterProject
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            string tConsumerKey ="";
-            string tConsumerSecret ="";
-            string tAccessToken ="";
-            string tAccessSecret ="";
+            string tConsumerKey = "";
+            string tConsumerSecret = "";
+            string tAccessToken = "";
+            string tAccessSecret = "";
 
             try
             {
@@ -45,7 +45,7 @@ namespace ChessByBird.TwitterProject
 
             //build options to check for mentions
             var mentionsOptions = new TweetSharp.ListTweetsMentioningMeOptions();
-            mentionsOptions.Count=20;
+            mentionsOptions.Count = 20;
             mentionsOptions.SinceId = 300328033800306680;
 
             //get the mentions
@@ -55,9 +55,9 @@ namespace ChessByBird.TwitterProject
             listOfStuff.ForEach(
                 x =>
                 {
-                    Console.WriteLine("Now gathering info about tweet #{0}.",x.Id);
-                    Console.WriteLine("It is in response to tweet #{0}.",x.InReplyToStatusId);
-                    
+                    Console.WriteLine("Now gathering info about tweet #{0}.", x.Id);
+                    Console.WriteLine("It is in response to tweet #{0}.", x.InReplyToStatusId);
+
                     var thatTweet = twitService.GetTweet(new GetTweetOptions { Id = (long)x.InReplyToStatusId });
 
                     Console.WriteLine("That tweet's text was {0}", thatTweet.Text);
@@ -75,6 +75,6 @@ namespace ChessByBird.TwitterProject
                 }
             );
             Console.WriteLine("End of new API stuff");
-
+        }
     }
 }
