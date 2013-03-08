@@ -1,1 +1,12 @@
-Joe edits
+idea - get tweet returns dictionary with data, but also with status code. Codes:
+  00 - unidentfied error
+  01 - all data present, is a move
+  02 - new game
+  03 - didn't reply, unknown game
+  04 - missing move string
+  05 - missing URL string
+  06 - too many URLs
+  07 - 
+  08 - 
+  09 - 
+  10 - spam, ignorable
