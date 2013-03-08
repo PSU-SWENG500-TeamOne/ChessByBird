@@ -9,7 +9,7 @@ using TweetSharp;
 
 namespace ChessByBird.Twitter
 {
-    class TwitterClient
+    public class TwitterClient
     {
         public static long areNewTweets(long minimumLookup) //Returns the oldest tweet id after the minimum lookup. Returns 0 if none
         {
@@ -44,23 +44,56 @@ namespace ChessByBird.Twitter
             {
                 Dictionary<String, String> usefulInfo = new Dictionary<String, String>(); //dictionary shall contain player1, player2, image url, move string
                 TwitterService ts = buildService();
+                string currentPlayer;
+                string otherPlayer;
+                string imageURL;
+                string moveString;
 
                 //gets 3 tweets: the one requested, the one before it (for the image url) and the one before that (for other player)
                 var thatTweet = ts.GetTweet(new GetTweetOptions { Id = tweetID });
-                var respondingTo = ts.GetTweet(new GetTweetOptions { Id = (long)thatTweet.InReplyToStatusId });
-                var previousMove = ts.GetTweet(new GetTweetOptions { Id = (long)respondingTo.InReplyToStatusId });
+                currentPlayer = thatTweet.User.ScreenName.ToString();
 
-                string moveString = "not found";
+                if (thatTweet.InReplyToStatusId.HasValue)
+                {
+                    var respondingTo = ts.GetTweet(new GetTweetOptions { Id = (long)thatTweet.InReplyToStatusId });
+                    if (respondingTo.InReplyToStatusId.HasValue)
+                    {
+                        var previousMove = ts.GetTweet(new GetTweetOptions { Id = (long)respondingTo.InReplyToStatusId });
+                        otherPlayer = respondingTo.User.ScreenName.ToString();
+                    }
+                    else
+                    {
+                        otherPlayer = "not found";
+                    }
+                }
+                else
+                {
+                    otherPlayer = "not found";
+                }
+
                 if (thatTweet.Text.Contains("*"))
                 {
                     int startIndex = thatTweet.Text.IndexOf("*");
                     int endIndex = thatTweet.Text.LastIndexOf("*");
                     moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1);
                 }
+                else
+                {
+                    moveString = "not found";
+                }
 
-                usefulInfo.Add("currentPlayer", thatTweet.User.ScreenName);
-                usefulInfo.Add("otherPlayer", previousMove.User.ScreenName);
-                usefulInfo.Add("imageURL", thatTweet.Entities.Urls[0].ExpandedValue);
+                if (thatTweet.Entities.Urls.Count > 0)
+                {
+                    imageURL = thatTweet.Entities.Urls[0].ExpandedValue;
+                }
+                else
+                {
+                    imageURL = "not found";
+                }
+
+                usefulInfo.Add("currentPlayer", currentPlayer);
+                usefulInfo.Add("otherPlayer", otherPlayer);
+                usefulInfo.Add("imageURL", imageURL);
                 usefulInfo.Add("moveString", moveString);
 
                 return usefulInfo;
@@ -79,8 +112,12 @@ namespace ChessByBird.Twitter
             try
             {
                 Boolean sentSuccessfully = false;
-                TwitterService ts = buildService(); ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
-                sentSuccessfully = true;
+                TwitterService ts = buildService(); 
+                var statusSent = ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
+                if (statusSent.Text.ToString() == theMessage)
+                {
+                    sentSuccessfully = true;
+                }
                 return sentSuccessfully;
             }
             catch (Exception)
