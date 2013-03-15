@@ -42,35 +42,38 @@ namespace UnitTestsProject
         [TestMethod]
         public void t_NewMentions()
         {
-            long results = ChessByBird.Twitter.TwitterClient.areNewTweets(800); //really low number, will just grab the first mention ever
-            Assert.AreEqual(results, 300330024228253697);
+            long results = ChessByBird.Twitter.TwitterClient.areNewTweets(800, 291383000000000000); //will just grab the first mention ever
+            Assert.AreEqual(results, 291382951072120832);
         }
 
         [TestMethod]
         public void t_NoNewMentions()
         {
-            long results = ChessByBird.Twitter.TwitterClient.areNewTweets(9223372036854775807); //highest possible long value. no mentions after him!
+            long results = ChessByBird.Twitter.TwitterClient.areNewTweets(9223372036854775807); //highest possible long value. no mentions after it!
             Assert.AreEqual(results, 0);
         }
 
         [TestMethod]
         public void t_GetTweet()
         {
-            Dictionary<string,string> resultsDictionary = ChessByBird.Twitter.TwitterClient.getTweetInfo(299722128025063425);
+            Dictionary<string, string> resultsDictionary = ChessByBird.Twitter.TwitterClient.getTweetInfo(309844741397282816);
 
             Dictionary<string,string> expectedDictionary = new Dictionary<string,string>();
-            expectedDictionary.Add("currentPlayer", "ChessByBird");
-            expectedDictionary.Add("otherPlayer", "ZacharyACarson");
+            expectedDictionary.Add("currentPlayer", "ZacharyACarson");
+            expectedDictionary.Add("otherPlayer", "ChessByBird");
             expectedDictionary.Add("imageURL", "not found");
             expectedDictionary.Add("moveString", "not found");
 
-            Assert.AreEqual(expectedDictionary,resultsDictionary);           
+            CollectionAssert.AreEquivalent(expectedDictionary, resultsDictionary);
         }
 
         [TestMethod]
         public void t_PostTweet()
         {
-            bool results = ChessByBird.Twitter.TwitterClient.postTweet(299722128025063425, "hey @zacharyacarson it worked! test post from the new api");
+            Guid randomText = Guid.NewGuid();
+            string tweetText = "Running Unit Tests. Random key: " + randomText.ToString();
+
+            bool results = ChessByBird.Twitter.TwitterClient.postTweet(299722128025063425, tweetText);
 
             Assert.IsTrue(results);
         }
