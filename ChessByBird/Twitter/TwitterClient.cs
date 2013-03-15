@@ -37,6 +37,25 @@ namespace ChessByBird.Twitter
         }
 
 
+        public static long getNewestTweetFromMe()
+        {
+            long newestTweet = 0;
+            TwitterService ts = buildService();
+
+            IEnumerable<TwitterStatus> myTweets = ts.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions { ScreenName = "ChessByBird", Count=1});
+            List<TwitterStatus> listOfStuff = myTweets.ToList();           
+            listOfStuff.ForEach(                    //list only has 0-1 items in it, so forEach is ok
+                x =>
+                {
+                    newestTweet = x.Id;
+                }
+            );
+
+            Console.WriteLine(newestTweet.ToString());
+
+            return newestTweet;
+        }
+
 
         public static Dictionary<String,String> getTweetInfo(long tweetID)
         {
@@ -113,12 +132,25 @@ namespace ChessByBird.Twitter
             {
                 Boolean sentSuccessfully = false;
                 TwitterService ts = buildService(); 
-                var statusSent = ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
-                if (statusSent.Text.ToString() == theMessage)
+
+                if (replyToMe == 0) //new tweet, nonreply
                 {
-                    sentSuccessfully = true;
+                    var statusSent = ts.SendTweet(new SendTweetOptions {Status = theMessage});
+                    if (statusSent.Text.ToString() == theMessage)
+                    {
+                        sentSuccessfully = true;
+                    }
+                    return sentSuccessfully;
                 }
-                return sentSuccessfully;
+                else
+                {
+                    var statusSent = ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
+                    if (statusSent.Text.ToString() == theMessage)
+                    {
+                        sentSuccessfully = true;
+                    }
+                    return sentSuccessfully;
+                }
             }
             catch (Exception)
             {
