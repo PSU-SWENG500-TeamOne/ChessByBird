@@ -31,9 +31,6 @@ namespace ChessByBird
                 System.Threading.Thread.Sleep(5000); //wait for twitter to catch up
                 long referentialID = Twitter.TwitterClient.getNewestTweetFromMe();
 
-                if (true)
-                { }
-
                 //Loop Check for areNewTweets()
                    while (true)
                    {
