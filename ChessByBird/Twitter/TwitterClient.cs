@@ -11,7 +11,13 @@ namespace ChessByBird.Twitter
 {
     public class TwitterClient
     {
-        public static long areNewTweets(long minimumLookup) //Returns the oldest tweet id after the minimum lookup. Returns 0 if none
+        /// <summary>
+        /// Checks for any new tweets after a value
+        /// </summary>
+        /// <param name="minimumLookup">Nothing before this value will be returned</param>
+        /// <param name="maximumLookup">Optional Maximum tweet. Can be skipped</param>
+        /// <returns>Tweet ID of the newest tweet</returns>
+        public static long areNewTweets(long minimumLookup, long maximumLookup = 9223372036854775800) //Returns the oldest tweet id after the minimum lookup. Returns 0 if none
         {
             long newTweet = 0;
             TwitterService ts = buildService();
@@ -20,6 +26,7 @@ namespace ChessByBird.Twitter
             var mentionsOptions = new TweetSharp.ListTweetsMentioningMeOptions();
             mentionsOptions.Count = 1;
             mentionsOptions.SinceId = minimumLookup;
+            mentionsOptions.MaxId = maximumLookup;
 
             //get the mentions
             IEnumerable<TwitterStatus> mentions = ts.ListTweetsMentioningMe(mentionsOptions);
@@ -36,7 +43,11 @@ namespace ChessByBird.Twitter
             return newTweet;
         }
 
-
+        /// <summary>
+        /// Gets the newest tweet that ChessByBird has posted, as this is where the system left off
+        /// </summary>
+        /// <param></param>
+        /// <returns>Tweet ID of the newest tweet</returns>
         public static long getNewestTweetFromMe()
         {
             long newestTweet = 0;
@@ -56,7 +67,11 @@ namespace ChessByBird.Twitter
             return newestTweet;
         }
 
-
+        /// <summary>
+        /// Get the players, move string, and the URL of the photo
+        /// </summary>
+        /// <param name="tweetID">Tweet ID of the tweet in question</param>
+        /// <returns>Dictionary of keys: dictionary[currentPlayer,otherPlayer,imageURL,moveString]</returns>
         public static Dictionary<String,String> getTweetInfo(long tweetID)
         {
             try
@@ -89,12 +104,19 @@ namespace ChessByBird.Twitter
                 {
                     otherPlayer = "not found";
                 }
-
+                
                 if (thatTweet.Text.Contains("*"))
                 {
                     int startIndex = thatTweet.Text.IndexOf("*");
                     int endIndex = thatTweet.Text.LastIndexOf("*");
-                    moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1);
+                    if (startIndex == endIndex)
+                    {
+                        moveString = "not found";
+                    }
+                    else
+                    {
+                        moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1);
+                    }
                 }
                 else
                 {
@@ -125,7 +147,12 @@ namespace ChessByBird.Twitter
         }
 
 
-
+        /// <summary>
+        /// Posts a tweet to the ChessByBird timeline
+        /// </summary>
+        /// <param name="replyToMe">Tweet ID of what will be responded to. If 0, ignored</param>
+        /// <param name="theMessage">Full text of the tweet to post. Be sure to include a @mention for proper delivery</param>
+        /// <returns>Boolean of successful post</returns>
         public static Boolean postTweet(long replyToMe, string theMessage)
         {
             try
@@ -135,7 +162,8 @@ namespace ChessByBird.Twitter
 
                 if (replyToMe == 0) //new tweet, nonreply
                 {
-                    var statusSent = ts.SendTweet(new SendTweetOptions {Status = theMessage});
+                    TwitterStatus statusSent = ts.SendTweet(new SendTweetOptions { Status = theMessage });
+                    System.Threading.Thread.Sleep(5000); //wait for twitter to catch up
                     if (statusSent.Text.ToString() == theMessage)
                     {
                         sentSuccessfully = true;
@@ -144,7 +172,8 @@ namespace ChessByBird.Twitter
                 }
                 else
                 {
-                    var statusSent = ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
+                    TwitterStatus statusSent = ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
+                    System.Threading.Thread.Sleep(5000); //wait for twitter to catch up
                     if (statusSent.Text.ToString() == theMessage)
                     {
                         sentSuccessfully = true;
@@ -161,7 +190,11 @@ namespace ChessByBird.Twitter
         }
 
 
-
+        /// <summary>
+        /// Builds the twitter service using the API keys in the Config file
+        /// </summary>
+        /// <param></param>
+        /// <returns>Working instance of TwitterService</returns>
         static TweetSharp.TwitterService buildService()
         {
             string tConsumerKey = "";
@@ -186,6 +219,12 @@ namespace ChessByBird.Twitter
             return twitService;
         }
 
+
+        /// <summary>
+        /// Junk function for testing during development
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
         static void MainJunk()
         {
 
