@@ -48,6 +48,7 @@ namespace ChessByBird
                            Uri imageUri = FlickrClient.postFlickrPic(assetPath, gameBoardState);
                            //PostTweet(imageUri)
                        }
+                       referentialID = newestTweet;
                        System.Threading.Thread.Sleep(30000); //wait 30 seconds, check again
                    }
                                         
@@ -56,6 +57,10 @@ namespace ChessByBird
             //Catch all issues
             catch {
                 //PostTweet(Issue) 
+                Guid randomText = Guid.NewGuid();
+
+                string dummyText = "An error occured, CBB is closing. Useless GUID: " + randomText.ToString();
+                Twitter.TwitterClient.postTweet(0, dummyText);
             }
         }
     }
