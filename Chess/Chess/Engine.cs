@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 //[assembly: CLSCompliant(true)]
 
-namespace ChessProject.Engine
+namespace ChessProject.Chess
 {
     public sealed class Engine
     {

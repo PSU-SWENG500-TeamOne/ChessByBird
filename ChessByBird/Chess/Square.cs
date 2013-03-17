@@ -1,4 +1,4 @@
-namespace ChessProject.Engine
+namespace ChessByBird.Chess
 {
     internal struct Square
     {
