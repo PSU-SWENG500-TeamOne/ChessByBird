@@ -1,6 +1,6 @@
 using System;
 
-namespace ChessProject.Engine
+namespace ChessByBird.Chess
 {
     internal sealed class Board
     {
