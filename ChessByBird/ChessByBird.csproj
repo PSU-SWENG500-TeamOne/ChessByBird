@@ -33,6 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChessByBird.cs" />
@@ -40,6 +43,7 @@
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Pieces.cs" />
     <Compile Include="Flickr\FlickrClient.cs" />
+    <Compile Include="Twitter\TwitterClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FlickrNet, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
@@ -49,6 +53,18 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
+    <Reference Include="Hammock.ClientProfile">
+      <HintPath>..\packages\Hammock.ClientProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="TweetSharp">
+      <HintPath>..\packages\TweetSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DigitalAssets\ChessGameboard.PNG" />

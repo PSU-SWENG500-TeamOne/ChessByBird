@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Configuration;
+using TweetSharp;
 
 namespace ChessByBird.TwitterProject
 {
@@ -21,55 +23,58 @@ namespace ChessByBird.TwitterProject
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            var oauth = GetOAuthInfo();
-            var twitter = new TinyTwitter(oauth);
-            var startingtime = DateTime.Now;
-            
+            string tConsumerKey = "";
+            string tConsumerSecret = "";
+            string tAccessToken = "";
+            string tAccessSecret = "";
 
-            //while (true)
-            //{
-            var myMentions = twitter.GetMentions(300328033800306680, 20);
-                myMentions.ToList().ForEach(
-                    x =>
+            try
+            {
+                tConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"];
+                tConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
+                tAccessToken = ConfigurationManager.AppSettings["TwitterAccessToken"];
+                tAccessSecret = ConfigurationManager.AppSettings["TwitterAccessSecret"];
+            }
+            catch (Exception)
+            {
+                throw new System.ArgumentException("Error with Twitter keys", "twitter");
+            }
+
+            //build twitter connection
+            var twitService = new TweetSharp.TwitterService(tConsumerKey, tConsumerSecret, tAccessToken, tAccessSecret);
+
+            //build options to check for mentions
+            var mentionsOptions = new TweetSharp.ListTweetsMentioningMeOptions();
+            mentionsOptions.Count = 20;
+            mentionsOptions.SinceId = 300328033800306680;
+
+            //get the mentions
+            IEnumerable<TwitterStatus> mentions = twitService.ListTweetsMentioningMe(mentionsOptions);
+
+            List<TwitterStatus> listOfStuff = mentions.ToList();
+            listOfStuff.ForEach(
+                x =>
+                {
+                    Console.WriteLine("Now gathering info about tweet #{0}.", x.Id);
+                    Console.WriteLine("It is in response to tweet #{0}.", x.InReplyToStatusId);
+
+                    var thatTweet = twitService.GetTweet(new GetTweetOptions { Id = (long)x.InReplyToStatusId });
+
+                    Console.WriteLine("That tweet's text was {0}", thatTweet.Text);
+                    Console.WriteLine("More importantly, heres the url it was referencing {0}", thatTweet.Entities.Urls[0].ExpandedValue);
+
+                    string moveString = "not found";
+
+                    if (x.Text.Contains("*"))
                     {
-                        string moveString = "not found";
-                        
-                        if (x.Text.Contains("*"))
-                        {
-                            int startIndex = x.Text.IndexOf("*");
-                            int endIndex = x.Text.LastIndexOf("*");
-                            moveString = x.Text.Substring(startIndex, endIndex-startIndex+1);
-                        }
-
-                        Console.WriteLine("Now gathering info about tweet #" + x.Id.ToString() +".");
-                        Console.WriteLine("  --  The sender of this tweet was '" + x.ScreenName + " and it was in reply to " + x.inReplyToID + "'.");
-                        Console.WriteLine("  --  The text of this tweet was: '" + x.Text + "'.");
-                        Console.WriteLine("  --  The move attached to this tweet was " + moveString + ".");
-                        
+                        int startIndex = x.Text.IndexOf("*");
+                        int endIndex = x.Text.LastIndexOf("*");
+                        moveString = x.Text.Substring(startIndex, endIndex - startIndex + 1);
                     }
-                );
-            Console.WriteLine("This concludes the current mentions");
-
-            //var tweet = twitter.GetSpecificTweet(299722128025063425);
-
-
-            var status = Guid.NewGuid().ToString();
-            twitter.UpdateStatus(status);
-
-           // }
-
-        }
-
-        
-        
-        private static OAuthInfo GetOAuthInfo()
-        {
-            System.Reflection.Assembly _assembly = Assembly.GetExecutingAssembly();
-            System.IO.Stream _xmlStream = _assembly.GetManifestResourceStream("ChessByBird.TwitterProject.oauth-info.xml");
-
-            var serializer = new XmlSerializer(typeof(OAuthInfo));
-            return (OAuthInfo)serializer.Deserialize(_xmlStream);
-
+                    Console.WriteLine("The move attached to this tweet was {0}.", moveString);
+                }
+            );
+            Console.WriteLine("End of new API stuff");
         }
     }
 }

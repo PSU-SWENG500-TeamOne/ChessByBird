@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 using System.Configuration;
 using TweetSharp;
 
-
-namespace ChessByBird.TwitterProject
+namespace ChessByBird.Twitter
 {
-    class TwitterClient
+    public class TwitterClient
     {
-       
-
-        public static long areNewTweets(long minimumLookup) //Returns the oldest tweet id after the minimum lookup. Returns 0 if none
+        /// <summary>
+        /// Checks for any new tweets after a value
+        /// </summary>
+        /// <param name="minimumLookup">Nothing before this value will be returned</param>
+        /// <param name="maximumLookup">Optional Maximum tweet. Can be skipped</param>
+        /// <returns>Tweet ID of the newest tweet</returns>
+        public static long areNewTweets(long minimumLookup, long maximumLookup = 9223372036854775800) //Returns the oldest tweet id after the minimum lookup. Returns 0 if none
         {
             long newTweet = 0;
             TwitterService ts = buildService();
@@ -23,6 +26,7 @@ namespace ChessByBird.TwitterProject
             var mentionsOptions = new TweetSharp.ListTweetsMentioningMeOptions();
             mentionsOptions.Count = 1;
             mentionsOptions.SinceId = minimumLookup;
+            mentionsOptions.MaxId = maximumLookup;
 
             //get the mentions
             IEnumerable<TwitterStatus> mentions = ts.ListTweetsMentioningMe(mentionsOptions);
@@ -39,31 +43,98 @@ namespace ChessByBird.TwitterProject
             return newTweet;
         }
 
+        /// <summary>
+        /// Gets the newest tweet that ChessByBird has posted, as this is where the system left off
+        /// </summary>
+        /// <param></param>
+        /// <returns>Tweet ID of the newest tweet</returns>
+        public static long getNewestTweetFromMe()
+        {
+            long newestTweet = 0;
+            TwitterService ts = buildService();
 
+            IEnumerable<TwitterStatus> myTweets = ts.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions { ScreenName = "ChessByBird", Count=1});
+            List<TwitterStatus> listOfStuff = myTweets.ToList();           
+            listOfStuff.ForEach(                    //list only has 0-1 items in it, so forEach is ok
+                x =>
+                {
+                    newestTweet = x.Id;
+                }
+            );
 
-        public static Dictionary<String, String> getTweetInfo(long tweetID)
+            Console.WriteLine(newestTweet.ToString());
+
+            return newestTweet;
+        }
+
+        /// <summary>
+        /// Get the players, move string, and the URL of the photo
+        /// </summary>
+        /// <param name="tweetID">Tweet ID of the tweet in question</param>
+        /// <returns>Dictionary of keys: dictionary[currentPlayer,otherPlayer,imageURL,moveString]</returns>
+        public static Dictionary<String,String> getTweetInfo(long tweetID)
         {
             try
             {
                 Dictionary<String, String> usefulInfo = new Dictionary<String, String>(); //dictionary shall contain player1, player2, image url, move string
                 TwitterService ts = buildService();
+                string currentPlayer;
+                string otherPlayer;
+                string imageURL;
+                string moveString;
 
                 //gets 3 tweets: the one requested, the one before it (for the image url) and the one before that (for other player)
                 var thatTweet = ts.GetTweet(new GetTweetOptions { Id = tweetID });
-                var respondingTo = ts.GetTweet(new GetTweetOptions { Id = (long)thatTweet.InReplyToStatusId });
-                var previousMove = ts.GetTweet(new GetTweetOptions { Id = (long)respondingTo.InReplyToStatusId });
+                currentPlayer = thatTweet.User.ScreenName.ToString();
 
-                string moveString = "not found";
+                if (thatTweet.InReplyToStatusId.HasValue)
+                {
+                    var respondingTo = ts.GetTweet(new GetTweetOptions { Id = (long)thatTweet.InReplyToStatusId });
+                    if (respondingTo.InReplyToStatusId.HasValue)
+                    {
+                        var previousMove = ts.GetTweet(new GetTweetOptions { Id = (long)respondingTo.InReplyToStatusId });
+                        otherPlayer = respondingTo.User.ScreenName.ToString();
+                    }
+                    else
+                    {
+                        otherPlayer = "not found";
+                    }
+                }
+                else
+                {
+                    otherPlayer = "not found";
+                }
+                
                 if (thatTweet.Text.Contains("*"))
                 {
                     int startIndex = thatTweet.Text.IndexOf("*");
                     int endIndex = thatTweet.Text.LastIndexOf("*");
-                    moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1);
+                    if (startIndex == endIndex)
+                    {
+                        moveString = "not found";
+                    }
+                    else
+                    {
+                        moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1);
+                    }
+                }
+                else
+                {
+                    moveString = "not found";
                 }
 
-                usefulInfo.Add("currentPlayer", thatTweet.User.ScreenName);
-                usefulInfo.Add("otherPlayer", previousMove.User.ScreenName);
-                usefulInfo.Add("imageURL", thatTweet.Entities.Urls[0].ExpandedValue);
+                if (thatTweet.Entities.Urls.Count > 0)
+                {
+                    imageURL = thatTweet.Entities.Urls[0].ExpandedValue;
+                }
+                else
+                {
+                    imageURL = "not found";
+                }
+
+                usefulInfo.Add("currentPlayer", currentPlayer);
+                usefulInfo.Add("otherPlayer", otherPlayer);
+                usefulInfo.Add("imageURL", imageURL);
                 usefulInfo.Add("moveString", moveString);
 
                 return usefulInfo;
@@ -72,30 +143,58 @@ namespace ChessByBird.TwitterProject
             {
                 throw new System.ArgumentException("Cannot get tweet information", "twitter");
             }
-
+            
         }
 
 
-
+        /// <summary>
+        /// Posts a tweet to the ChessByBird timeline
+        /// </summary>
+        /// <param name="replyToMe">Tweet ID of what will be responded to. If 0, ignored</param>
+        /// <param name="theMessage">Full text of the tweet to post. Be sure to include a @mention for proper delivery</param>
+        /// <returns>Boolean of successful post</returns>
         public static Boolean postTweet(long replyToMe, string theMessage)
         {
             try
             {
                 Boolean sentSuccessfully = false;
-                TwitterService ts = buildService(); ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
-                sentSuccessfully = true;
-                return sentSuccessfully;
+                TwitterService ts = buildService(); 
+
+                if (replyToMe == 0) //new tweet, nonreply
+                {
+                    TwitterStatus statusSent = ts.SendTweet(new SendTweetOptions { Status = theMessage });
+                    System.Threading.Thread.Sleep(5000); //wait for twitter to catch up
+                    if (statusSent.Text.ToString() == theMessage)
+                    {
+                        sentSuccessfully = true;
+                    }
+                    return sentSuccessfully;
+                }
+                else
+                {
+                    TwitterStatus statusSent = ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
+                    System.Threading.Thread.Sleep(5000); //wait for twitter to catch up
+                    if (statusSent.Text.ToString() == theMessage)
+                    {
+                        sentSuccessfully = true;
+                    }
+                    return sentSuccessfully;
+                }
             }
             catch (Exception)
             {
                 throw new System.ArgumentException("Cannot send Twitter status", "twitter");
             }
-
-
+ 
+            
         }
 
 
-
+        /// <summary>
+        /// Builds the twitter service using the API keys in the Config file
+        /// </summary>
+        /// <param></param>
+        /// <returns>Working instance of TwitterService</returns>
         static TweetSharp.TwitterService buildService()
         {
             string tConsumerKey = "";
@@ -120,15 +219,21 @@ namespace ChessByBird.TwitterProject
             return twitService;
         }
 
-        static void Mainjunk()
+
+        /// <summary>
+        /// Junk function for testing during development
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
+        static void MainJunk()
         {
 
-           var mything=  areNewTweets(800);
-
-
-
-
-
+            areNewTweets(500328033800306680);
+            
+            
+            
+            
+            
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
@@ -153,12 +258,12 @@ namespace ChessByBird.TwitterProject
             //build twitter connection
             var twitService = new TweetSharp.TwitterService(tConsumerKey, tConsumerSecret, tAccessToken, tAccessSecret);
 
+            
 
 
 
-
-
-
+            
+            
             //build options to check for mentions
             var mentionsOptions = new TweetSharp.ListTweetsMentioningMeOptions();
             mentionsOptions.Count = 20;
