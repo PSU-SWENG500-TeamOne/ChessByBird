@@ -1,4 +1,4 @@
-namespace ChessProject.Engine
+namespace ChessProject.Chess
 {
     public struct PieceMoving
     {

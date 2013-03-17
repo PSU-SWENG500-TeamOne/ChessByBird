@@ -36,9 +36,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChessByBird.cs" />
-    <Compile Include="Entities\Board.cs" />
-    <Compile Include="Entities\Game.cs" />
-    <Compile Include="Entities\Pieces.cs" />
+    <Compile Include="Chess\Board.cs" />
+    <Compile Include="Chess\Process.cs" />
+    <Compile Include="Chess\Engine.cs" />
+    <Compile Include="Chess\Game.cs" />
+    <Compile Include="Chess\MoveContent.cs" />
+    <Compile Include="Chess\Piece.cs" />
+    <Compile Include="Chess\PieceMoves.cs" />
+    <Compile Include="Chess\PieceValidMoves.cs" />
+    <Compile Include="Chess\Square.cs" />
     <Compile Include="Flickr\FlickrClient.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +61,7 @@
     <Content Include="DLL\FlickrNet.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Chess\" />
+    <Folder Include="Entities\" />
     <Folder Include="Image\" />
     <Folder Include="Twitter\" />
   </ItemGroup>

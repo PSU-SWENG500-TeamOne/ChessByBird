@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ChessProject.Engine
+namespace ChessProject.Chess
 {
 
     #region Enums
