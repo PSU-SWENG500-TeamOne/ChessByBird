@@ -77,7 +77,7 @@ namespace ChessByBird.FlickrProject
                 string file = assetPath;
                 string title = "Test Chess Photo";
                 string tags = "tag1,tag2,tag3";
-                string photoId = flickr.UploadPicture(file, title, GameBoardState, tags);
+                string photoId = flickr.UploadPicture(file, title, GameBoardState, tags, true, true, true);
                 //TODO - fix to use proper Uri
                 Uri siteUri = new Uri("http://www.flickr.com/");
                 return siteUri;
