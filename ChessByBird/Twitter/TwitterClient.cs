@@ -191,10 +191,7 @@ namespace ChessByBird.Twitter
                 {
                     TwitterStatus statusSent = ts.SendTweet(new SendTweetOptions { InReplyToStatusId = (long)replyToMe, Status = theMessage });
                     System.Threading.Thread.Sleep(5000); //wait for twitter to catch up
-                    if (statusSent.Text.ToString() == theMessage)
-                    {
-                        sentSuccessfully = true;
-                    }
+                    sentSuccessfully = true;
                     return sentSuccessfully;
                 }
             }

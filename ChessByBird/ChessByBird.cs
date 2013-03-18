@@ -42,6 +42,7 @@ namespace ChessByBird
                 long referentialID = Twitter.TwitterClient.getNewestTweetFromMe();
                 long newestTweet = 0;
 
+
                 //Processing Loop
                    while (true)
                    {
