@@ -86,7 +86,6 @@ namespace ChessByBird
 
                 string dummyText = "An error occured, CBB is closing. Useless GUID: " + randomText.ToString();
                 Twitter.TwitterClient.postTweet(0, dummyText);
-
             }
         }
     }

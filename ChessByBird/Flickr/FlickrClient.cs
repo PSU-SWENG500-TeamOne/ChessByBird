@@ -31,7 +31,7 @@ namespace ChessByBird.FlickrProject
         {
             try
             {
-                string consumerKey = ConfigurationManager.AppSettings["consumerKey"];
+                string consumerKey = ConfigurationManager.AppSettings["FlickrConsumerKey"];
                 Flickr flickr = new Flickr(consumerKey);
                 PhotoInfo photoInfo = flickr.PhotosGetInfo(photoID);  //ChessBoard
                 string photoTitle = photoInfo.Title;
@@ -70,14 +70,14 @@ namespace ChessByBird.FlickrProject
                 //OAuthAccessToken AccessToken = flickr.OAuthGetAccessToken(requestToken, requestTokenSecret, Verifier);
 
                 //This is the Application Access Token
-                string OAuthAccessToken = ConfigurationManager.AppSettings["FlickrOAuthAccessToken"];
-                string OAuthAccessTokenSecret = ConfigurationManager.AppSettings["FlickrOAuthAccessTokenSecret"];
+                flickr.OAuthAccessToken = ConfigurationManager.AppSettings["FlickrOAuthAccessToken"];
+                flickr.OAuthAccessTokenSecret = ConfigurationManager.AppSettings["FlickrOAuthAccessTokenSecret"];
 
                 //TODO: Image must be set to public 
                 string file = assetPath;
                 string title = "Test Chess Photo";
                 string tags = "tag1,tag2,tag3";
-                string photoId = flickr.UploadPicture(file, title, GameBoardState, tags);
+                string photoId = flickr.UploadPicture(file, title, GameBoardState, tags, true, true, true);
                 //TODO - fix to use proper Uri
                 Uri siteUri = new Uri("http://www.flickr.com/");
                 return siteUri;
