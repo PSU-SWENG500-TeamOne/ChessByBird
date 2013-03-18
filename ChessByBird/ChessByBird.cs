@@ -44,7 +44,7 @@ namespace ChessByBird
 
 
                 //Processing Loop
-                   while (true)
+                    while (true)
                    {
                        newestTweet = Twitter.TwitterClient.areNewTweets(referentialID);
                        if (newestTweet > 0)
@@ -55,16 +55,17 @@ namespace ChessByBird
                            dummyInformation.Add("currentPlayer", "ZachCarsonTest");
                            dummyInformation.Add("otherPlayer", "ZacharyACarson");
                            dummyInformation.Add("imageURL", "8565843947");
-                           dummyInformation.Add("moveString", "e3");
+                           dummyInformation.Add("moveString", "e2 e4");         
 
 
                            //grab the previous game board state
                            //gameBoardState = FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
                            gameBoardState = FlickrClient.getFlickrPic(dummyInformation["imageURL"].ToString());
+                           string dummyGameBoard = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
                            //send previous game board state to processChess, with new move
                            //updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
-                           updatedGameBoardState = Chess.Process.processChess(dummyInformation["moveString"].ToString(), gameBoardState);
+                           updatedGameBoardState = Chess.Process.processChess(dummyInformation["moveString"].ToString(), dummyGameBoard);
 
                            //send new boardstate to processImage
                            //assetPath = ProcessImage(updatedGameBoardState);
@@ -74,7 +75,7 @@ namespace ChessByBird
                            Uri imageUri = FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
 
                            //post link to Twitter to the important party
-                           Twitter.TwitterClient.postTweet(newestTweet, myInformation["imageURL"].ToString() + " A new move is ready! " + imageUri);
+                           Twitter.TwitterClient.postTweet(newestTweet, "@" + dummyInformation["otherPlayer"].ToString() + " A new move is ready! " + imageUri);
 
                            //update lastest tweet mark to reflect new changes
                            referentialID = newestTweet;
