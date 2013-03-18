@@ -33,19 +33,13 @@ namespace UnitTestsProject
     {
 
         [TestMethod]
-        public void TestMethodImageEntity()
-        {
-
-        }
-
-        [TestMethod]
-        public void TestMethodGetFlickrPicValid()
+        public void TestMethodFlickrGetPicValid()
         {
             try{
                 string photoDescription;  //This will hold the Chess FEN or Error message
                 photoDescription = FlickrClient.getFlickrPic("8465703185");
                 //Make sure the value returned is equal
-                Assert.AreEqual("Move3: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1", photoDescription);
+                Assert.AreEqual("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1", photoDescription);
             }
             catch (Exception) {
              Assert.Fail(); 
@@ -53,7 +47,7 @@ namespace UnitTestsProject
         }
 
         [TestMethod]
-        public void TestMethodGetFlickrPicInvalid()
+        public void TestMethodFlickrGetPicInvalid()
         {
             try{
             string photoDescription;  //This will hold the Chess FEN or Error message
@@ -64,11 +58,11 @@ namespace UnitTestsProject
         }
 
         [TestMethod]
-        public void TestMethodPostFlickrPicValid()
+        public void TestMethodFlickrPostPicValid()
         {
          try{
            String assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
-           string GameBoardState = "Move3: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
+           string GameBoardState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
            Uri URL = FlickrClient.postFlickrPic(assetPath, GameBoardState);
            Assert.IsNotNull(URL);
          }
@@ -76,6 +70,24 @@ namespace UnitTestsProject
              Assert.Fail();
          }
         }
+
+        [TestMethod]
+        public void TestMethodFlickrPostGetPicValid()
+        {
+            try
+            {
+                String assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
+                string GameBoardState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
+                Uri URL = FlickrClient.postFlickrPic(assetPath, GameBoardState);
+                Assert.IsNotNull(URL);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+
 
     }
 }
