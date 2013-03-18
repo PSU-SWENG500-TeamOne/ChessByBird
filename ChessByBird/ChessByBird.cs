@@ -51,13 +51,20 @@ namespace ChessByBird
                        {
                            //grab information about the tweet
                            Dictionary<String, String> myInformation = Twitter.TwitterClient.getTweetInfo(newestTweet); //dictionary[currentPlayer,otherPlayer,imageURL,moveString]
+                           Dictionary<String, String> dummyInformation = new Dictionary<String, String>();
+                           dummyInformation.Add("currentPlayer", "ZachCarsonTest");
+                           dummyInformation.Add("otherPlayer", "ZacharyACarson");
+                           dummyInformation.Add("imageURL", "8565843947");
+                           dummyInformation.Add("moveString", "e3");
+
 
                            //grab the previous game board state
                            //gameBoardState = FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
-                           updatedGameBoardState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"; //temporary gamestate
+                           gameBoardState = FlickrClient.getFlickrPic(dummyInformation["imageURL"].ToString());
 
                            //send previous game board state to processChess, with new move
-                           updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
+                           //updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
+                           updatedGameBoardState = Chess.Process.processChess(dummyInformation["moveString"].ToString(), gameBoardState);
 
                            //send new boardstate to processImage
                            //assetPath = ProcessImage(updatedGameBoardState);
