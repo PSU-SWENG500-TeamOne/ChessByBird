@@ -13,7 +13,7 @@ namespace ChessByBird.Chess
 
         }
 
-        public String processChess(String move, String board)
+        public static String processChess(String move, String board)
         {
             byte sColumn;
             byte sRow;

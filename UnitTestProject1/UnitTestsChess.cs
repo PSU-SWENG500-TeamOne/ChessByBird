@@ -23,8 +23,8 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChessByBird.ChessProject;
-using ChessProject.Engine;
+using ChessByBird.Chess;
+//using ChessProject.Engine;
 
 
 namespace UnitTestsProject
