@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Text.RegularExpressions;
 using TweetSharp;
 
 namespace ChessByBird.Twitter
@@ -99,10 +100,33 @@ namespace ChessByBird.Twitter
                     {
                         otherPlayer = "not found";
                     }
+
+                    if (respondingTo.Entities.Urls.Count > 0)
+                    {
+                        string tempURL = respondingTo.Entities.Urls[0].ExpandedValue;
+
+                        Match match = Regex.Match(tempURL, "photos/[^/]+/(?<imgID>[0-9]+)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                        if (match.Success)
+                        {
+                            imageURL = match.Groups["imgID"].Value;
+                        }
+                        else
+                        {
+                            imageURL = "not found";
+                        }
+
+                    }
+                    else
+                    {
+                        imageURL = "not found";
+                    }
+
+
                 }
                 else
                 {
                     otherPlayer = "not found";
+                    imageURL = "not found";
                 }
                 
                 if (thatTweet.Text.Contains("*"))
@@ -123,14 +147,7 @@ namespace ChessByBird.Twitter
                     moveString = "not found";
                 }
 
-                if (thatTweet.Entities.Urls.Count > 0)
-                {
-                    imageURL = thatTweet.Entities.Urls[0].ExpandedValue;
-                }
-                else
-                {
-                    imageURL = "not found";
-                }
+                
 
                 usefulInfo.Add("currentPlayer", currentPlayer);
                 usefulInfo.Add("otherPlayer", otherPlayer);
