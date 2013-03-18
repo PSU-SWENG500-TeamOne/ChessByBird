@@ -22,21 +22,15 @@ namespace ChessByBird
    
             try
             {
-<<<<<<< HEAD
-                //Loop Check for getTweet()
-                    //If it is the first move do not the getFlickr Pic
-                 //       gameBoardState = FlickrClient.getFlickrPic(PhotoID);
-
-                String chessmove = "a2 a3";
-                String gameBoardState = null;
-                Process newProcess = new Process();
-                String newBoard = newProcess.processChess(chessmove, gameBoardState);
-                System.Console.WriteLine(newBoard);
-                System.Console.WriteLine();
-                    //assetPath = ProcessImage(updatedGameBoardState)
-                //    Uri imageUri = FlickrClient.postFlickrPic(assetPath, gameBoardState);
-                //PostTweet(imageUri)                    
-=======
+                //How to do chess stuff
+                String gameBoardState = "";
+                String updatedGameBoardState = "";
+                String assetPath = "";
+                //Process newProcess = new Process();
+                //String newBoard = newProcess.processChess(chessmove, gameBoardState);
+                //System.Console.WriteLine(newBoard);
+                //System.Console.WriteLine();
+             
                 //post start up tweet, save its value for referencing
 
                 Guid randomText = Guid.NewGuid();
@@ -46,41 +40,52 @@ namespace ChessByBird
                 Twitter.TwitterClient.postTweet(0, dummyText);
                 System.Threading.Thread.Sleep(5000); //wait for twitter to catch up
                 long referentialID = Twitter.TwitterClient.getNewestTweetFromMe();
+                long newestTweet = 0;
 
-                //Loop Check for areNewTweets()
+                //Processing Loop
                    while (true)
                    {
-                       long newestTweet = Twitter.TwitterClient.areNewTweets(referentialID);
+                       newestTweet = Twitter.TwitterClient.areNewTweets(referentialID);
                        if (newestTweet > 0)
                        {
+                           //grab information about the tweet
                            Dictionary<String, String> myInformation = Twitter.TwitterClient.getTweetInfo(newestTweet); //dictionary[currentPlayer,otherPlayer,imageURL,moveString]
 
-                           if (true)
-                           { }
-                           //If it is the first move do not the getFlickr Pic
-                           gameBoardState = FlickrClient.getFlickrPic(PhotoID);
-                           //updatedGameBoardState = ProcessChess(chessMove, gameBoardState)
-                           //assetPath = ProcessImage(updatedGameBoardState)
-                           Uri imageUri = FlickrClient.postFlickrPic(assetPath, gameBoardState);
-                           //PostTweet(imageUri)
+                           //grab the previous game board state
+                           //gameBoardState = FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
+                           updatedGameBoardState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"; //temporary gamestate
+
+                           //send previous game board state to processChess, with new move
+                           updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
+
+                           //send new boardstate to processImage
+                           //assetPath = ProcessImage(updatedGameBoardState);
+                           assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG"); //temporary image
+
+                           //post the new image to Flickr, and get the URL
+                           Uri imageUri = FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
+
+                           //post link to Twitter to the important party
+                           Twitter.TwitterClient.postTweet(newestTweet, myInformation["imageURL"].ToString() + " A new move is ready! " + imageUri);
+
+                           //update lastest tweet mark to reflect new changes
+                           referentialID = newestTweet;
                        }
-                       referentialID = newestTweet;
-                       System.Threading.Thread.Sleep(30000); //wait 30 seconds, check again
+                       
+                       System.Threading.Thread.Sleep(3000); //wait 3 seconds, check again
                    }
-                                        
->>>>>>> TwitterBranch
+                        
                 //end loop
             }
             //Catch all issues
             catch {
                 //PostTweet(Issue) 
-<<<<<<< HEAD
-=======
+
                 Guid randomText = Guid.NewGuid();
 
                 string dummyText = "An error occured, CBB is closing. Useless GUID: " + randomText.ToString();
                 Twitter.TwitterClient.postTweet(0, dummyText);
->>>>>>> TwitterBranch
+
             }
         }
     }
