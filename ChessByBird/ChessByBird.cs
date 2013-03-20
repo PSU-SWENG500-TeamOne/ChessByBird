@@ -54,7 +54,7 @@ namespace ChessByBird
                            Dictionary<String, String> dummyInformation = new Dictionary<String, String>();
                            dummyInformation.Add("currentPlayer", "ZachCarsonTest");
                            dummyInformation.Add("otherPlayer", "ZacharyACarson");
-                           dummyInformation.Add("imageURL", "8570458692");
+                           dummyInformation.Add("imageURL", "8565843947");
                            dummyInformation.Add("moveString", "e2 e4");         
 
 
