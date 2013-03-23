@@ -54,7 +54,6 @@ namespace ChessByBird
                            //grab information about the tweet
                            Console.WriteLine("Begin processing " + newestTweet.ToString());
                            Dictionary<String, String> myInformation = Twitter.TwitterClient.getTweetInfo(newestTweet); //dictionary[currentPlayer,otherPlayer,imageURL,moveString]
-                           Dictionary<String, String> dummyInformation = new Dictionary<String, String>();
                            #region logging
                            Console.WriteLine("Data:");
                            Console.WriteLine("  Sender: " + myInformation["currentPlayer"].ToString());
@@ -62,10 +61,12 @@ namespace ChessByBird
                            Console.WriteLine("  Move String: " + myInformation["moveString"].ToString());
                            Console.WriteLine("  Reference Image: " + myInformation["imageURL"].ToString());
                            #endregion
-                           dummyInformation.Add("currentPlayer", "ZachCarsonTest");
-                           dummyInformation.Add("otherPlayer", "ZacharyACarson");
-                           dummyInformation.Add("imageURL", "8570458692");
-                           dummyInformation.Add("moveString", "e2 e4");
+
+                           //Dictionary<String, String> dummyInformation = new Dictionary<String, String>();
+                           //dummyInformation.Add("currentPlayer", "ZachCarsonTest");
+                           //dummyInformation.Add("otherPlayer", "ZacharyACarson");
+                           //dummyInformation.Add("imageURL", "8570458692");
+                           //dummyInformation.Add("moveString", "e2 e4");
 
                            //grab the previous game board state
                            //new game board states are null
@@ -75,15 +76,12 @@ namespace ChessByBird
                            }
                            else
                            {
-                               //gameBoardState = FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
-                               gameBoardState = FlickrClient.getFlickrPic(dummyInformation["imageURL"].ToString());
+                              gameBoardState = FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
                            }
 
                            //send previous game board state to processChess, with new move
-                           //updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
-                           string dummyGameBoard = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-                           updatedGameBoardState = Chess.Process.processChess(dummyInformation["moveString"].ToString(), dummyGameBoard);
-
+                           updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
+                           
                            //send new boardstate to processImage
                            //assetPath = ProcessImage(updatedGameBoardState);
                            assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG"); //temporary image
@@ -92,7 +90,7 @@ namespace ChessByBird
                            Uri imageUri = FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
 
                            //post link to Twitter to the important party
-                           Twitter.TwitterClient.postTweet(newestTweet, "@" + dummyInformation["otherPlayer"].ToString() + " there is a new move for you from @" + dummyInformation["currentPlayer"].ToString() + " " + imageUri);
+                           Twitter.TwitterClient.postTweet(newestTweet, "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri);
 
                            //update lastest tweet mark to reflect new changes
                            referentialID = newestTweet;
@@ -106,8 +104,8 @@ namespace ChessByBird
                            Console.WriteLine("Nothing to process, sleeping");
                            Console.WriteLine();
                        }
-                       
-                       System.Threading.Thread.Sleep(3000); //wait 3 seconds, check again
+
+                       System.Threading.Thread.Sleep(65000); //wait 65 seconds, check again. twitter has a rate limit of 15 per 15min window
                    }
                         
                 //end loop
