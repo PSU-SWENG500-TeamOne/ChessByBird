@@ -63,7 +63,7 @@ namespace ChessByBird.Twitter
                 }
             );
 
-            Console.WriteLine(newestTweet.ToString());
+            //Console.WriteLine(newestTweet.ToString());
 
             return newestTweet;
         }
@@ -77,8 +77,8 @@ namespace ChessByBird.Twitter
         {
             try
             {
-                Dictionary<String, String> usefulInfo = new Dictionary<String, String>(); //dictionary shall contain player1, player2, image url, move string
-                TwitterService ts = buildService();
+                Dictionary<String, String> usefulInfo = new Dictionary<String, String>(); //dictionary shall contain statusCode, player1, player2, image url, move string
+                TwitterService ts = buildService(); ;
                 string currentPlayer;
                 string otherPlayer;
                 string imageURL;
@@ -87,46 +87,50 @@ namespace ChessByBird.Twitter
                 //gets 3 tweets: the one requested, the one before it (for the image url) and the one before that (for other player)
                 var thatTweet = ts.GetTweet(new GetTweetOptions { Id = tweetID });
                 currentPlayer = thatTweet.User.ScreenName.ToString();
-
-                if (thatTweet.InReplyToStatusId.HasValue)
+                if (thatTweet.Text.ToUpper().Contains("NEW GAME"))
                 {
-                    var respondingTo = ts.GetTweet(new GetTweetOptions { Id = (long)thatTweet.InReplyToStatusId });
-                    if (respondingTo.InReplyToStatusId.HasValue)
+                    otherPlayer = thatTweet.Entities.Mentions[1].ScreenName; //first mention is @chessbybird, 2nd is other player;
+                    imageURL = "new game";
+                }
+                else
+                {
+                    if (thatTweet.InReplyToStatusId.HasValue)
                     {
-                        var previousMove = ts.GetTweet(new GetTweetOptions { Id = (long)respondingTo.InReplyToStatusId });
-                        otherPlayer = respondingTo.User.ScreenName.ToString();
-                    }
-                    else
-                    {
-                        otherPlayer = "not found";
-                    }
-
-                    if (respondingTo.Entities.Urls.Count > 0)
-                    {
-                        string tempURL = respondingTo.Entities.Urls[0].ExpandedValue;
-
-                        Match match = Regex.Match(tempURL, "photos/[^/]+/(?<imgID>[0-9]+)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                        if (match.Success)
+                        var respondingTo = ts.GetTweet(new GetTweetOptions { Id = (long)thatTweet.InReplyToStatusId });
+                        if (respondingTo.InReplyToStatusId.HasValue)
                         {
-                            imageURL = match.Groups["imgID"].Value;
+                            var previousMove = ts.GetTweet(new GetTweetOptions { Id = (long)respondingTo.InReplyToStatusId });
+                            otherPlayer = previousMove.User.ScreenName.ToString();
+                        }
+                        else
+                        {
+                            otherPlayer = "not found";
+                        }
+
+                        if (respondingTo.Entities.Urls.Count > 0)
+                        {
+                            string tempURL = respondingTo.Entities.Urls[0].ExpandedValue;
+
+                            Match match = Regex.Match(tempURL, "photos/[^/]+/(?<imgID>[0-9]+)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                            if (match.Success)
+                            {
+                                imageURL = match.Groups["imgID"].Value;
+                            }
+                            else
+                            {
+                                imageURL = "not found";
+                            }
                         }
                         else
                         {
                             imageURL = "not found";
                         }
-
                     }
                     else
                     {
+                        otherPlayer = "not found";
                         imageURL = "not found";
                     }
-
-
-                }
-                else
-                {
-                    otherPlayer = "not found";
-                    imageURL = "not found";
                 }
                 
                 if (thatTweet.Text.Contains("*"))
@@ -139,7 +143,7 @@ namespace ChessByBird.Twitter
                     }
                     else
                     {
-                        moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1); //TODO: Strip away the **
+                        moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1); 
                     }
                 }
                 else
@@ -147,7 +151,6 @@ namespace ChessByBird.Twitter
                     moveString = "not found";
                 }
 
-                
 
                 usefulInfo.Add("currentPlayer", currentPlayer);
                 usefulInfo.Add("otherPlayer", otherPlayer);
