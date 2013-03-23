@@ -56,9 +56,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Flicker\DLL\FlickrNet.dll</HintPath>
     </Reference>
-    <Reference Include="Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLL\Hammock.ClientProfile.dll</HintPath>
+    <Reference Include="Hammock">
+      <HintPath>DLL\Hammock.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -78,7 +77,7 @@
   <ItemGroup>
     <Content Include="DigitalAssets\ChessGameboard.PNG" />
     <Content Include="DLL\FlickrNet.dll" />
-    <Content Include="DLL\Hammock.ClientProfile.dll" />
+    <Content Include="DLL\Hammock.dll" />
     <Content Include="DLL\Newtonsoft.Json.dll" />
     <Content Include="DLL\TweetSharp.dll" />
   </ItemGroup>

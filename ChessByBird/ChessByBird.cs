@@ -15,6 +15,8 @@ namespace ChessByBird
 
         static void Main()
         {
+           
+            
             //TODO: these will all be removed later
            // string gameBoardState ="";
            // string PhotoID = "";

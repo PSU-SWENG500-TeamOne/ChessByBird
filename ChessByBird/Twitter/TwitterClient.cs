@@ -239,12 +239,12 @@ namespace ChessByBird.Twitter
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        static void MainJunk()
+        static void Mainjunk()
         {
 
             areNewTweets(500328033800306680);
-            
-            
+
+            postTweet(313438042620821505, "OK @zacharyacarson, i'm making a new game against @zachcarsontest");
             
             
             
@@ -272,12 +272,9 @@ namespace ChessByBird.Twitter
             //build twitter connection
             var twitService = new TweetSharp.TwitterService(tConsumerKey, tConsumerSecret, tAccessToken, tAccessSecret);
 
-            
 
 
 
-            
-            
             //build options to check for mentions
             var mentionsOptions = new TweetSharp.ListTweetsMentioningMeOptions();
             mentionsOptions.Count = 20;
