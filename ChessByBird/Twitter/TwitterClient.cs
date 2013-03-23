@@ -143,7 +143,8 @@ namespace ChessByBird.Twitter
                     }
                     else
                     {
-                        moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1); 
+                        moveString = thatTweet.Text.Substring(startIndex, endIndex - startIndex + 1);
+                        moveString = moveString.Trim(new Char[] { '*' });
                     }
                 }
                 else
