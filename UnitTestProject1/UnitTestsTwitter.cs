@@ -77,29 +77,5 @@ namespace UnitTestsProject
 
             Assert.IsTrue(results);
         }
-
-        [TestMethod]
-        public void t_MissingURL()
-        {
-            Assert.IsTrue(false);
-        }
-
-        [TestMethod]
-        public void t_MissingReplyID()
-        {
-            Assert.IsTrue(false);
-        }
-
-        [TestMethod]
-        public void t_MissingOtherPlayer()
-        {
-            Assert.IsTrue(false);
-        }
-
-        [TestMethod]
-        public void t_MissingMoveString()
-        {
-            Assert.IsTrue(false);
-        }
     }
 }
