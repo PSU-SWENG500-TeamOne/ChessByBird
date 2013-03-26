@@ -71,6 +71,7 @@ namespace ChessByBird
                            //send previous game board state to processChess, with new move
                            //updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
                            updatedGameBoardState = Chess.Process.processChess(dummyInformation["moveString"].ToString(), dummyGameBoard);
+                           
 
                            //send new boardstate to processImage
                            assetPath = ImageClient.ProcessImage(whitePlayerName, blackPlayerName, updatedGameBoardState);
