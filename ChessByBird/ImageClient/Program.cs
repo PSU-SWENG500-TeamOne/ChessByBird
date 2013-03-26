@@ -23,7 +23,7 @@ namespace ChessByBird
          */
 
         [STAThread]
-        static void Main()
+        static void MainForDev()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

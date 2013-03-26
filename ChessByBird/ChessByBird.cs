@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using ChessByBird.FlickrProject;
 using System.IO;
-using ChessByBird.Chess;
+//using ChessByBird.Chess;
+//using ChessByBird.FlickrProject;
+
 
 namespace ChessByBird
 {
@@ -76,18 +77,18 @@ namespace ChessByBird
                            }
                            else
                            {
-                              gameBoardState = FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
+                              gameBoardState = FlickrProject.FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
                            }
 
                            //send previous game board state to processChess, with new move
                            updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
                            
                            //send new boardstate to processImage
-                           //assetPath = ProcessImage(updatedGameBoardState);
-                           assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG"); //temporary image
+                           assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["otherPlayer"], myInformation["currentPlayer"]);
+                           //assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG"); //temporary image
 
                            //post the new image to Flickr, and get the URL
-                           Uri imageUri = FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
+                           Uri imageUri = FlickrProject.FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
 
                            //post link to Twitter to the important party
                            Twitter.TwitterClient.postTweet(newestTweet, "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri);

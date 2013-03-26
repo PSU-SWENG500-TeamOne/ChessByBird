@@ -11,6 +11,21 @@
     <AssemblyName>ChessByBird</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +51,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\Settings.settings" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChessByBird.cs" />
@@ -49,6 +65,41 @@
     <Compile Include="Chess\PieceValidMoves.cs" />
     <Compile Include="Chess\Square.cs" />
     <Compile Include="Flickr\FlickrClient.cs" />
+    <Compile Include="ImageClient\ChessBoard.cs" />
+    <Compile Include="ImageClient\ChessBoardImageGenerator.cs" />
+    <Compile Include="ImageClient\ChessBoardInitializer.cs" />
+    <Compile Include="ImageClient\ChessBoardParser.cs" />
+    <Compile Include="ImageClient\ChessHelper.cs" />
+    <Compile Include="ImageClient\ChessImageConstants.cs" />
+    <Compile Include="ImageClient\ChessLocationCalculator.cs" />
+    <Compile Include="ImageClient\ChessLocationCalculatorBishop.cs" />
+    <Compile Include="ImageClient\ChessLocationCalculatorFactory.cs" />
+    <Compile Include="ImageClient\ChessLocationCalculatorKing.cs" />
+    <Compile Include="ImageClient\ChessLocationCalculatorKnight.cs" />
+    <Compile Include="ImageClient\ChessLocationCalculatorPawn.cs" />
+    <Compile Include="ImageClient\ChessLocationCalculatorQueen.cs" />
+    <Compile Include="ImageClient\ChessLocationCalculatorRook.cs" />
+    <Compile Include="ImageClient\ChessPiece.cs" />
+    <Compile Include="ImageClient\ChessPieceFactory.cs" />
+    <Compile Include="ImageClient\ChessPieceRectangle.cs" />
+    <Compile Include="ImageClient\ChessPlayer.cs" />
+    <Compile Include="ImageClient\ChessResourseWriter.cs" />
+    <Compile Include="ImageClient\ChesssBoardImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageClient\ChesssBoardImageForm.Designer.cs">
+      <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageClient\ChessSquare.cs" />
+    <Compile Include="ImageClient\ChessSquareFactory.cs" />
+    <Compile Include="ImageClient\ChessSquareLocator.cs" />
+    <Compile Include="ImageClient\ChessSquareRectangle.cs" />
+    <Compile Include="ImageClient\ChessWin32API.cs" />
+    <Compile Include="ImageClient\ImageClient.cs" />
+    <Compile Include="ImageClient\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
     <Compile Include="Twitter\TwitterClient.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +121,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="TweetSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\TweetSharp.dll</HintPath>
@@ -81,10 +133,35 @@
     <Content Include="DLL\Hammock.ClientProfile.dll" />
     <Content Include="DLL\Newtonsoft.Json.dll" />
     <Content Include="DLL\TweetSharp.dll" />
+    <Content Include="Images\ColsRed.bmp" />
+    <Content Include="Images\RowsRed.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Image\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Chess.resources" />
+    <EmbeddedResource Include="ImageClient\ChesssBoardImageForm.resx">
+      <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
