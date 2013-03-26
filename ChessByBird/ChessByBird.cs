@@ -27,7 +27,7 @@ namespace ChessByBird
                 String gameBoardState = "";
                 String updatedGameBoardState = "";
 
-                // ImageClient arguments
+                // ImagerClient arguments
                 string whitePlayerName = "Zach";
                 string blackPlayerName = "Joe";
                 string assetPath = "";
@@ -74,7 +74,7 @@ namespace ChessByBird
                            
 
                            //send new boardstate to processImage
-                           assetPath = ImageClient.ProcessImage(whitePlayerName, blackPlayerName, updatedGameBoardState);
+                           assetPath = ImageClient.processImage(whitePlayerName, blackPlayerName, updatedGameBoardState);
                            //assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessBoardImage.png"); //temporary image
 
                            //post the new image to Flickr, and get the URL

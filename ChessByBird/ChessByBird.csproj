@@ -51,7 +51,7 @@
     <Compile Include="Chess\PieceValidMoves.cs" />
     <Compile Include="Chess\Square.cs" />
     <Compile Include="Flickr\FlickrClient.cs" />
-    <Compile Include="Imager\ImagerClient.cs" />
+    <Compile Include="Imager\ImageClient.cs" />
     <Compile Include="Twitter\TwitterClient.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,25 +7,26 @@
  *  Project: Chess By Bird Capstone group project
 *******************************************************************************/
 
+using ChessByBird.ImagingProject;
 using System;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace ChessByBird.Imaging.Imager
+namespace ChessByBird.ImageClient
 {
     /// <summary>
-    /// ImageClient accesses the ImagingProject Component
+    /// ImagerClient accesses the ImagingProject Component
     /// </summary>
     public class ImageClient
     {
         /// <summary>
         /// Process Chess Board Image and Return Digital Asset "..\..\DigitalAssets\ChessBoardImage.png"
         /// </summary>
+        /// <param name="gameBoardState"></param> 
         /// <param name="whitePlayerName"></param>
         /// <param name="blackPlayerName"></param>
-        /// <param name="updatedGameBoardState"></param>
         /// <returns></returns>
-        public static string ProcessImage(string whitePlayerName, string blackPlayerName, string updatedGameBoardState)
+        public static string processImage(string gameBoardState, string whitePlayerName, string blackPlayerName)
         {
             // TODO: Do we need this as defaults
             Application.EnableVisualStyles();
@@ -45,7 +46,7 @@ namespace ChessByBird.Imaging.Imager
             cbbImgGen.ImageFileName = @"..\..\DigitalAssets\ChessBoardImage.png";
 
             // Set "updatedGameBoardState" expected in Forsyth-Edwards Notation
-            cbbForm.ChessBoardStateFEN = updatedGameBoardState;
+            cbbForm.ChessBoardStateFEN = gameBoardState;
 
             // Generate the game board
             Application.Run(cbbForm);
