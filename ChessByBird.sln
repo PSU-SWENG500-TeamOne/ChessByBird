@@ -7,13 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlickrProject", "Flicker\Fl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessProject", "Chess\ChessProject.csproj", "{3B640CDB-09CB-4DCF-9938-065EDBFAF827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProject", "ImageGenerator\ImageProject.csproj", "{A7ABA97F-CC71-40D4-B3F4-5799A945970F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsProject", "UnitTestProject1\UnitTestsProject.csproj", "{4ED6362D-E1FA-450C-9545-AEDF1287B3EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryProject", "ClassLibraryProject\ClassLibraryProject.csproj", "{D32FD626-5C1F-493C-9780-0771B585F213}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessByBird", "ChessByBird\ChessByBird.csproj", "{1702431C-1EB6-4232-80F2-3CFC47B526B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1647B62C-45AB-41FC-834B-7E56E5054478}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagerProject", "Imager\ImagerProject.csproj", "{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +35,6 @@ Global
 		{3B640CDB-09CB-4DCF-9938-065EDBFAF827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B640CDB-09CB-4DCF-9938-065EDBFAF827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B640CDB-09CB-4DCF-9938-065EDBFAF827}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7ABA97F-CC71-40D4-B3F4-5799A945970F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7ABA97F-CC71-40D4-B3F4-5799A945970F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7ABA97F-CC71-40D4-B3F4-5799A945970F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7ABA97F-CC71-40D4-B3F4-5799A945970F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4ED6362D-E1FA-450C-9545-AEDF1287B3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4ED6362D-E1FA-450C-9545-AEDF1287B3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ED6362D-E1FA-450C-9545-AEDF1287B3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,6 +47,10 @@ Global
 		{1702431C-1EB6-4232-80F2-3CFC47B526B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1702431C-1EB6-4232-80F2-3CFC47B526B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1702431C-1EB6-4232-80F2-3CFC47B526B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

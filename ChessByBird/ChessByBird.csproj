@@ -31,8 +31,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ChessByBird.ChessByBird</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -49,6 +51,7 @@
     <Compile Include="Chess\PieceValidMoves.cs" />
     <Compile Include="Chess\Square.cs" />
     <Compile Include="Flickr\FlickrClient.cs" />
+    <Compile Include="Imager\ImagerClient.cs" />
     <Compile Include="Twitter\TwitterClient.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,34 +59,44 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Flicker\DLL\FlickrNet.dll</HintPath>
     </Reference>
-    <Reference Include="Hammock">
-      <HintPath>DLL\Hammock.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="TweetSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\TweetSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DigitalAssets\ChessBoardImage.png" />
+    <Content Include="DigitalAssets\CBBImage0.png" />
+    <Content Include="DigitalAssets\CBBImage1.png" />
+    <Content Include="DigitalAssets\CBBImage2.png" />
+    <Content Include="DigitalAssets\CBBImage3.png" />
     <Content Include="DigitalAssets\ChessGameboard.PNG" />
     <Content Include="DLL\FlickrNet.dll" />
-    <Content Include="DLL\Hammock.dll" />
     <Content Include="DLL\Newtonsoft.Json.dll" />
     <Content Include="DLL\TweetSharp.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Image\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Imager\ImagerProject.csproj">
+      <Project>{eac3fad3-cee7-44ec-80a4-15e9643ed672}</Project>
+      <Name>ImagerProject</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

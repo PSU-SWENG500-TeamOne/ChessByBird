@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ChessByBird.Chess;
+using ChessByBird.FlickrProject;
+using ChessByBird.Imaging.Imager;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
-using ChessByBird.FlickrProject;
-using System.IO;
-using ChessByBird.Chess;
 
 namespace ChessByBird
 {
@@ -14,9 +15,7 @@ namespace ChessByBird
     {
 
         static void Main()
-        {
-           
-            
+        {           
             //TODO: these will all be removed later
            // string gameBoardState ="";
            // string PhotoID = "";
@@ -27,7 +26,12 @@ namespace ChessByBird
                 //How to do chess stuff
                 String gameBoardState = "";
                 String updatedGameBoardState = "";
-                String assetPath = "";
+
+                // ImageClient arguments
+                string whitePlayerName = "Zach";
+                string blackPlayerName = "Joe";
+                string assetPath = "";
+
                 //Process newProcess = new Process();
                 //String newBoard = newProcess.processChess(chessmove, gameBoardState);
                 //System.Console.WriteLine(newBoard);
@@ -59,7 +63,6 @@ namespace ChessByBird
                            dummyInformation.Add("imageURL", "8570458692");
                            dummyInformation.Add("moveString", "e2 e4");         
 
-
                            //grab the previous game board state
                            //gameBoardState = FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
                            gameBoardState = FlickrClient.getFlickrPic(dummyInformation["imageURL"].ToString());
@@ -70,8 +73,8 @@ namespace ChessByBird
                            updatedGameBoardState = Chess.Process.processChess(dummyInformation["moveString"].ToString(), dummyGameBoard);
 
                            //send new boardstate to processImage
-                           //assetPath = ProcessImage(updatedGameBoardState);
-                           assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG"); //temporary image
+                           assetPath = ImageClient.ProcessImage(whitePlayerName, blackPlayerName, updatedGameBoardState);
+                           //assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessBoardImage.png"); //temporary image
 
                            //post the new image to Flickr, and get the URL
                            Uri imageUri = FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
