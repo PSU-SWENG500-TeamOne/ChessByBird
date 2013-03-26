@@ -80,10 +80,6 @@
       <Project>{3b640cdb-09cb-4dcf-9938-065edbfaf827}</Project>
       <Name>ChessProject</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ImageGenerator\ImageProject.csproj">
-      <Project>{a7aba97f-cc71-40d4-b3f4-5799a945970f}</Project>
-      <Name>ImageProject</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Twitter\TwitterProject.csproj">
       <Project>{9d1c593b-ed2d-4edf-bcfb-994679d10480}</Project>
       <Name>TwitterProject</Name>

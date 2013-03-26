@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlickrProject", "Flicker\Fl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessProject", "Chess\ChessProject.csproj", "{3B640CDB-09CB-4DCF-9938-065EDBFAF827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProject", "ImageGenerator\ImageProject.csproj", "{A7ABA97F-CC71-40D4-B3F4-5799A945970F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsProject", "UnitTestProject1\UnitTestsProject.csproj", "{4ED6362D-E1FA-450C-9545-AEDF1287B3EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryProject", "ClassLibraryProject\ClassLibraryProject.csproj", "{D32FD626-5C1F-493C-9780-0771B585F213}"
@@ -33,10 +31,6 @@ Global
 		{3B640CDB-09CB-4DCF-9938-065EDBFAF827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B640CDB-09CB-4DCF-9938-065EDBFAF827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B640CDB-09CB-4DCF-9938-065EDBFAF827}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7ABA97F-CC71-40D4-B3F4-5799A945970F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7ABA97F-CC71-40D4-B3F4-5799A945970F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7ABA97F-CC71-40D4-B3F4-5799A945970F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7ABA97F-CC71-40D4-B3F4-5799A945970F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4ED6362D-E1FA-450C-9545-AEDF1287B3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4ED6362D-E1FA-450C-9545-AEDF1287B3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ED6362D-E1FA-450C-9545-AEDF1287B3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
