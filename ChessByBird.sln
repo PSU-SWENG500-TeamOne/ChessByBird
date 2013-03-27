@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryProject", "Clas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessByBird", "ChessByBird\ChessByBird.csproj", "{1702431C-1EB6-4232-80F2-3CFC47B526B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagerProject", "Imager\ImagerProject.csproj", "{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{1702431C-1EB6-4232-80F2-3CFC47B526B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1702431C-1EB6-4232-80F2-3CFC47B526B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1702431C-1EB6-4232-80F2-3CFC47B526B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
