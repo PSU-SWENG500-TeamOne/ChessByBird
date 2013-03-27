@@ -28,7 +28,13 @@ namespace ChessByBird
                 //How to do chess stuff
                 String gameBoardState = "";
                 String updatedGameBoardState = "";
-                String assetPath = "";
+
+                // ImagerClient arguments
+                string whitePlayerName = "Zach";
+                string blackPlayerName = "Joe";
+                string assetPath = "";
+
+
                 //Process newProcess = new Process();
                 //String newBoard = newProcess.processChess(chessmove, gameBoardState);
                 //System.Console.WriteLine(newBoard);
@@ -74,24 +80,36 @@ namespace ChessByBird
                            if (myInformation["imageURL"].ToString() == "new game")
                            {
                                gameBoardState = null;
+                               Console.WriteLine();
+                               Console.WriteLine("  New game, building a new board");
                            }
                            else
                            {
                               gameBoardState = FlickrProject.FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
+                              Console.WriteLine();
+                              Console.WriteLine("  Got previous state: " + gameBoardState);
                            }
 
                            //send previous game board state to processChess, with new move
                            updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
+                           Console.WriteLine();
+                           Console.WriteLine("  Move is ok, new state is " + updatedGameBoardState);
                            
                            //send new boardstate to processImage
-                           assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["otherPlayer"], myInformation["currentPlayer"]);
+                           assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["currentPlayer"], myInformation["otherPlayer"]);
                            //assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG"); //temporary image
+                           Console.WriteLine();
+                           Console.WriteLine("  Image built");
 
                            //post the new image to Flickr, and get the URL
                            Uri imageUri = FlickrProject.FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
+                           Console.WriteLine();
+                           Console.WriteLine("  Uploaded. Image at " + imageUri.ToString());
 
                            //post link to Twitter to the important party
                            Twitter.TwitterClient.postTweet(newestTweet, "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri);
+                           Console.WriteLine();
+                           Console.WriteLine("  Tweeted!");
 
                            //update lastest tweet mark to reflect new changes
                            referentialID = newestTweet;

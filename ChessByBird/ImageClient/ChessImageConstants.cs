@@ -20,7 +20,7 @@ using System.Drawing;
  * http://www.codeproject.com/Articles/1456/Enums-and-Structs-in-C
  */
 
-namespace ChessByBird.ImagingProject
+namespace ChessByBird.ImageClient
 {
     /// <summary>
     /// Enumerated Square ID's

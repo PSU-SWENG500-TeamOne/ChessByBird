@@ -7,7 +7,7 @@
  *  Project: Chess By Bird Capstone group project
 *******************************************************************************/
 
-using ChessByBird.ImagingProject;
+using ChessByBird.ImageClient;
 using System;
 using System.Drawing.Imaging;
 using System.Windows.Forms;

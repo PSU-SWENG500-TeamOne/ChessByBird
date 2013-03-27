@@ -9,7 +9,7 @@
 
 using System.Drawing;
 
-namespace ChessByBird.ImagingProject
+namespace ChessByBird.ImageClient
 {
     /// <summary>
     /// ChessSquareRectangle class

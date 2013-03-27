@@ -12,7 +12,7 @@ using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ChessByBird.ImagingProject
+namespace ChessByBird.ImageClient
 {
     /// <summary>
     /// ChessBoard class

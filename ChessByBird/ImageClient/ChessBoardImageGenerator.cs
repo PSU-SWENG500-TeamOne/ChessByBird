@@ -15,7 +15,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ChessByBird.ImagingProject
+namespace ChessByBird.ImageClient
 {
     /// <summary>
     /// ChessBoardImageGenerator

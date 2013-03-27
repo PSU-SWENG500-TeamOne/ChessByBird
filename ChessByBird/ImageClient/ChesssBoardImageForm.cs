@@ -11,7 +11,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
-using ChessByBird.ImagingProject;
+using ChessByBird.ImageClient;
 
 namespace ChessByBird
 {

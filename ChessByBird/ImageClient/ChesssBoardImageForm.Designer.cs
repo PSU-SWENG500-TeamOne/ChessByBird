@@ -1,4 +1,4 @@
-﻿using ChessByBird.ImagingProject;
+﻿using ChessByBird.ImageClient;
 
 namespace ChessByBird
 {
