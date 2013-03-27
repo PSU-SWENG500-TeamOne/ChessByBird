@@ -8,11 +8,17 @@ namespace ChessByBird.Chess
 {
     class Process
     {
+        /*
+         * Default constrcutor
+         */
         public Process()
         {
 
         }
-
+        /*
+         * This is the process Driver This class handles all the checkes at the top most level
+         * Each failed check throws the exception.
+         */
         public static String processChess(String move, String board)
         {
             byte sColumn;
@@ -23,22 +29,30 @@ namespace ChessByBird.Chess
             char scrow;
             char cdColumn;
             char dcrow;
-            Engine engine;
+            Engine engine = null;
             String fen;
-
+            /*
+             * This if/else checks for the move string throws and exception if null is passed in
+             * This also checks and verify if the string is correct format it will throw
+             * the exceptions
+             */
             if (move != null)
             {
-               int space = move.LastIndexOf(" ");
-               Byte[] bytes = Encoding.ASCII.GetBytes(move.ToLower());          
-               csColumn = (char)bytes[space - 2];
-               sColumn = GetByteFromChar(csColumn);      
-               scrow =(char)bytes[space - 1];
-               sRow = GetByteFromChar(scrow);   
-               cdColumn = (char)bytes[space + 1];
-               dColumn = GetByteFromChar(cdColumn);
-               dcrow = (char) bytes[space + 2];
+                int space = move.LastIndexOf(" ");
+                if (space == -1)
+                {
+                    throw new System.ArgumentException("The move sting is in the wrong format missing space between moves", "Chess");
+                }
+                Byte[] bytes = Encoding.ASCII.GetBytes(move.ToLower());
+                csColumn = (char)bytes[space - 2];
+                sColumn = GetByteFromCharL(csColumn);
+                scrow = (char)bytes[space - 1];
+                sRow = GetByteFromCharN(scrow);
+                cdColumn = (char)bytes[space + 1];
+                dColumn = GetByteFromCharL(cdColumn);
+                dcrow = (char)bytes[space + 2];
 
-               dRow =GetByteFromChar((char)bytes[space + 2]);
+                dRow = GetByteFromCharN((char)bytes[space + 2]);
 
             }
             else
@@ -46,32 +60,46 @@ namespace ChessByBird.Chess
                 throw new System.ArgumentException("The move sting is null", "Chess");
             }
 
-            if(board != null)
+            /*
+             * This if/else  checks for the board to be null or not and creates the engine           
+             */
+            if (board != null)
             {
                 engine = new Engine(board);
+
             }
-            else{
-                engine = new Engine();                            
+            else
+            {
+                engine = new Engine();
             }
 
-            String pieceColor = engine.GetPieceColorAt(sColumn, sRow).ToString();     
+            String pieceColor = engine.GetPieceColorAt(sColumn, sRow).ToString();
             String moveColor = engine.WhoseMove.ToString();
-            if(!pieceColor.Equals(moveColor))
+
+            /*
+             *  Checks the piece color with the move color if they are not the same throws and exception            
+             */
+            if (!pieceColor.Equals(moveColor))
             {
                 throw new System.ArgumentException("THE PIECE YOU ARE MOVING IS NOT YOUR COLOR PLEASE MOVE YOUR COLOR", "Chess");
             }
 
-
-            if(engine.IsValidMove(sColumn,sRow,dColumn,dRow))
+            /*
+             *  Check to make sure the move is valid and make sure the FEN is valid      
+             */
+            if (engine.IsValidMove(sColumn, sRow, dColumn, dRow))
             {
+                /*
+                *     Checks to make sure th move is complete
+                */
                 if (!engine.MovePiece(sColumn, sRow, dColumn, dRow))
                 {
                     throw new System.ArgumentException("MOVED FAILED PLEASE RESEND", "Chess");
                 }
-           }
+            }
             else
-            { 
-                 throw new System.ArgumentException("Invalid Move move not allowed", "Chess");
+            {
+                throw new System.ArgumentException("Invalid Move or Malformed FEN", "Chess");
             }
 
             fen = Fen(false, engine.ChessBoard);
@@ -79,7 +107,9 @@ namespace ChessByBird.Chess
         }
 
 
-
+        /*
+         *  Parse the board to the FEN
+         */
         private static string Fen(bool boardOnly, Board board)
         {
             string output = String.Empty;
@@ -216,6 +246,10 @@ namespace ChessByBird.Chess
             }
             return output.Trim();
         }
+
+        /*
+        *Converts ColumnFromByte              
+        */
         private static string GetColumnFromByte(byte column)
         {
             switch (column)
@@ -240,7 +274,10 @@ namespace ChessByBird.Chess
                     return "a";
             }
         }
-        private static byte GetByteFromChar(char value)
+        /*
+        *Converts bytye from char for parsing the move for letters          
+        */
+        private static byte GetByteFromCharL(char value)
         {
             switch (value)
             {
@@ -260,6 +297,17 @@ namespace ChessByBird.Chess
                     return 6;
                 case 'h':
                     return 7;
+                default:
+                    throw new System.ArgumentException("Either the Column or Row value is Invalid", "Chess");
+            }
+        }
+        /*
+             *Converts bytye from char for parsing the move for Numbers          
+             */
+        private static byte GetByteFromCharN(char value)
+        {
+            switch (value)
+            {
                 case '1':
                     return 7;
                 case '2':
@@ -279,6 +327,102 @@ namespace ChessByBird.Chess
                 default:
                     throw new System.ArgumentException("Either the Column or Row value is Invalid", "Chess");
             }
+        }
+        /*
+         *Checks is the player is white return true if is.              
+         */
+
+        public static bool IsWhiteMove(String fn)
+        {
+            bool move = false;
+            Engine Tengine = new Engine(fn);
+            string whitemove = "White";
+            if (whitemove.Equals(Tengine.ChessBoard.WhoseMove.ToString()))
+            {
+                move = true;
+            }
+            return move;
+
+        }
+        public static bool SearchForMate(ChessPieceColor movingSide, Board examineBoard, bool blackMate, bool whiteMate, bool staleMate)
+        {
+            bool foundNonCheckBlack = false;
+            bool foundNonCheckWhite = false;
+
+            for (byte x = 0; x < 64; x++)
+            {
+                Square sqr = examineBoard.Squares[x];
+
+                //Make sure there is a piece on the square
+                if (sqr.Piece == null)
+                    continue;
+
+                //Make sure the color is the same color as the one we are moving.
+                if (sqr.Piece.PieceColor != movingSide)
+                    continue;
+
+                //For each valid move for this piece
+                foreach (byte dst in sqr.Piece.ValidMoves)
+                {
+
+                    //We make copies of the board and move so we don't change the original
+                    Board board = examineBoard.FastCopy();
+
+                    //Make move so we can examine it
+                    Board.MovePiece(board, x, dst, ChessPieceType.Queen);
+
+                    //We Generate Valid Moves for Board
+                    PieceValidMoves.GenerateValidMoves(board);
+
+                    if (board.BlackCheck == false)
+                    {
+                        foundNonCheckBlack = true;
+                    }
+                    else if (movingSide == ChessPieceColor.Black)
+                    {
+                        continue;
+                    }
+
+                    if (board.WhiteCheck == false)
+                    {
+                        foundNonCheckWhite = true;
+                    }
+                    else if (movingSide == ChessPieceColor.White)
+                    {
+                        continue;
+                    }
+                }
+            }
+
+            if (foundNonCheckBlack == false)
+            {
+                if (examineBoard.BlackCheck)
+                {
+                    blackMate = true;
+                    return true;
+                }
+                if (!examineBoard.WhiteMate && movingSide != ChessPieceColor.White)
+                {
+                    staleMate = true;
+                    return true;
+                }
+            }
+
+            if (foundNonCheckWhite == false)
+            {
+                if (examineBoard.WhiteCheck)
+                {
+                    whiteMate = true;
+                    return true;
+                }
+                if (!examineBoard.BlackMate && movingSide != ChessPieceColor.Black)
+                {
+                    staleMate = true;
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

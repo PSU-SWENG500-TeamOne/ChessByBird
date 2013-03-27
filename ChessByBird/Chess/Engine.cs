@@ -32,7 +32,7 @@ namespace ChessByBird.Chess
         {
             HumanPlayer = ChessPieceColor.White;    
             ChessBoard = new Board(fen);
-            ChessBoard.WhoseMove = ChessPieceColor.White;
+           // ChessBoard.WhoseMove = ChessPieceColor.White;
             PieceMoves.InitiateChessPieceMotion();
             GenerateValidMoves();           
         }
