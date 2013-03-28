@@ -137,7 +137,7 @@ namespace ChessByBird
                 Console.WriteLine("ERROR OCCURED");
                 Console.WriteLine();
                 Console.WriteLine(ex.ToString());
-
+                Console.WriteLine();
             }
 
             finally
