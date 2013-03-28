@@ -23,8 +23,8 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChessByBird.Chess;
-//using ChessProject.Engine;
+using ChessProject.Chess;
+
 
 
 namespace UnitTestsProject
@@ -60,35 +60,50 @@ namespace UnitTestsProject
         #endregion
         [TestMethod]
         public void TestValidMove()
-        {
+        {            
             var engine = new Engine();
             Assert.IsTrue(engine.IsValidMove(3, 6, 3, 4));
         }
 
-        //[TestMethod]
-        //public void TestProcessMovePiece()
-        //{
-
-        //}
+        [TestMethod]
+        public void TestColorPieceLocation()
+        { 
+            var engine = new Engine();
+           
+            Assert.AreEqual(ChessPieceColor.White, engine.GetPieceColorAt(3, 6));
+            Assert.AreEqual(ChessPieceColor.Black, engine.GetPieceColorAt(0, 0));
+            
+      }
+        [TestMethod]
+        public void TestPieceType()
+        {  
+            var engine = new Engine();
+            String test = engine.GetPieceTypeAt(2, 0).ToString();
+            Assert.AreEqual(ChessPieceType.Rook,engine.GetPieceTypeAt(0,0));
+            Assert.AreEqual(ChessPieceType.Knight, engine.GetPieceTypeAt(1, 0));
+            Assert.AreEqual(ChessPieceType.Bishop, engine.GetPieceTypeAt(2, 0));
+            Assert.AreEqual(ChessPieceType.Queen, engine.GetPieceTypeAt(3, 0));
+            Assert.AreEqual(ChessPieceType.King, engine.GetPieceTypeAt(4, 0));
+            Assert.AreEqual(ChessPieceType.Bishop, engine.GetPieceTypeAt(5, 0));
+            Assert.AreEqual(ChessPieceType.Knight, engine.GetPieceTypeAt(6, 0));
+            Assert.AreEqual(ChessPieceType.Rook, engine.GetPieceTypeAt(7, 0));
+            Assert.AreEqual(ChessPieceType.Pawn, engine.GetPieceTypeAt(7, 1));
+        }
 
         //[TestMethod]
         //public void TestMethodProcessChessCheckMate()
         //{
-        //   // var engine = new Engine();
+        
             
         //}
 
-        //[TestMethod]
-        //public void TestProcessGame()
-        //{
 
-        //}
         [TestMethod]
         public void TestIsNotValidMove()
         {
             var engine = new Engine();
             Assert.IsFalse(engine.IsValidMove(3, 4, 3,6));
-
+            
         }
         [TestMethod]
         public void TestEngineCheck()
@@ -98,14 +113,13 @@ namespace UnitTestsProject
             var newengine = new Engine("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
             Assert.IsNotNull(newengine);
         }
-        //[TestMethod]
-        //public void TestNewFEN()
-        //{
 
-        //}
-  //      [TestMethod]
-  //      public void TestSetMove()
-  //      {
-  //      }
+     [TestMethod]
+     public void TestSetMove()
+      {
+          var engine = new Engine();
+          Assert.IsTrue(engine.MovePiece(3, 6, 3, 4));
+
+        }
     }
 }

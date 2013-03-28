@@ -53,80 +53,46 @@ namespace ChessByBird
 
 
                 //Processing Loop
-                while (true)
-                {
-                    newestTweet = Twitter.TwitterClient.areNewTweets(referentialID);
-                    if (newestTweet > 0)
-                    {
-                        //grab information about the tweet
-                        Console.WriteLine("Begin processing " + newestTweet.ToString());
-                        Dictionary<String, String> myInformation = Twitter.TwitterClient.getTweetInfo(newestTweet); //dictionary[currentPlayer,otherPlayer,imageURL,moveString]
-                        #region logging
-                        Console.WriteLine("Data:");
-                        Console.WriteLine("  Sender: " + myInformation["currentPlayer"].ToString());
-                        Console.WriteLine("  Other Player: " + myInformation["otherPlayer"].ToString());
-                        Console.WriteLine("  Move String: " + myInformation["moveString"].ToString());
-                        Console.WriteLine("  Reference Image: " + myInformation["imageURL"].ToString());
-                        #endregion
+                    while (true)
+                   {
+                       newestTweet = Twitter.TwitterClient.areNewTweets(referentialID);
+                       if (newestTweet > 0)
+                       {
+                           //grab information about the tweet
+                           Dictionary<String, String> myInformation = Twitter.TwitterClient.getTweetInfo(newestTweet); //dictionary[currentPlayer,otherPlayer,imageURL,moveString]
+                           Dictionary<String, String> dummyInformation = new Dictionary<String, String>();
+                           dummyInformation.Add("currentPlayer", "ZachCarsonTest");
+                           dummyInformation.Add("otherPlayer", "ZacharyACarson");
+                           dummyInformation.Add("imageURL", "8565843947");
+                           dummyInformation.Add("moveString", "e2 e4");         
 
-                        //Dictionary<String, String> dummyInformation = new Dictionary<String, String>();
-                        //dummyInformation.Add("currentPlayer", "ZachCarsonTest");
-                        //dummyInformation.Add("otherPlayer", "ZacharyACarson");
-                        //dummyInformation.Add("imageURL", "8570458692");
-                        //dummyInformation.Add("moveString", "e2 e4");
 
-                        //grab the previous game board state
-                        //new game board states are null
-                        if (myInformation["imageURL"].ToString() == "new game")
-                        {
-                            gameBoardState = null;
-                            Console.WriteLine();
-                            Console.WriteLine("  New game, building a new board");
-                        }
-                        else
-                        {
-                            gameBoardState = FlickrProject.FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
-                            Console.WriteLine();
-                            Console.WriteLine("  Got previous state: " + gameBoardState);
-                        }
+                           //grab the previous game board state
+                           //gameBoardState = FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
+                           gameBoardState = FlickrClient.getFlickrPic(dummyInformation["imageURL"].ToString());
+                           string dummyGameBoard = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
-                        //send previous game board state to processChess, with new move
-                        updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
-                        Console.WriteLine();
-                        Console.WriteLine("  Move is ok, new state is " + updatedGameBoardState);
+                           //send previous game board state to processChess, with new move
+                           //updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
+                           updatedGameBoardState = Chess.Process.processChess(dummyInformation["moveString"].ToString(), dummyGameBoard);
 
-                        //send new boardstate to processImage
-                        assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["currentPlayer"], myInformation["otherPlayer"]);
-                        //assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG"); //temporary image
-                        Console.WriteLine();
-                        Console.WriteLine("  Image built");
+                           //send new boardstate to processImage
+                           //assetPath = ProcessImage(updatedGameBoardState);
+                           assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG"); //temporary image
 
-                        //post the new image to Flickr, and get the URL
-                        Uri imageUri = FlickrProject.FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
-                        Console.WriteLine();
-                        Console.WriteLine("  Uploaded. Image at " + imageUri.ToString());
+                           //post the new image to Flickr, and get the URL
+                           Uri imageUri = FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
 
-                        //post link to Twitter to the important party
-                        Twitter.TwitterClient.postTweet(newestTweet, "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri);
-                        Console.WriteLine();
-                        Console.WriteLine("  Tweeted!");
+                           //post link to Twitter to the important party
+                           Twitter.TwitterClient.postTweet(newestTweet, "@" + dummyInformation["otherPlayer"].ToString() + " A new move is ready! " + imageUri);
 
-                        //update lastest tweet mark to reflect new changes
-                        referentialID = newestTweet;
-                        #region logging
-                        Console.WriteLine("Done with " + newestTweet.ToString());
-                        Console.WriteLine();
-                        #endregion
-                    }
-                    else
-                    {
-                        Console.WriteLine("Nothing to process, sleeping");
-                        Console.WriteLine();
-                    }
-
-                    System.Threading.Thread.Sleep(65000); //wait 65 seconds, check again. twitter has a rate limit of 15 per 15min window
-                }
-
+                           //update lastest tweet mark to reflect new changes
+                           referentialID = newestTweet;
+                       }
+                       
+                       System.Threading.Thread.Sleep(3000); //wait 3 seconds, check again
+                   }
+                        
                 //end loop
             }
             //Catch all issues

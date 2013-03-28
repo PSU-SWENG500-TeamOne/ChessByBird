@@ -10,7 +10,7 @@ namespace ChessProject.Chess
         internal Board ChessBoard;
         internal Board PreviousChessBoard;
 
-        public ChessPieceColor HumanPlayer;
+       // public ChessPieceColor HumanPlayer;
 
         public ChessPieceColor WhoseMove
         {
@@ -30,9 +30,9 @@ namespace ChessProject.Chess
 
         private void InitiateBoard(string fen)
         {
-            HumanPlayer = ChessPieceColor.White;    
+           // HumanPlayer = ChessPieceColor.White;    
             ChessBoard = new Board(fen);
-            ChessBoard.WhoseMove = ChessPieceColor.White;
+            //ChessBoard.WhoseMove = ChessPieceColor.White;
             PieceMoves.InitiateChessPieceMotion();
             GenerateValidMoves();           
         }

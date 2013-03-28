@@ -17,13 +17,18 @@ namespace ChessProject.ChessProject
         static void Main(string[] args)
         {
             try
-            {
-                String chessmove = "a2 a3";
-                String boardFN = null;
-                Process newProcess = new Process();
-                String newBoard = newProcess.processChess(chessmove, boardFN);
-                Console.WriteLine(newBoard);
-                System.Console.Write("");
+            {               
+                  String boardFN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+                  Process newProcess = new Process();
+                while (true)
+               {
+                   Console.WriteLine("BoardFN:" + boardFN);
+                   Console.WriteLine("new move: ");
+                   String chessmove = System.Console.ReadLine();
+                   String newBoard = newProcess.processChess(chessmove, boardFN);
+                   boardFN = newBoard;
+                   Console.WriteLine("complete run: ");
+               }
             }
             catch(Exception e)
             {
