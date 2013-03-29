@@ -43,7 +43,7 @@ namespace ChessByBird
 
             // Expected Chess Board States in Forsyth-Edwards Notation
             string FENState = "";
-            int example = 3;  // Change this to test various valid string
+            int example = 0;  // Change this to test various valid string
             if (FENState.Length > 0 )
             {
                 int index = cbbImgGen.ImageFileName.IndexOf(".png");
