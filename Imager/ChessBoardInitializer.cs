@@ -225,19 +225,19 @@ namespace ChessByBird.ImagingProject
         /// <returns>ChessPiece</returns>
         private ChessPiece CreateChessPiece(ChessSquare aChessSquare, EnumPieceID aPieceID)
         {
-            EnumPieceColor chessPieceColor = EnumPieceColor.White;
+            EnumPieceColor chessPieceColor = EnumPieceColor.Black;
             EnumPieceType chessPieceType = EnumPieceType.None;
 
             int pieceNumber = (int)aPieceID;
             if( pieceNumber >= 11 && pieceNumber <= 16) 
             {
                 pieceNumber -= 10;
-                chessPieceColor = EnumPieceColor.White;
+                chessPieceColor = EnumPieceColor.Black;
             }
             else if (pieceNumber >= 21 && pieceNumber <= 26)
             {
                 pieceNumber -= 20;
-                chessPieceColor = EnumPieceColor.Black;
+                chessPieceColor = EnumPieceColor.White;
             }
             else
             {

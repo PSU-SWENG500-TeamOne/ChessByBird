@@ -56,8 +56,8 @@ namespace ChessByBird.ImagingProject
     public enum EnumPieceID
     {
         Empty=0,
-        WhiteKing=11, WhiteQueen, WhiteRook, WhiteBishop, WhiteKnight, WhitePawn,
-        BlackKing=21, BlackQueen, BlackRook, BlackBishop, BlackKnight, BlackPawn,
+        BlackKing = 11, BlackQueen, BlackRook, BlackBishop, BlackKnight, BlackPawn,
+        WhiteKing = 21, WhiteQueen, WhiteRook, WhiteBishop, WhiteKnight, WhitePawn,
         Invalid
     };
 
@@ -119,10 +119,10 @@ namespace ChessByBird.ImagingProject
         /// <summary>
         /// Colors
         /// </summary>
-        public static Color BlackSquareColor = Color.Gray;
-        public static Color BlackSquareColor2 = Color.Gray;
-        public static Color WhiteSquareColor = Color.White;
-        public static Color WhiteSquareColor2 = Color.White;
+        public static Color BlackSquareColor = Color.Peru;
+        public static Color BlackSquareColor2 = Color.Peru;
+        public static Color WhiteSquareColor = Color.PeachPuff;
+        public static Color WhiteSquareColor2 = Color.PeachPuff;
         public static Color ChessBoardBorderColor = Color.Black;
         public static Color HighlightPenColor = Color.Yellow;
         public static Color LastMoveColor = Color.Blue;
@@ -157,7 +157,8 @@ namespace ChessByBird.ImagingProject
         public static EnumSquareID parserEnPassentSquareID = EnumSquareID.ER;
         public static EnumSquareID parserSquareID = EnumSquareID.ER;
         public static EnumOpponentColor parserSideToMove = EnumOpponentColor.White;
-        public static Dictionary<EnumSquareID, EnumPieceID> parserChessBoardSquares = new Dictionary<EnumSquareID, EnumPieceID>(SquareCount+1);
+        public static Dictionary<EnumSquareID, EnumPieceID> parserChessBoardSquares = 
+            new Dictionary<EnumSquareID, EnumPieceID>(SquareCount+1);
         public static BitArray parserChessBoardState = new BitArray(16, false);
 
         /// <summary>

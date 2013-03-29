@@ -34,39 +34,40 @@ namespace ChessByBird
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChessBoardImageForm));
             this.panelMain = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.pictureBoxBottomLetters = new System.Windows.Forms.PictureBox();
             this.whitePlayerLabel = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.blackPlayerLabel = new System.Windows.Forms.Label();
-            this.panelChessBoard = new System.Windows.Forms.Panel();
-            this.panelRight = new System.Windows.Forms.Panel();
-            this.panelLeft = new System.Windows.Forms.Panel();
-            this.timerSnapShot = new System.Windows.Forms.Timer(this.components);
-            this.pictureBoxBottomLetters = new System.Windows.Forms.PictureBox();
             this.pictureBoxTopLeters = new System.Windows.Forms.PictureBox();
+            this.panelChessBoard = new System.Windows.Forms.Panel();
             this.pictureBoxCenter = new System.Windows.Forms.PictureBox();
+            this.panelRight = new System.Windows.Forms.Panel();
             this.pictureBoxRightNumbers = new System.Windows.Forms.PictureBox();
+            this.panelLeft = new System.Windows.Forms.Panel();
             this.pictureBoxLeftNumbers = new System.Windows.Forms.PictureBox();
+            this.timerSnapShot = new System.Windows.Forms.Timer(this.components);
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomLetters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panelChessBoard.SuspendLayout();
-            this.panelRight.SuspendLayout();
-            this.panelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomLetters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopLeters)).BeginInit();
+            this.panelChessBoard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCenter)).BeginInit();
+            this.panelRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRightNumbers)).BeginInit();
+            this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLeftNumbers)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
             // 
+            this.panelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelMain.Controls.Add(this.splitContainer2);
             this.panelMain.Controls.Add(this.splitContainer1);
             this.panelMain.Controls.Add(this.panelChessBoard);
@@ -82,7 +83,8 @@ namespace ChessByBird
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitContainer2.Location = new System.Drawing.Point(50, 413);
+            this.splitContainer2.Enabled = false;
+            this.splitContainer2.Location = new System.Drawing.Point(50, 419);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -96,23 +98,32 @@ namespace ChessByBird
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer2.Panel2.Controls.Add(this.whitePlayerLabel);
             this.splitContainer2.Panel2.Enabled = false;
-            this.splitContainer2.Size = new System.Drawing.Size(338, 75);
+            this.splitContainer2.Size = new System.Drawing.Size(336, 67);
             this.splitContainer2.SplitterDistance = 25;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 16;
             // 
+            // pictureBoxBottomLetters
+            // 
+            this.pictureBoxBottomLetters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxBottomLetters.Enabled = false;
+            this.pictureBoxBottomLetters.Image = global::ChessByBird.Properties.Resources.ColsRedNew;
+            this.pictureBoxBottomLetters.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxBottomLetters.Name = "pictureBoxBottomLetters";
+            this.pictureBoxBottomLetters.Size = new System.Drawing.Size(336, 25);
+            this.pictureBoxBottomLetters.TabIndex = 0;
+            this.pictureBoxBottomLetters.TabStop = false;
+            // 
             // whitePlayerLabel
             // 
-            this.whitePlayerLabel.AutoSize = true;
-            this.whitePlayerLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.whitePlayerLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.whitePlayerLabel.Enabled = false;
-            this.whitePlayerLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.whitePlayerLabel.ForeColor = System.Drawing.Color.Black;
-            this.whitePlayerLabel.Location = new System.Drawing.Point(0, 0);
+            this.whitePlayerLabel.BackColor = System.Drawing.Color.White;
+            this.whitePlayerLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.whitePlayerLabel.Font = new System.Drawing.Font("Arial Black", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.whitePlayerLabel.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.whitePlayerLabel.Location = new System.Drawing.Point(0, -1);
             this.whitePlayerLabel.Name = "whitePlayerLabel";
-            this.whitePlayerLabel.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.whitePlayerLabel.Size = new System.Drawing.Size(158, 34);
+            this.whitePlayerLabel.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
+            this.whitePlayerLabel.Size = new System.Drawing.Size(336, 42);
             this.whitePlayerLabel.TabIndex = 0;
             this.whitePlayerLabel.Text = "WhitePlayer";
             // 
@@ -133,25 +144,35 @@ namespace ChessByBird
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pictureBoxTopLeters);
-            this.splitContainer1.Size = new System.Drawing.Size(338, 75);
-            this.splitContainer1.SplitterDistance = 49;
+            this.splitContainer1.Size = new System.Drawing.Size(336, 75);
+            this.splitContainer1.SplitterDistance = 46;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 15;
             // 
             // blackPlayerLabel
             // 
-            this.blackPlayerLabel.AutoSize = true;
-            this.blackPlayerLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.blackPlayerLabel.BackColor = System.Drawing.Color.White;
             this.blackPlayerLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.blackPlayerLabel.Enabled = false;
-            this.blackPlayerLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blackPlayerLabel.ForeColor = System.Drawing.Color.Black;
-            this.blackPlayerLabel.Location = new System.Drawing.Point(0, 15);
+            this.blackPlayerLabel.Font = new System.Drawing.Font("Arial Black", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blackPlayerLabel.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.blackPlayerLabel.Location = new System.Drawing.Point(0, -1);
             this.blackPlayerLabel.Name = "blackPlayerLabel";
             this.blackPlayerLabel.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.blackPlayerLabel.Size = new System.Drawing.Size(161, 34);
+            this.blackPlayerLabel.Size = new System.Drawing.Size(336, 47);
             this.blackPlayerLabel.TabIndex = 0;
             this.blackPlayerLabel.Text = "Black Player";
+            // 
+            // pictureBoxTopLeters
+            // 
+            this.pictureBoxTopLeters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxTopLeters.Enabled = false;
+            this.pictureBoxTopLeters.Image = global::ChessByBird.Properties.Resources.ColsRedNew;
+            this.pictureBoxTopLeters.InitialImage = global::ChessByBird.Properties.Resources.ColsRed1;
+            this.pictureBoxTopLeters.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxTopLeters.Name = "pictureBoxTopLeters";
+            this.pictureBoxTopLeters.Size = new System.Drawing.Size(336, 28);
+            this.pictureBoxTopLeters.TabIndex = 0;
+            this.pictureBoxTopLeters.TabStop = false;
             // 
             // panelChessBoard
             // 
@@ -163,6 +184,18 @@ namespace ChessByBird
             this.panelChessBoard.Size = new System.Drawing.Size(338, 338);
             this.panelChessBoard.TabIndex = 14;
             // 
+            // pictureBoxCenter
+            // 
+            this.pictureBoxCenter.BackColor = System.Drawing.Color.Black;
+            this.pictureBoxCenter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxCenter.InitialImage = null;
+            this.pictureBoxCenter.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxCenter.Name = "pictureBoxCenter";
+            this.pictureBoxCenter.Size = new System.Drawing.Size(338, 338);
+            this.pictureBoxCenter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxCenter.TabIndex = 1;
+            this.pictureBoxCenter.TabStop = false;
+            // 
             // panelRight
             // 
             this.panelRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -170,10 +203,22 @@ namespace ChessByBird
             this.panelRight.Controls.Add(this.pictureBoxRightNumbers);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRight.Enabled = false;
-            this.panelRight.Location = new System.Drawing.Point(388, 0);
+            this.panelRight.Location = new System.Drawing.Point(386, 0);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(50, 488);
+            this.panelRight.Size = new System.Drawing.Size(50, 486);
             this.panelRight.TabIndex = 13;
+            // 
+            // pictureBoxRightNumbers
+            // 
+            this.pictureBoxRightNumbers.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxRightNumbers.Enabled = false;
+            this.pictureBoxRightNumbers.Image = global::ChessByBird.Properties.Resources.RowsRed;
+            this.pictureBoxRightNumbers.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxRightNumbers.Name = "pictureBoxRightNumbers";
+            this.pictureBoxRightNumbers.Size = new System.Drawing.Size(25, 486);
+            this.pictureBoxRightNumbers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxRightNumbers.TabIndex = 0;
+            this.pictureBoxRightNumbers.TabStop = false;
             // 
             // panelLeft
             // 
@@ -183,60 +228,8 @@ namespace ChessByBird
             this.panelLeft.Enabled = false;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(50, 488);
+            this.panelLeft.Size = new System.Drawing.Size(50, 486);
             this.panelLeft.TabIndex = 12;
-            // 
-            // timerSnapShot
-            // 
-            this.timerSnapShot.Interval = 10000;
-            this.timerSnapShot.Tick += new System.EventHandler(this.timerSnapShot_Tick);
-            // 
-            // pictureBoxBottomLetters
-            // 
-            this.pictureBoxBottomLetters.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxBottomLetters.Enabled = false;
-            this.pictureBoxBottomLetters.Image = global::ChessByBird.Properties.Resources.ColsRedNew;
-            this.pictureBoxBottomLetters.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxBottomLetters.Name = "pictureBoxBottomLetters";
-            this.pictureBoxBottomLetters.Size = new System.Drawing.Size(338, 25);
-            this.pictureBoxBottomLetters.TabIndex = 0;
-            this.pictureBoxBottomLetters.TabStop = false;
-            // 
-            // pictureBoxTopLeters
-            // 
-            this.pictureBoxTopLeters.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxTopLeters.Enabled = false;
-            this.pictureBoxTopLeters.Image = global::ChessByBird.Properties.Resources.ColsRedNew;
-            this.pictureBoxTopLeters.InitialImage = global::ChessByBird.Properties.Resources.ColsRed1;
-            this.pictureBoxTopLeters.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxTopLeters.Name = "pictureBoxTopLeters";
-            this.pictureBoxTopLeters.Size = new System.Drawing.Size(338, 25);
-            this.pictureBoxTopLeters.TabIndex = 0;
-            this.pictureBoxTopLeters.TabStop = false;
-            // 
-            // pictureBoxCenter
-            // 
-            this.pictureBoxCenter.BackColor = System.Drawing.Color.LightBlue;
-            this.pictureBoxCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxCenter.InitialImage = null;
-            this.pictureBoxCenter.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxCenter.Name = "pictureBoxCenter";
-            this.pictureBoxCenter.Size = new System.Drawing.Size(338, 338);
-            this.pictureBoxCenter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxCenter.TabIndex = 1;
-            this.pictureBoxCenter.TabStop = false;
-            // 
-            // pictureBoxRightNumbers
-            // 
-            this.pictureBoxRightNumbers.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxRightNumbers.Enabled = false;
-            this.pictureBoxRightNumbers.Image = global::ChessByBird.Properties.Resources.RowsRed;
-            this.pictureBoxRightNumbers.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxRightNumbers.Name = "pictureBoxRightNumbers";
-            this.pictureBoxRightNumbers.Size = new System.Drawing.Size(25, 488);
-            this.pictureBoxRightNumbers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxRightNumbers.TabIndex = 0;
-            this.pictureBoxRightNumbers.TabStop = false;
             // 
             // pictureBoxLeftNumbers
             // 
@@ -245,10 +238,15 @@ namespace ChessByBird
             this.pictureBoxLeftNumbers.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLeftNumbers.Image")));
             this.pictureBoxLeftNumbers.Location = new System.Drawing.Point(25, 0);
             this.pictureBoxLeftNumbers.Name = "pictureBoxLeftNumbers";
-            this.pictureBoxLeftNumbers.Size = new System.Drawing.Size(25, 488);
+            this.pictureBoxLeftNumbers.Size = new System.Drawing.Size(25, 486);
             this.pictureBoxLeftNumbers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLeftNumbers.TabIndex = 0;
             this.pictureBoxLeftNumbers.TabStop = false;
+            // 
+            // timerSnapShot
+            // 
+            this.timerSnapShot.Interval = 3000;
+            this.timerSnapShot.Tick += new System.EventHandler(this.timerSnapShot_Tick);
             // 
             // ChessBoardImageForm
             // 
@@ -273,21 +271,19 @@ namespace ChessByBird
             this.panelMain.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomLetters)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panelChessBoard.ResumeLayout(false);
-            this.panelRight.ResumeLayout(false);
-            this.panelLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomLetters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopLeters)).EndInit();
+            this.panelChessBoard.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCenter)).EndInit();
+            this.panelRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRightNumbers)).EndInit();
+            this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLeftNumbers)).EndInit();
             this.ResumeLayout(false);
 
