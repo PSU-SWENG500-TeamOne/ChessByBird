@@ -104,7 +104,7 @@ namespace ChessByBird.ImagingProject
         }
         public static EnumSquareID DecrementEnumSquareID(EnumSquareID id)
         {
-            if (id == EnumSquareID.A1)
+            if (id == EnumSquareID.ER)
                 return id;
             else
                 return id - 1;
@@ -138,15 +138,15 @@ namespace ChessByBird.ImagingProject
         public static int HighlightPenSize = 4;
 
         public static int ChessPieceCount = 16;
-        public static int ChessPieceSize = 40;
-        public static int ChessPieceLeft = 20;
-        public static int ChessPieceTop = 20;
-        public static int ChessBoardSize = 40;
-        public static int ChessBoardLeft = 20;
-        public static int ChessBoardTop = 20;
+        public static int ChessPieceSize = 20;
+        public static int ChessPieceLeft = 10;
+        public static int ChessPieceTop = 10;
+        public static int ChessBoardSize = 20;
+        public static int ChessBoardLeft = 10;
+        public static int ChessBoardTop = 10;
 
         public static int SquareCount = 64;
-        public static int SquareSize = 80;
+        public static int SquareSize = 40;
         public static int SquaresPerRow = 8;
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace ChessByBird.ImagingProject
         public static EnumSquareID parserEnPassentSquareID = EnumSquareID.ER;
         public static EnumSquareID parserSquareID = EnumSquareID.ER;
         public static EnumOpponentColor parserSideToMove = EnumOpponentColor.White;
-        public static Dictionary<EnumSquareID, EnumPieceID> parserChessBoardSquares = new Dictionary<EnumSquareID, EnumPieceID>(64);
+        public static Dictionary<EnumSquareID, EnumPieceID> parserChessBoardSquares = new Dictionary<EnumSquareID, EnumPieceID>(SquareCount+1);
         public static BitArray parserChessBoardState = new BitArray(16, false);
 
         /// <summary>
