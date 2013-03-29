@@ -277,6 +277,7 @@ namespace ChessProject.Chess
              /*
              *Converts bytye from char for parsing the move for letters          
              */
+        /*
         private static byte GetByteFromCharL(char value)
         {
             switch (value)
@@ -303,7 +304,7 @@ namespace ChessProject.Chess
         }
         /*
              *Converts bytye from char for parsing the move for Numbers          
-             */
+             
         private static byte GetByteFromCharN(char value)
         {
             switch (value)
@@ -328,9 +329,9 @@ namespace ChessProject.Chess
                     throw new System.ArgumentException("Either the Column or Row value is Invalid", "Chess");
             }
         }
-
-        /*
-         * ----------------FOR BLACK ON TOP IMPLEMENTATION-----------------------------
+        */
+        
+        
         private static byte GetByteFromCharL(char value)
         {
             switch (value)
@@ -380,7 +381,7 @@ namespace ChessProject.Chess
                     throw new System.ArgumentException("Either the Column or Row value is Invalid", "Chess");
             }
         }
-         */ 
+          
 
             /*
              *Checks is the player is white return true if is.              
