@@ -131,7 +131,7 @@
     <Content Include="DigitalAssets\CBBImage1.png" />
     <Content Include="DigitalAssets\CBBImage2.png" />
     <Content Include="DigitalAssets\CBBImage3.png" />
-    <Content Include="Images\ColsRed.bmp" />
+    <Content Include="Images\ColsRedNew.bmp" />
     <Content Include="Images\RowsRed.bmp" />
   </ItemGroup>
   <ItemGroup>
