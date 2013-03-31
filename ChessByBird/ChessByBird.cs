@@ -92,8 +92,17 @@ namespace ChessByBird
 
                            //send previous game board state to processChess, with new move
                            updatedGameBoardState = Chess.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
+                           bool whitesTurn = Chess.Process.IsWhiteMove(updatedGameBoardState);
                            Console.WriteLine();
                            Console.WriteLine("  Move is ok, new state is " + updatedGameBoardState);
+                           if (whitesTurn)
+                           {
+                               Console.WriteLine("  and it is White's turn");
+                           }
+                           else
+                           {
+                               Console.WriteLine("  and it is Black's turn");
+                           }
                            
                            //send new boardstate to processImage
                            assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["currentPlayer"], myInformation["otherPlayer"]);
