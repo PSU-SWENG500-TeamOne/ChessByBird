@@ -23,7 +23,7 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChessByBird.Chess;
+using ChessProject.Chess;
 
 
 

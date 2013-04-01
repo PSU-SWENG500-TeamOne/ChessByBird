@@ -98,11 +98,7 @@
     <Compile Include="ImageClient\ImageClient.cs" />
     <Compile Include="ImageClient\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="Properties\Settings.Designer.cs" />
     <Compile Include="Twitter\TwitterClient.cs" />
   </ItemGroup>
@@ -138,7 +134,6 @@
     <Content Include="DLL\Newtonsoft.Json.dll" />
     <Content Include="DLL\TweetSharp.dll" />
     <Content Include="Images\ColsRed.bmp" />
-    <Content Include="Images\ColsRedNew.bmp" />
     <Content Include="Images\RowsRed.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,11 +144,7 @@
     <EmbeddedResource Include="ImageClient\ChesssBoardImageForm.resx">
       <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

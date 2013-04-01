@@ -42,94 +42,94 @@ namespace ChessByBird.ImageClient
 			GoLeftDown ( new Point(aSquare.GetChessLocation().X, aSquare.GetChessLocation().Y), isSupportPosition );
 			GoRightUp  ( new Point(aSquare.GetChessLocation().X, aSquare.GetChessLocation().Y), isSupportPosition );
 			GoRightDown( new Point(aSquare.GetChessLocation().X, aSquare.GetChessLocation().Y), isSupportPosition );
-			//CastlePositions();
+			CastlePositions();
 			
 			return validSquaresList;
 		}
 
         /// <summary>
         /// CastlePositions method
-        ///// </summary>
-        //private void CastlePositions()
-        //{
-        //    if (originalSquare == null)
-        //        return;
+        /// </summary>
+		private void CastlePositions()
+		{
+			if (originalSquare == null)
+				return;
 
-        //    ChessPiece piece = originalSquare.GetChessPiece();
+			ChessPiece piece = originalSquare.GetChessPiece();
 
-        //    if (piece == null)
-        //        return;
+			if (piece == null)
+				return;
 
-        //    // It must be KING
-        //    if ( piece.GetPieceType() != EnumPieceType.King)
-        //        return;
+			// It must be KING
+			if ( piece.GetPieceType() != EnumPieceType.King)
+				return;
 
-        //    // Must be able to castle
-        //    if (! piece.IsCastlingPossible())
-        //        return;
+			// Must be able to castle
+			if (! piece.IsCastlingPossible())
+				return;
 
-        //    Point point = originalSquare.GetChessLocation();
+			Point point = originalSquare.GetChessLocation();
 
-        //    bool GotPiece = false;
+			bool GotPiece = false;
 
-        //    if (CanCastle(new Point(0, point.Y)))
-        //    {
-        //        for (int i=point.X - 1; i>0; i--)
-        //        {
-        //            ChessSquare s = chessBoard.GetSquareByItsLocation(new Point(i, point.Y));
+			if (CanCastle(new Point(0, point.Y)))
+			{
+				for (int i=point.X - 1; i>0; i--)
+				{
+                    ChessSquare s = chessBoard.GetSquareByItsLocation(new Point(i, point.Y));
 
-        //            if (s.GetChessPiece() != null)
-        //                GotPiece = true;
-        //        }
+					if (s.GetChessPiece() != null)
+						GotPiece = true;
+				}
 
-        //        if (! GotPiece)
-        //            validSquaresList.Add(chessBoard.GetSquareByItsLocation(new Point(point.X - 2, point.Y)));
-        //    }			
+				if (! GotPiece)
+                    validSquaresList.Add(chessBoard.GetSquareByItsLocation(new Point(point.X - 2, point.Y)));
+			}			
 
-        //    GotPiece = false;
+			GotPiece = false;
 
-        //    if (CanCastle(new Point(7, point.Y)))
-        //    {
+			if (CanCastle(new Point(7, point.Y)))
+			{
 
-        //        for (int i=point.X + 1; i<7; i++)
-        //        {
-        //            ChessSquare s = chessBoard.GetSquareByItsLocation(new Point(i, point.Y));
+				for (int i=point.X + 1; i<7; i++)
+				{
+                    ChessSquare s = chessBoard.GetSquareByItsLocation(new Point(i, point.Y));
 
-        //            if (s.GetChessPiece() != null)
-        //                GotPiece = true;
-        //        }
+					if (s.GetChessPiece() != null)
+						GotPiece = true;
+				}
 
-        //        if (! GotPiece)
-        //            validSquaresList.Add(chessBoard.GetSquareByItsLocation(new Point(point.X + 2, point.Y)));
-        //    }
+				if (! GotPiece)
+                    validSquaresList.Add(chessBoard.GetSquareByItsLocation(new Point(point.X + 2, point.Y)));
+			}
 
-        //}
+		}
 
         /// <summary>
         /// CanCastle
         /// </summary>
         /// <param name="aLocation"></param>
         /// <returns>bool</returns>
-        //private bool CanCastle(Point aLocation)
-        //{
-        //    ChessSquare aSquare = chessBoard.GetSquareByItsLocation(aLocation);
+		private bool CanCastle(Point aLocation)
+		{
+			ChessSquare aSquare = chessBoard.GetSquareByItsLocation(aLocation);
 
-        //    if (aSquare == null) 
-        //        return false;
+			if (aSquare == null) 
+				return false;
 
-        //    ChessPiece piece = aSquare.GetChessPiece();
+			ChessPiece piece = aSquare.GetChessPiece();
 
-        //    if (piece == null)
-        //        return false;
+			if (piece == null)
+				return false;
 
-        //    if (piece.GetPieceType() != EnumPieceType.Rook)
-        //        return false;
+			if (piece.GetPieceType() != EnumPieceType.Rook)
+				return false;
 
-        //    if (! piece.IsCastlingPossible())
-        //        return false;
+			if (! piece.IsCastlingPossible())
+				return false;
 
-        //    return true;
-        //}
+			return true;
+		}
 
         /// <summary>
         /// GoRight

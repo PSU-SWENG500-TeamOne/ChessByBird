@@ -23,6 +23,7 @@ namespace ChessByBird.ImageClient
         private Point location;
         private ChessSquare chessSquare;
 
+        private bool isCastlingPossible;
 		private bool isEnabled;
 
         /// <summary>
@@ -45,6 +46,9 @@ namespace ChessByBird.ImageClient
             }
 
             chessPieceID = aChessPieceID;
+
+            isCastlingPossible = ((chessPieceType == EnumPieceType.King) || ((chessPieceType == EnumPieceType.Rook)));
+
             isEnabled = false;
         }
 
@@ -64,7 +68,8 @@ namespace ChessByBird.ImageClient
             EnumSquareID sid = chessSquare.GetSquareID();
             ChessImageConstants.parserChessBoardSquares[sid] = chessPieceID;
 
-			isEnabled = true;
+            isCastlingPossible = ((aPieceType == EnumPieceType.King) || ((aPieceType == EnumPieceType.Rook)));
+			isEnabled = true;  // TODO was false
 		}
 
         /// <summary>
@@ -83,6 +88,24 @@ namespace ChessByBird.ImageClient
 		internal void SetIsEnabled(bool aEnable) 
 		{
 			isEnabled = aEnable;
+		}
+
+        /// <summary>
+        /// IsCastlingPossible
+        /// </summary>
+        /// <returns>bool</returns>
+		internal bool IsCastlingPossible()
+		{
+            return isCastlingPossible;
+		}
+
+        /// <summary>
+        /// SetCastlePossibility
+        /// </summary>
+        /// <param name="aIsCastlePossible"></param>
+        internal void SetCastlePossibility(bool aIsCastlingPossible)
+		{
+            isCastlingPossible = aIsCastlingPossible;
 		}
 
         /// <summary>
