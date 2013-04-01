@@ -56,8 +56,8 @@ namespace ChessByBird.ImageClient
     public enum EnumPieceID
     {
         Empty=0,
-        WhiteKing=11, WhiteQueen, WhiteRook, WhiteBishop, WhiteKnight, WhitePawn,
-        BlackKing=21, BlackQueen, BlackRook, BlackBishop, BlackKnight, BlackPawn,
+        BlackKing = 11, BlackQueen, BlackRook, BlackBishop, BlackKnight, BlackPawn,
+        WhiteKing = 21, WhiteQueen, WhiteRook, WhiteBishop, WhiteKnight, WhitePawn,
         Invalid
     };
 
@@ -104,7 +104,7 @@ namespace ChessByBird.ImageClient
         }
         public static EnumSquareID DecrementEnumSquareID(EnumSquareID id)
         {
-            if (id == EnumSquareID.A1)
+            if (id == EnumSquareID.ER)
                 return id;
             else
                 return id - 1;
@@ -119,10 +119,10 @@ namespace ChessByBird.ImageClient
         /// <summary>
         /// Colors
         /// </summary>
-        public static Color BlackSquareColor = Color.Gray;
-        public static Color BlackSquareColor2 = Color.Gray;
-        public static Color WhiteSquareColor = Color.White;
-        public static Color WhiteSquareColor2 = Color.White;
+        public static Color BlackSquareColor = Color.Peru;
+        public static Color BlackSquareColor2 = Color.Peru;
+        public static Color WhiteSquareColor = Color.PeachPuff;
+        public static Color WhiteSquareColor2 = Color.PeachPuff;
         public static Color ChessBoardBorderColor = Color.Black;
         public static Color HighlightPenColor = Color.Yellow;
         public static Color LastMoveColor = Color.Blue;
@@ -138,15 +138,15 @@ namespace ChessByBird.ImageClient
         public static int HighlightPenSize = 4;
 
         public static int ChessPieceCount = 16;
-        public static int ChessPieceSize = 40;
-        public static int ChessPieceLeft = 20;
-        public static int ChessPieceTop = 20;
-        public static int ChessBoardSize = 40;
-        public static int ChessBoardLeft = 20;
-        public static int ChessBoardTop = 20;
+        public static int ChessPieceSize = 20;
+        public static int ChessPieceLeft = 10;
+        public static int ChessPieceTop = 10;
+        public static int ChessBoardSize = 20;
+        public static int ChessBoardLeft = 10;
+        public static int ChessBoardTop = 10;
 
         public static int SquareCount = 64;
-        public static int SquareSize = 80;
+        public static int SquareSize = 40;
         public static int SquaresPerRow = 8;
 
         /// <summary>
@@ -157,7 +157,8 @@ namespace ChessByBird.ImageClient
         public static EnumSquareID parserEnPassentSquareID = EnumSquareID.ER;
         public static EnumSquareID parserSquareID = EnumSquareID.ER;
         public static EnumOpponentColor parserSideToMove = EnumOpponentColor.White;
-        public static Dictionary<EnumSquareID, EnumPieceID> parserChessBoardSquares = new Dictionary<EnumSquareID, EnumPieceID>(64);
+        public static Dictionary<EnumSquareID, EnumPieceID> parserChessBoardSquares = 
+            new Dictionary<EnumSquareID, EnumPieceID>(SquareCount+1);
         public static BitArray parserChessBoardState = new BitArray(16, false);
 
         /// <summary>

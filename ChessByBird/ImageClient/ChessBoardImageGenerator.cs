@@ -185,7 +185,7 @@ namespace ChessByBird.ImageClient
             string whiteLabel = WhitePlayerLabel;
             string blackLabel = BlackPlayerLabel;
             string turnPrefix = "➥";
-            string turnSuffix = " it's your move!";
+            string turnSuffix = "";
 
             if (ChessImageConstants.parserSideToMove == EnumOpponentColor.White)
             {

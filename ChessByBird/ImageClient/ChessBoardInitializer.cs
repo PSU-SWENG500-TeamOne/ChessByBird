@@ -62,22 +62,29 @@ namespace ChessByBird.ImageClient
         /// </summary>
         public void Initialize()
         {
-            CreateBoardSquares();
-
-            squareLocator.Reset();
-            for (int counter = 0; counter < ChessImageConstants.SquareCount; counter++)
+            try
             {
-                ChessSquare square = (ChessSquare)squareList[counter];
-                square.SetStartLocation(new Point(squareLocator.NextX(), squareLocator.NextY()));
-                squareLocator.Increment();
+                CreateBoardSquares();
+
+                squareLocator.Reset();
+                for (int counter = 0; counter < ChessImageConstants.SquareCount; counter++)
+                {
+                    ChessSquare square = (ChessSquare)squareList[counter];
+                    square.SetStartLocation(new Point(squareLocator.NextX(), squareLocator.NextY()));
+                    squareLocator.Increment();
+                }
+
+                // Empty the ChessBoard squares
+                ChessImageConstants.parserChessBoardSquares.Clear();
+                for (EnumSquareID sid = EnumSquareID.H8; sid >= EnumSquareID.A1; sid = ChessSquareID.DecrementEnumSquareID(sid))
+                {
+                    //Console.WriteLine(sid);
+                    ChessImageConstants.parserChessBoardSquares.Add(sid, EnumPieceID.Empty);
+                }
             }
-
-            // Empty the ChessBoard squares
-            ChessImageConstants.parserChessBoardSquares.Clear();
-            for (EnumSquareID sid = EnumSquareID.A1; sid <= EnumSquareID.H8; sid = ChessSquareID.IncrementEnumSquareID(sid))
+            catch (Exception E)
             {
-                //Console.WriteLine(sid);
-                ChessImageConstants.parserChessBoardSquares.Add(sid, EnumPieceID.Empty);
+                throw E;
             }
         }
 
@@ -113,7 +120,7 @@ namespace ChessByBird.ImageClient
 
             ChessSquare chessSquare;
 
-            int line = -1;
+            int row = -1;
             int column = 0;
 
             squareLocator.Reset();
@@ -126,7 +133,7 @@ namespace ChessByBird.ImageClient
 
                 if (squareLocator.IsNewLine())
                 {
-                    line++;
+                    row++;
                     column = 0;
                 }
                 else
@@ -134,12 +141,12 @@ namespace ChessByBird.ImageClient
                     column++;
                 }
 
-                chessSquare.SetChessLocation(new Point(column, line));
+                chessSquare.SetChessLocation(new Point(column, row));
                 EnumSquareID sid = chessSquare.GetSquareID();
 
                 squareList.Add(chessSquare);
                 squareColor = chessSquare.GetColor();
-                squareLocator.Increment();
+                squareLocator.Increment ();
             }
         }
 
@@ -200,7 +207,7 @@ namespace ChessByBird.ImageClient
         {
             ChessSquare chessSquare;
 
-            for (int counter = 0; counter < ChessImageConstants.SquareCount; counter++ )
+            for (int counter = 0; counter < ChessImageConstants.SquareCount; counter++)
             {
                 EnumSquareID key = (EnumSquareID)counter;
                 chessSquare = chessBoard.GetSquareByID(key);
@@ -218,19 +225,19 @@ namespace ChessByBird.ImageClient
         /// <returns>ChessPiece</returns>
         private ChessPiece CreateChessPiece(ChessSquare aChessSquare, EnumPieceID aPieceID)
         {
-            EnumPieceColor chessPieceColor = EnumPieceColor.White;
+            EnumPieceColor chessPieceColor = EnumPieceColor.Black;
             EnumPieceType chessPieceType = EnumPieceType.None;
 
             int pieceNumber = (int)aPieceID;
             if( pieceNumber >= 11 && pieceNumber <= 16) 
             {
                 pieceNumber -= 10;
-                chessPieceColor = EnumPieceColor.White;
+                chessPieceColor = EnumPieceColor.Black;
             }
             else if (pieceNumber >= 21 && pieceNumber <= 26)
             {
                 pieceNumber -= 20;
-                chessPieceColor = EnumPieceColor.Black;
+                chessPieceColor = EnumPieceColor.White;
             }
             else
             {
