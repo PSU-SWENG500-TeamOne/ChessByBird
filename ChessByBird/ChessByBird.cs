@@ -42,6 +42,8 @@ namespace ChessByBird
              
                 //post start up tweet, save its value for referencing
 
+                string testingImaging = ImageClient.ImageClient.processImage("rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2", "WHITE", "black");
+
                 Guid randomText = Guid.NewGuid();
 
                 string dummyText = "System live! Random key: " + randomText.ToString();
