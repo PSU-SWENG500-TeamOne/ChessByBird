@@ -15,7 +15,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ChessByBird.Imaging.Imager
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessBoardImageGenerator
@@ -185,7 +185,7 @@ namespace ChessByBird.Imaging.Imager
             string whiteLabel = WhitePlayerLabel;
             string blackLabel = BlackPlayerLabel;
             string turnPrefix = "➥";
-            string turnSuffix = " it's your move!";
+            string turnSuffix = "";
 
             if (ChessImageConstants.parserSideToMove == EnumOpponentColor.White)
             {
@@ -266,7 +266,7 @@ namespace ChessByBird.Imaging.Imager
         }
 
         /// <summary>
-        /// Process chessboard theImage from FEN state
+        /// Process chessboard image from FEN state
         /// </summary>
         /// <param name="aPlayer1Name"></param>
         /// <param name="aPlayer2Name"></param>
@@ -305,7 +305,7 @@ namespace ChessByBird.Imaging.Imager
                     }
                     catch (Exception E)
                     {
-                        string errorMsg = "Error: failed to save bitmap theImage to " + ImageFileName;
+                        string errorMsg = "Error: failed to save bitmap image to " + ImageFileName;
                         errorMsg += "\n" + E.ToString();
                         throw new Exception(errorMsg);
                     }
@@ -313,7 +313,7 @@ namespace ChessByBird.Imaging.Imager
             }
             catch (Exception E)
             {
-                string errorMsg = "Error: failed to capture bitmap theImage of drawing";
+                string errorMsg = "Error: failed to capture bitmap image of drawing";
                 errorMsg += "\n" + E.ToString();
                 throw new Exception(errorMsg);
             }
@@ -396,7 +396,7 @@ namespace ChessByBird.Imaging.Imager
                     IntPtr hLocalBitmap = ChessWin32API.SelectObject(hdcTo, hBitmap);
                     ChessWin32API.BitBlt(hdcTo, 0, 0, Width, Height, hdcFrom, x, y, ChessWin32API.SRCCOPY);
                     ChessWin32API.SelectObject(hdcTo, hLocalBitmap);
-                    // create bitmap for window theImage...
+                    // create bitmap for window image...
                     clsRet = System.Drawing.Image.FromHbitmap(hBitmap);
                 }
 

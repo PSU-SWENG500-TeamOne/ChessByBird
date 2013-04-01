@@ -15,7 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessByBird.Imaging.Imager
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessLocationCalculator class

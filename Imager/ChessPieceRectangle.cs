@@ -7,10 +7,9 @@
  *  Project: Chess By Bird Capstone group project
 *******************************************************************************/
 
-using System;
 using System.Drawing;
 
-namespace ChessByBird.Imaging.Imager
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessPieceRectangle class
@@ -20,21 +19,21 @@ namespace ChessByBird.Imaging.Imager
         /// <summary>
         /// Class variables
         /// </summary>
-        protected Image theImage = null;
+        protected Image image = null;
 
         /// <summary>
         /// Destructor
         /// </summary>
         ~ChessPieceRectangle()
 		{
-			if (theImage != null)
-				theImage.Dispose();
+			if (image != null)
+				image.Dispose();
 		}
 
         // Override Draw method
 		public virtual void Draw(Graphics g, Point aLocation)
 		{
-            g.DrawImage(theImage, aLocation.X, aLocation.Y, 
+            g.DrawImage(image, aLocation.X, aLocation.Y, 
 						ChessImageConstants.ChessPieceSize, 
 						ChessImageConstants.ChessPieceSize);
 		}
@@ -73,9 +72,9 @@ namespace ChessByBird.Imaging.Imager
         public PawnRectangle(EnumPieceColor aPieceColor) 
 		{
             if (aPieceColor == EnumPieceColor.White) 
-				theImage = ReadImage("WHITEPAWN");
+				image = ReadImage("WHITEPAWN");
 			else
-				theImage = ReadImage("BLACKPAWN");
+				image = ReadImage("BLACKPAWN");
 		}
 	}
 
@@ -90,9 +89,9 @@ namespace ChessByBird.Imaging.Imager
         public RookRectangle(EnumPieceColor aPieceColor)
 		{
             if (aPieceColor == EnumPieceColor.White) 
-				theImage = ReadImage("WHITEROOK");
+				image = ReadImage("WHITEROOK");
 			else
-				theImage = ReadImage("BLACKROOK");
+				image = ReadImage("BLACKROOK");
 		}
 	}
 
@@ -107,9 +106,9 @@ namespace ChessByBird.Imaging.Imager
         public BishopRectangle(EnumPieceColor aPieceColor)
 		{
             if (aPieceColor == EnumPieceColor.White) 
-				theImage = ReadImage("WHITEBISHOP");
+				image = ReadImage("WHITEBISHOP");
 			else
-				theImage = ReadImage("BLACKBISHOP");
+				image = ReadImage("BLACKBISHOP");
 		}
 	}
 
@@ -124,9 +123,9 @@ namespace ChessByBird.Imaging.Imager
         public KnightRectangle(EnumPieceColor aPieceColor)
 		{
             if (aPieceColor == EnumPieceColor.White) 
-				theImage = ReadImage("WHITEKNIGHT");
+				image = ReadImage("WHITEKNIGHT");
 			else
-				theImage = ReadImage("BLACKKNIGHT");
+				image = ReadImage("BLACKKNIGHT");
 		}
 	}
 
@@ -141,9 +140,9 @@ namespace ChessByBird.Imaging.Imager
         public QueenRectangle(EnumPieceColor aPieceColor)
 		{
             if (aPieceColor == EnumPieceColor.White) 
-				theImage = ReadImage("WHITEQUEEN");
+				image = ReadImage("WHITEQUEEN");
 			else
-				theImage = ReadImage("BLACKQUEEN");
+				image = ReadImage("BLACKQUEEN");
 		}
 	}
 
@@ -158,9 +157,9 @@ namespace ChessByBird.Imaging.Imager
         public KingRectangle(EnumPieceColor aPieceColor)
 		{
             if (aPieceColor == EnumPieceColor.White)
-                theImage = ReadImage("WHITEKING");
+                image = ReadImage("WHITEKING");
 			else
-                theImage = ReadImage("BLACKKING");
+                image = ReadImage("BLACKKING");
 		}
 	}
 

@@ -12,7 +12,7 @@ using System.Collections;
 using System.Drawing;
 using System.Resources;
 
-namespace ChessByBird.Imaging.Imager
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessResourseWriter class
@@ -51,14 +51,14 @@ namespace ChessByBird.Imaging.Imager
 		}
 
         /// <summary>
-        /// AddIcon theImage
+        /// AddIcon image
         /// </summary>
         /// <param name="filename"></param>
 		public void AddIcon(string filename)
 		{
-			Image theImage;
-			theImage = Image.FromFile(filename);
-			WriteImage("MAINICON", theImage);
+			Image image;
+			image = Image.FromFile(filename);
+			WriteImage("MAINICON", image);
 		}
 
         /// <summary>
@@ -66,43 +66,43 @@ namespace ChessByBird.Imaging.Imager
         /// </summary>
 		public void AddImages()
 		{
-			Image theImage;
+			Image image;
 
-			theImage = Image.FromFile("./WhitePawn.gif");
-			WriteImage("WhitePawn", theImage);
+			image = Image.FromFile("./WhitePawn.gif");
+			WriteImage("WhitePawn", image);
 
-			theImage = Image.FromFile("./WhiteRook.gif");
-			WriteImage("WhiteRook", theImage);
+			image = Image.FromFile("./WhiteRook.gif");
+			WriteImage("WhiteRook", image);
 
-			theImage = Image.FromFile("./WhiteKnight.gif");
-			WriteImage("WhiteKnight", theImage);
+			image = Image.FromFile("./WhiteKnight.gif");
+			WriteImage("WhiteKnight", image);
 
-			theImage = Image.FromFile("./WhiteBishop.gif");
-			WriteImage("WhiteBishop", theImage);
+			image = Image.FromFile("./WhiteBishop.gif");
+			WriteImage("WhiteBishop", image);
 
-			theImage = Image.FromFile("./WhiteQueen.gif");
-			WriteImage("WhiteQueen", theImage);
+			image = Image.FromFile("./WhiteQueen.gif");
+			WriteImage("WhiteQueen", image);
 
-			theImage = Image.FromFile("./WhiteKing.gif");
-			WriteImage("WhiteKing", theImage);
+			image = Image.FromFile("./WhiteKing.gif");
+			WriteImage("WhiteKing", image);
 
-			theImage = Image.FromFile("./BlackPawn.gif");
-			WriteImage("BlackPawn", theImage);
+			image = Image.FromFile("./BlackPawn.gif");
+			WriteImage("BlackPawn", image);
 
-			theImage = Image.FromFile("./BlackRook.gif");
-			WriteImage("BlackRook", theImage);
+			image = Image.FromFile("./BlackRook.gif");
+			WriteImage("BlackRook", image);
 
-			theImage = Image.FromFile("./BlackKnight.gif");
-			WriteImage("BlackKnight", theImage);
+			image = Image.FromFile("./BlackKnight.gif");
+			WriteImage("BlackKnight", image);
 
-			theImage = Image.FromFile("./BlackBishop.gif");
-			WriteImage("BlackBishop", theImage);
+			image = Image.FromFile("./BlackBishop.gif");
+			WriteImage("BlackBishop", image);
 
-			theImage = Image.FromFile("./BlackQueen.gif");
-			WriteImage("BlackQueen", theImage);
+			image = Image.FromFile("./BlackQueen.gif");
+			WriteImage("BlackQueen", image);
 
-			theImage = Image.FromFile("./BlackKing.gif");
-			WriteImage("BlackKing", theImage);
+			image = Image.FromFile("./BlackKing.gif");
+			WriteImage("BlackKing", image);
 		}
 	}
 

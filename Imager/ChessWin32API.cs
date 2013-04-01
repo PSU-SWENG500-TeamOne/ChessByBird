@@ -16,7 +16,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Drawing;
 
-namespace ChessByBird.Imaging.Imager
+namespace ChessByBird.ImagingProject
 {
     [StructLayout(LayoutKind.Sequential)]
     struct RECT

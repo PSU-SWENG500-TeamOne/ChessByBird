@@ -8,9 +8,24 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ChessByBird</RootNamespace>
-    <AssemblyName>CBBImage</AssemblyName>
+    <AssemblyName>Imager</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,11 +47,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ChessByBird.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
@@ -60,17 +79,18 @@
     <Compile Include="ChessPieceRectangle.cs" />
     <Compile Include="ChessPlayer.cs" />
     <Compile Include="ChessResourseWriter.cs" />
-    <Compile Include="ChessSquare.cs" />
-    <Compile Include="ChessSquareFactory.cs" />
-    <Compile Include="ChessSquareLocator.cs" />
-    <Compile Include="ChessSquareRectangle.cs" />
-    <Compile Include="ChessWin32API.cs" />
     <Compile Include="ChesssBoardImageForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChesssBoardImageForm.Designer.cs">
       <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChessSquare.cs" />
+    <Compile Include="ChessSquareFactory.cs" />
+    <Compile Include="ChessSquareLocator.cs" />
+    <Compile Include="ChessSquareRectangle.cs" />
+    <Compile Include="ChessWin32API.cs" />
+    <Compile Include="ImageClient.cs" />
     <Compile Include="Program.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -100,16 +120,32 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Images\ChessBoard.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DigitalAssets\CBBImage.png" />
-    <Content Include="DigitalAssets\CBBImage0.png" />
-    <Content Include="DigitalAssets\CBBImage1.png" />
-    <Content Include="DigitalAssets\CBBImage2.png" />
-    <Content Include="DigitalAssets\CBBImage3.png" />
-    <Content Include="Images\ColsRed.bmp" />
+    <Content Include="Images\ColsRedNew.bmp" />
     <Content Include="Images\RowsRed.bmp" />
+    <Content Include="Resources\ColsRedNew.bmp" />
+    <Content Include="Resources\RowsRed.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
