@@ -122,9 +122,7 @@
   <ItemGroup>
     <None Include="Images\ChessBoard.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DigitalAssets\CBBImage.png" />
     <Content Include="DigitalAssets\CBBImage0.png" />
@@ -133,6 +131,8 @@
     <Content Include="DigitalAssets\CBBImage3.png" />
     <Content Include="Images\ColsRedNew.bmp" />
     <Content Include="Images\RowsRed.bmp" />
+    <Content Include="Resources\ColsRedNew.bmp" />
+    <Content Include="Resources\RowsRed.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
