@@ -12,7 +12,7 @@ using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ChessByBird.Imager
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessBoard class
@@ -181,7 +181,7 @@ namespace ChessByBird.Imager
         public ChessSquare GetSquareByID(EnumSquareID aSquareID)
         {
             ChessSquare square;
-            for (int i = 0; i < ChessImageConstants.SquareCount; i++)
+            for (int i = ChessImageConstants.SquareCount-1; i > -1; i--)
             {
                 square = (ChessSquare)squareList[i];
 

@@ -72,7 +72,7 @@ using System.Linq;
  */
 /// </Remarks>
 
-namespace ChessByBird.Imager
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessBoardParser class

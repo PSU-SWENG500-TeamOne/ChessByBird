@@ -15,7 +15,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ChessByBird.Imager
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessBoardImageGenerator
@@ -185,7 +185,7 @@ namespace ChessByBird.Imager
             string whiteLabel = WhitePlayerLabel;
             string blackLabel = BlackPlayerLabel;
             string turnPrefix = "➥";
-            string turnSuffix = " it's your move!";
+            string turnSuffix = "";
 
             if (ChessImageConstants.parserSideToMove == EnumOpponentColor.White)
             {

@@ -1,58 +1,29 @@
-﻿/*******************************************************************************
- *  Penn State University Software Engineering Graduate Program
- *  Authors: Team 1: Zachary Carson, Aaron Eugene, Steve Haggerty, Joseph Oakes
- *  Date: Spring 2013
- *  Course: SWENG 500 Software Engineering Studio
- *  Professor: Mohamad Kassab
- *  Project: Chess By Bird Capstone group project
-*******************************************************************************/
-
-using ChessByBird.ImagingProject;
-using System;
-using System.Drawing.Imaging;
-using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ChessByBird.ImageClient
 {
-    /// <summary>
-    /// ImagerClient accesses the ImagingProject Component
-    /// </summary>
     public class ImageClient
     {
+        //TODO: build callable methods for the image client
+
         /// <summary>
-        /// Process Chess Board Image and Return Digital Asset "..\..\DigitalAssets\ChessBoardImage.png"
+        /// Builds image for game state
         /// </summary>
-        /// <param name="gameBoardState"></param> 
-        /// <param name="whitePlayerName"></param>
-        /// <param name="blackPlayerName"></param>
-        /// <returns></returns>
-        public static string processImage(string gameBoardState, string whitePlayerName, string blackPlayerName)
+        /// <param name="gameState">FEN Value of the current game state</param>
+        /// <param name="playerCurrentTurn">Name for the player who's turn it now is</param>
+        /// <param name="playerNowWaiting">Name for player who just went</param>
+        /// <returns>asset path for the new image</returns>
+        public static string processImage(string gameState, string playerCurrentTurn, string playerNowWaiting)
         {
-            // TODO: Do we need this as defaults
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            string imageLocation = "";
 
-            // Setup Objects
-            ChessBoardImageForm cbbForm = new ChessBoardImageForm();
-            ChessBoardImageGenerator cbbImgGen = new ChessBoardImageGenerator(cbbForm);
-            cbbForm.ImageGenerator = cbbImgGen;
-
-            // Setup Input Fields
-            cbbImgGen.WhitePlayerLabel = whitePlayerName;
-            cbbImgGen.BlackPlayerLabel = blackPlayerName;
-
-            // Setup Output Fields
-            cbbImgGen.FileNameImageFormat = ImageFormat.Png;
-            cbbImgGen.ImageFileName = @"..\..\DigitalAssets\ChessBoardImage.png";
-
-            // Set "updatedGameBoardState" expected in Forsyth-Edwards Notation
-            cbbForm.ChessBoardStateFEN = gameBoardState;
-
-            // Generate the game board
-            Application.Run(cbbForm);
-
-            return cbbImgGen.ImageFileName;
+            return imageLocation;
         }
+
+        
     }
 }
-

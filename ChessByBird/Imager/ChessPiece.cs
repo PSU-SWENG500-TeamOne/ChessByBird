@@ -9,7 +9,7 @@
 
 using System.Drawing;
 
-namespace ChessByBird.Imager
+namespace ChessByBird.ImagingProject
 {
     public class ChessPiece
     {
@@ -23,7 +23,6 @@ namespace ChessByBird.Imager
         private Point location;
         private ChessSquare chessSquare;
 
-        private bool isCastlingPossible;
 		private bool isEnabled;
 
         /// <summary>
@@ -46,9 +45,6 @@ namespace ChessByBird.Imager
             }
 
             chessPieceID = aChessPieceID;
-
-            isCastlingPossible = ((chessPieceType == EnumPieceType.King) || ((chessPieceType == EnumPieceType.Rook)));
-
             isEnabled = false;
         }
 
@@ -68,8 +64,7 @@ namespace ChessByBird.Imager
             EnumSquareID sid = chessSquare.GetSquareID();
             ChessImageConstants.parserChessBoardSquares[sid] = chessPieceID;
 
-            isCastlingPossible = ((aPieceType == EnumPieceType.King) || ((aPieceType == EnumPieceType.Rook)));
-			isEnabled = true;  // TODO was false
+			isEnabled = true;
 		}
 
         /// <summary>
@@ -88,24 +83,6 @@ namespace ChessByBird.Imager
 		internal void SetIsEnabled(bool aEnable) 
 		{
 			isEnabled = aEnable;
-		}
-
-        /// <summary>
-        /// IsCastlingPossible
-        /// </summary>
-        /// <returns>bool</returns>
-		internal bool IsCastlingPossible()
-		{
-            return isCastlingPossible;
-		}
-
-        /// <summary>
-        /// SetCastlePossibility
-        /// </summary>
-        /// <param name="aIsCastlePossible"></param>
-        internal void SetCastlePossibility(bool aIsCastlingPossible)
-		{
-            isCastlingPossible = aIsCastlingPossible;
 		}
 
         /// <summary>

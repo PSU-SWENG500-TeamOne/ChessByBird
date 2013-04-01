@@ -16,7 +16,7 @@ using System;
  * 
  */
 
-namespace ChessByBird.Imager
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessPieceFactory class

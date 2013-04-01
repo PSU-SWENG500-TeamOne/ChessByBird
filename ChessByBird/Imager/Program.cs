@@ -7,7 +7,7 @@
  *  Project: Chess By Bird Capstone group project
 *******************************************************************************/
 
-using ChessByBird.Imager;
+using ChessByBird.ImagingProject;
 using System;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -35,16 +35,16 @@ namespace ChessByBird
 
             // Setup Output Fields
             cbbImgGen.FileNameImageFormat = ImageFormat.Png;
-            cbbImgGen.ImageFileName = @"..\..\DigitalAssets\ChessBoardImage.png";
+            cbbImgGen.ImageFileName = @"..\..\DigitalAssets\CBBImage.png";
 
             // Setup Input Fields
             cbbImgGen.WhitePlayerLabel = "Zach";
             cbbImgGen.BlackPlayerLabel = "Joe";
 
             // Expected Chess Board States in Forsyth-Edwards Notation
-            string FENState;
+            string FENState = "";
             int example = 0;  // Change this to test various valid string
-            if (true)
+            if (FENState.Length > 0 )
             {
                 int index = cbbImgGen.ImageFileName.IndexOf(".png");
                 string newFileName = cbbImgGen.ImageFileName.Insert(index, example.ToString());

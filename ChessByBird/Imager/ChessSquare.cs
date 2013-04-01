@@ -11,7 +11,7 @@ using System;
 using System.Drawing;
 using System.Text;
 
-namespace ChessByBird.Imager
+namespace ChessByBird.ImagingProject
 {
 	public class ChessSquare
 	{

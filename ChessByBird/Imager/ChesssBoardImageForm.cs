@@ -11,8 +11,9 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
+using ChessByBird.ImagingProject;
 
-namespace ChessByBird.Imager
+namespace ChessByBird
 {
     public partial class ChessBoardImageForm : Form
     {
