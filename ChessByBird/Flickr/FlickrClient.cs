@@ -75,8 +75,8 @@ namespace ChessByBird.FlickrClient
 
                 //TODO: Image must be set to public 
                 string file = assetPath;
-                string title = "Test Chess Photo";
-                string tags = "tag1,tag2,tag3";
+                string title = "Chess Game";
+                string tags = "chess,chessbybird,superawesome";
                 string photoId = flickr.UploadPicture(file, title, GameBoardState, tags, true, true, true);     //TODO: ensure flickr description is JUST the FEN value
                 //TODO - fix to use proper Uri
                 Uri siteUri = new Uri("http://www.flickr.com/photos/92474796@N06/" + photoId);
