@@ -143,13 +143,19 @@ namespace ChessByBird
                         //Catch all issues
 			            catch (Exception ex)
                         {
-                            //PostTweet(Issue) 
+                            //report the error
                             Console.WriteLine();
                             Console.WriteLine("ERROR OCCURED");
                             Console.WriteLine();
                             Console.WriteLine(ex.ToString());
                             Console.WriteLine();
+
+                            //report to the user that something screwed up
                             TwitterClient.TwitterClient.postTweet(newestTweet, "Something went wrong, please wait a few minutes and try again");
+                            //increment the counter to get away from the erroneous tweet
+                            referentialID = newestTweet;
+                            //do normal sleeping
+                            System.Threading.Thread.Sleep(65000);
                         }
                 //end loop
             }
