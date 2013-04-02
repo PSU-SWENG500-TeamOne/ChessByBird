@@ -9,7 +9,7 @@ namespace ChessByBird.ChessClient
     class Process
     {
         /*
-         * Default constrcutor
+         * Default constructor
          */
         public Process()
         {
