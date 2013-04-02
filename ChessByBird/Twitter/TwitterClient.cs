@@ -13,7 +13,7 @@ namespace ChessByBird.TwitterClient
     public class TwitterClient
     {
         /// <summary>
-        /// Checks for any new tweets after a value
+        /// Checks for any new tweets after a value 
         /// </summary>
         /// <param name="minimumLookup">Nothing before this value will be returned</param>
         /// <param name="maximumLookup">Optional Maximum tweet. Can be skipped</param>
