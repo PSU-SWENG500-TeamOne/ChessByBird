@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ChessByBird.Chess
+namespace ChessByBird.ChessClient
 {
 
     #region Enums

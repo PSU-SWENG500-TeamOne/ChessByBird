@@ -1,4 +1,4 @@
-namespace ChessByBird.Chess
+namespace ChessByBird.ChessClient
 {
     internal struct Square
     {

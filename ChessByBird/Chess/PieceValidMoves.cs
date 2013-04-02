@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ChessByBird.Chess
+namespace ChessByBird.ChessClient
 {
     internal static class PieceValidMoves
     {

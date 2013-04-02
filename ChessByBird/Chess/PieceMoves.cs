@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-namespace ChessByBird.Chess
+namespace ChessByBird.ChessClient
 {
     internal struct PieceMoveSet
     {

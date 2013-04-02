@@ -17,7 +17,7 @@ using FlickrNet;
 using System.Configuration;
 
 
-namespace ChessByBird.FlickrProject
+namespace ChessByBird.FlickrClient
 {
     public class FlickrClient
     {

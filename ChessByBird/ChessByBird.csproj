@@ -47,7 +47,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -136,9 +135,7 @@
     <Content Include="Images\ColsRed.bmp" />
     <Content Include="Images\RowsRed.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Images\Chess.resources" />
     <EmbeddedResource Include="ImageClient\ChesssBoardImageForm.resx">

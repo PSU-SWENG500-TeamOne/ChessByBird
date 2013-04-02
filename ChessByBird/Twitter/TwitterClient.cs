@@ -8,7 +8,7 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using TweetSharp;
 
-namespace ChessByBird.Twitter
+namespace ChessByBird.TwitterClient
 {
     public class TwitterClient
     {
