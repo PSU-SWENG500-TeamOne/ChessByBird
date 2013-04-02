@@ -134,12 +134,12 @@
     <Content Include="DLL\Hammock.ClientProfile.dll" />
     <Content Include="DLL\Newtonsoft.Json.dll" />
     <Content Include="DLL\TweetSharp.dll" />
-    <Content Include="Images\ColsRed.bmp" />
-    <Content Include="Images\RowsRed.bmp" />
+    <Content Include="Imager\Images\ColsRed.bmp" />
+    <Content Include="Imager\Images\RowsRed.bmp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Images\Chess.resources" />
+    <EmbeddedResource Include="Imager\Images\Chess.resources" />
     <EmbeddedResource Include="Imager\ChesssBoardImageForm.resx">
       <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
     </EmbeddedResource>

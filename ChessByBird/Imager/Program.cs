@@ -67,6 +67,7 @@ namespace ChessByBird
             }
             cbbForm.ChessBoardStateFEN = FENState;
 
+            Thread.
             Application.Run(cbbForm);
         }
     }
