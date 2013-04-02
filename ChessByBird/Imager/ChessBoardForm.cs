@@ -15,42 +15,26 @@ using ChessByBird.ImagingProject;
 
 namespace ChessByBird
 {
-    public partial class ChessBoardImageForm : Form
+    public partial class ChessBoardForm : Form
     {
-        private ChessBoardImageGenerator imageGenerator;
-
-        public ChessBoardImageGenerator ImageGenerator
-        {
-            get { return imageGenerator; }
-            set { imageGenerator = value; }
-        }
-
-        private string chessBoardStateFEN;
-
-        public string ChessBoardStateFEN
-        {
-            get { return chessBoardStateFEN; }
-            set { chessBoardStateFEN = value; }
-        }
-
-        public ChessBoardImageForm()
+        public ChessBoardForm()
         {
             InitializeComponent();
         }
 
-        private void ImageForm_Load(object sender, EventArgs e)
+        private void ChessBoardForm_Load(object sender, EventArgs e)
         {
             RenderChessBoard();
             timerSnapShot.Start();
         }
 
-        void timerSnapShot_Tick(object sender, EventArgs e)
+        void timerSnipIt_Tick(object sender, EventArgs e)
         {
             if (sender == timerSnapShot)
             {
                 SaveChessBoardImage();
+                this.Close();
                 timerSnapShot.Dispose();
-                this.Close(); // Closes the parent form. 
             }
         }
 
@@ -78,7 +62,7 @@ namespace ChessByBird
         {
             try
             {
-                if(imageGenerator != null)
+                if (imageGenerator != null)
                 {
                     imageGenerator.CaptureAndSaveFormImage(this);
                 }
@@ -96,9 +80,22 @@ namespace ChessByBird
             }
         }
 
-        private void pictureBoxRightNumbers_Click(object sender, EventArgs e)
-        {
+        private ChessBoardImageGenerator imageGenerator;
 
+        public ChessBoardImageGenerator ImageGenerator
+        {
+            get { return imageGenerator; }
+            set { imageGenerator = value; }
+        }
+
+        private string chessBoardStateFEN;
+
+        public string ChessBoardStateFEN
+        {
+            get { return chessBoardStateFEN; }
+            set { chessBoardStateFEN = value; }
         }
     }
 }
+
+

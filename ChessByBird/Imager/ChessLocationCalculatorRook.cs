@@ -11,7 +11,7 @@ using System;
 using System.Collections;
 using System.Drawing;
 
-namespace ChessByBird.ImageClient
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessLocationCalculatorRook class

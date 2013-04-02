@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessByBird.ImageClient
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     ///  ChessSquareLocator class
@@ -48,7 +48,7 @@ namespace ChessByBird.ImageClient
             y = ChessImageConstants.ChessBoardTop;
 			counter = 0;
 			newline = true;
-			row = 0;
+			row = 8;
 			column = 0;
 		}
 
@@ -100,6 +100,36 @@ namespace ChessByBird.ImageClient
 				newline = false;
 			}
 		}
+        /// <summary>
+        /// Decrement location
+        /// </summary>
+        public void Decrement()
+        {
+            int remainder;
+            int quotient;
+
+            counter++;
+
+            // This will decide new line or not.
+            quotient = Math.DivRem(counter, ChessImageConstants.SquaresPerRow, out remainder);
+
+            column = (byte)remainder;
+
+            if (remainder == 0)
+            {
+                // For a new line, you increment Y and reset X
+                x = ChessImageConstants.ChessBoardLeft;
+                y -= ChessImageConstants.SquareSize;
+                newline = true;
+                row--;
+            }
+            else
+            {
+                // If you are on the same line then Decrement X 
+                x -= ChessImageConstants.SquareSize;
+                newline = false;
+            }
+        }
 
         /// <summary>
         /// IsNewLine method

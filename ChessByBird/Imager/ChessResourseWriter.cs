@@ -12,7 +12,7 @@ using System.Collections;
 using System.Drawing;
 using System.Resources;
 
-namespace ChessByBird.ImageClient
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessResourseWriter class

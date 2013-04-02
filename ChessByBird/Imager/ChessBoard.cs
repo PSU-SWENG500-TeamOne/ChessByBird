@@ -12,8 +12,9 @@ using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ChessByBird.ImageClient
+namespace ChessByBird.ImagingProject
 {
+
     /// <summary>
     /// ChessBoard class
     /// </summary>
@@ -181,7 +182,7 @@ namespace ChessByBird.ImageClient
         public ChessSquare GetSquareByID(EnumSquareID aSquareID)
         {
             ChessSquare square;
-            for (int i = 0; i < ChessImageConstants.SquareCount; i++)
+            for (int i = ChessImageConstants.SquareCount-1; i > -1; i--)
             {
                 square = (ChessSquare)squareList[i];
 
@@ -305,11 +306,11 @@ namespace ChessByBird.ImageClient
         /// <param name="aChessSquare"></param>
         /// <param name="aIsHighlight"></param>
         /// <param name="aIsLastMove"></param>
-        private void DrawSquare(Graphics g, ChessSquare aChessSquare, bool aIsHighlight, bool aIsLastMove)
+        private void DrawSquare(Graphics g, ChessSquare aChessSquare)   //, bool aIsHighlight, bool aIsLastMove)
         {
             if (aChessSquare != null)
             {
-                aChessSquare.Draw(g, squareFactory, aIsHighlight, aIsLastMove);
+                aChessSquare.Draw(g, squareFactory);  // , aIsHighlight, aIsLastMove);
 
                 ChessPiece chessPiece = (ChessPiece)aChessSquare.GetChessPiece();
 
@@ -344,7 +345,7 @@ namespace ChessByBird.ImageClient
             for (int i = 0; i < ChessImageConstants.SquareCount; i++)
             {
                 chessSquare = (ChessSquare)squareList[i];
-                DrawSquare(g, chessSquare, false, chessSquare.GetIsLastMove());
+                DrawSquare(g, chessSquare); // , false, chessSquare.GetIsLastMove());
             }
         }
 

@@ -15,7 +15,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ChessByBird.ImageClient
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessBoardImageGenerator
@@ -165,7 +165,7 @@ namespace ChessByBird.ImageClient
 
                 chessBoard.InitializeChessBoard();
 
-                SetChessBoardPlayerLabels();
+                SetChessBoardPlayerNames();
 
                 chessWhitePlayer.SetPieceList(chessBoard.GetWhitePieceList());
                 chessBlackPlayer.SetPieceList(chessBoard.GetBlackPieceList());
@@ -178,35 +178,38 @@ namespace ChessByBird.ImageClient
         }
 
         /// <summary>
-        /// SetChessBoardPlayerLabels
+        /// SetChessBoardPlayerNames
         /// </summary>
-        private void SetChessBoardPlayerLabels()
+        private void SetChessBoardPlayerNames()
         {
-            string whiteLabel = WhitePlayerLabel;
-            string blackLabel = BlackPlayerLabel;
+            string whiteLabel= WhitePlayerLabel;
+            string blackLabel= BlackPlayerLabel;
             string turnPrefix = "➥";
-            string turnSuffix = " it's your move!";
+            string turnSuffix = "";
+
+            if (whiteLabel == null) whiteLabel = "Mike White";
+            if (blackLabel == null) blackLabel = "Joe Black";
 
             if (ChessImageConstants.parserSideToMove == EnumOpponentColor.White)
             {
-                whiteLabel = turnPrefix + WhitePlayerLabel + turnSuffix;
+                whiteLabel = turnPrefix + whiteLabel + turnSuffix;
             }
-            else
+            if (ChessImageConstants.parserSideToMove == EnumOpponentColor.Black)
             {
-                blackLabel = turnPrefix + BlackPlayerLabel + turnSuffix;
+                whiteLabel = turnPrefix + blackLabel + turnSuffix;
             }
 
             try
             {
-                Label whitePlayerLabel = (Label)FindControl("whitePlayerLabel");
-                Label blackPlayerLabel = (Label)FindControl("blackPlayerLabel");
+                Button buttonWhitePlayer = (Button)FindControl("buttonWhitePlayer");
+                Button buttonBlackPlayer = (Button)FindControl("buttonBlackPlayer");
 
-                whitePlayerLabel.Text = whiteLabel;
-                blackPlayerLabel.Text = blackLabel;
+                buttonWhitePlayer.Text = whiteLabel;
+                buttonBlackPlayer.Text = blackLabel;
             }
             catch (Exception E)
             {
-                string errorMsg = "Invalid Label Control: " + E.ToString();
+                string errorMsg = "Invalid Button Control: " + E.ToString();
                 throw new Exception(errorMsg);
             }
         }
@@ -277,7 +280,7 @@ namespace ChessByBird.ImageClient
             {
                 TitleFont = new Font("Arial", 10, GraphicsUnit.Point);
                 TitleBrush = new SolidBrush(Color.Navy);
-                SetChessBoardPlayerLabels();
+                SetChessBoardPlayerNames();
                 chessBoard.DrawChessPieces();
             }
             else

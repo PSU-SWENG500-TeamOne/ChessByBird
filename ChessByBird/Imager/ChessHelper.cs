@@ -14,7 +14,7 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessByBird.ImageClient
+namespace ChessByBird.ImagingProject
 {
     /// <summary>
     /// ChessHelper class
