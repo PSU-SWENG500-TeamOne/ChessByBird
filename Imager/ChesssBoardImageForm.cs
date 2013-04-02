@@ -95,5 +95,10 @@ namespace ChessByBird
                 }
             }
         }
+
+        private void pictureBoxRightNumbers_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

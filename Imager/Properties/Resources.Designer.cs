@@ -63,26 +63,6 @@ namespace ChessByBird.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ColsRed {
-            get {
-                object obj = ResourceManager.GetObject("ColsRed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ColsRed1 {
-            get {
-                object obj = ResourceManager.GetObject("ColsRed1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ColsRedNew {
             get {
                 object obj = ResourceManager.GetObject("ColsRedNew", resourceCulture);
@@ -93,9 +73,39 @@ namespace ChessByBird.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ColsRedNew1 {
+            get {
+                object obj = ResourceManager.GetObject("ColsRedNew1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RowsRed {
             get {
                 object obj = ResourceManager.GetObject("RowsRed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RowsRed1 {
+            get {
+                object obj = ResourceManager.GetObject("RowsRed1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RowsRed2 {
+            get {
+                object obj = ResourceManager.GetObject("RowsRed2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
