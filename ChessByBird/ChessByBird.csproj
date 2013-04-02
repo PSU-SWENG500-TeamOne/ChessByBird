@@ -65,6 +65,12 @@
     <Compile Include="Chess\Square.cs" />
     <Compile Include="Flickr\FlickrClient.cs" />
     <Compile Include="Imager\ChessBoard.cs" />
+    <Compile Include="Imager\ChessBoardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Imager\ChessBoardForm.Designer.cs">
+      <DependentUpon>ChessBoardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Imager\ChessBoardImageGenerator.cs" />
     <Compile Include="Imager\ChessBoardInitializer.cs" />
     <Compile Include="Imager\ChessBoardParser.cs" />
@@ -83,21 +89,12 @@
     <Compile Include="Imager\ChessPieceRectangle.cs" />
     <Compile Include="Imager\ChessPlayer.cs" />
     <Compile Include="Imager\ChessResourseWriter.cs" />
-    <Compile Include="Imager\ChesssBoardImageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Imager\ChesssBoardImageForm.Designer.cs">
-      <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Imager\ChessSquare.cs" />
     <Compile Include="Imager\ChessSquareFactory.cs" />
     <Compile Include="Imager\ChessSquareLocator.cs" />
     <Compile Include="Imager\ChessSquareRectangle.cs" />
     <Compile Include="Imager\ChessWin32API.cs" />
     <Compile Include="Imager\ImageClient.cs" />
-    <Compile Include="Imager\Program.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="Properties\Settings.Designer.cs" />
@@ -134,15 +131,13 @@
     <Content Include="DLL\Hammock.ClientProfile.dll" />
     <Content Include="DLL\Newtonsoft.Json.dll" />
     <Content Include="DLL\TweetSharp.dll" />
-    <Content Include="Imager\Images\ColsRed.bmp" />
-    <Content Include="Imager\Images\RowsRed.bmp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Imager\Images\Chess.resources" />
-    <EmbeddedResource Include="Imager\ChesssBoardImageForm.resx">
-      <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
+    <EmbeddedResource Include="Imager\ChessBoardForm.resx">
+      <DependentUpon>ChessBoardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Imager\Images\Chess.resources" />
     <EmbeddedResource Include="Properties\Resources.resx" />
   </ItemGroup>
   <ItemGroup>
