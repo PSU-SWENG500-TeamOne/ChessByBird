@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EAC3FAD3-CEE7-44EC-80A4-15E9643ED672}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{1702431C-1EB6-4232-80F2-3CFC47B526B7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ChessByBird</RootNamespace>
-    <AssemblyName>ImagerProject</AssemblyName>
+    <AssemblyName>ChessByBird</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -47,66 +47,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ChessByBird.Program</StartupObject>
+    <StartupObject>ChessByBird.ChessByBird</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ChessBoard.cs" />
-    <Compile Include="ChessBoardForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChessBoardForm.Designer.cs">
-      <DependentUpon>ChessBoardForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ChessBoardImageGenerator.cs" />
-    <Compile Include="ChessBoardInitializer.cs" />
-    <Compile Include="ChessBoardParser.cs" />
-    <Compile Include="ChessHelper.cs" />
-    <Compile Include="ChessImageConstants.cs" />
-    <Compile Include="ChessLocationCalculator.cs" />
-    <Compile Include="ChessLocationCalculatorBishop.cs" />
-    <Compile Include="ChessLocationCalculatorFactory.cs" />
-    <Compile Include="ChessLocationCalculatorKing.cs" />
-    <Compile Include="ChessLocationCalculatorKnight.cs" />
-    <Compile Include="ChessLocationCalculatorPawn.cs" />
-    <Compile Include="ChessLocationCalculatorQueen.cs" />
-    <Compile Include="ChessLocationCalculatorRook.cs" />
-    <Compile Include="ChessPiece.cs" />
-    <Compile Include="ChessPieceFactory.cs" />
-    <Compile Include="ChessPieceRectangle.cs" />
-    <Compile Include="ChessPlayer.cs" />
-    <Compile Include="ChessResourseWriter.cs" />
-    <Compile Include="ChessSquare.cs" />
-    <Compile Include="ChessSquareFactory.cs" />
-    <Compile Include="ChessSquareLocator.cs" />
-    <Compile Include="ChessSquareRectangle.cs" />
-    <Compile Include="ChessWin32API.cs" />
-    <Compile Include="Program.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ChessBoardForm.resx">
-      <DependentUpon>ChessBoardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="Resources\Chess.resources" />
-    <EmbeddedResource Include="Images\Chess.resources" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+    <None Include="App.config">
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChessByBird.cs" />
+    <Compile Include="Chess\Board.cs" />
+    <Compile Include="Chess\Engine.cs" />
+    <Compile Include="Chess\Game.cs" />
+    <Compile Include="Chess\MoveContent.cs" />
+    <Compile Include="Chess\Piece.cs" />
+    <Compile Include="Chess\PieceMoves.cs" />
+    <Compile Include="Chess\PieceValidMoves.cs" />
+    <Compile Include="Chess\Process.cs" />
+    <Compile Include="Chess\Square.cs" />
+    <Compile Include="Flickr\FlickrClient.cs" />
+    <Compile Include="Imager\ImageClient.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,11 +78,49 @@
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Twitter\TwitterClient.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\FlickrNet.dll" />
+    <Content Include="DLL\Hammock.ClientProfile.dll" />
+    <Content Include="DLL\LinqBridge.dll" />
+    <Content Include="DLL\Newtonsoft.Json.dll" />
+    <Content Include="DLL\TweetSharp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DigitalAssets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
@@ -137,17 +139,26 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DigitalAssets\GameBoardImage0.png" />
-    <Content Include="DigitalAssets\GameBoardImage1.png" />
-    <Content Include="DigitalAssets\GameBoardImage2.png" />
-    <Content Include="DigitalAssets\GameBoardImage3.png" />
-    <Content Include="Images\Letters.bmp" />
-    <Content Include="Images\Numbers.bmp" />
-    <Content Include="Images\SquareCentricBoardRepresentation.jpg" />
-    <Content Include="SquareCentricBoardRepresentation.jpg" />
-    <None Include="Resources\SquareCentricBoardRepresentation.jpg" />
-    <None Include="Resources\Numbers.bmp" />
-    <None Include="Resources\Letters.bmp" />
+    <ProjectReference Include="Chess\ChessProject.csproj">
+      <Project>{3b640cdb-09cb-4dcf-9938-065edbfaf827}</Project>
+      <Name>ChessProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="ClassLibraryProject\ClassLibraryProject.csproj">
+      <Project>{d32fd626-5c1f-493c-9780-0771b585f213}</Project>
+      <Name>ClassLibraryProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="Flicker\FlickrProject.csproj">
+      <Project>{5f37fa41-3aea-4b5d-b1f8-1743364dace9}</Project>
+      <Name>FlickrProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="Imager\ImagerProject.csproj">
+      <Project>{eac3fad3-cee7-44ec-80a4-15e9643ed672}</Project>
+      <Name>ImagerProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="Twitter\TwitterProject.csproj">
+      <Project>{9d1c593b-ed2d-4edf-bcfb-994679d10480}</Project>
+      <Name>TwitterProject</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -306,11 +306,11 @@ namespace ChessByBird.ImagingProject
         /// <param name="aChessSquare"></param>
         /// <param name="aIsHighlight"></param>
         /// <param name="aIsLastMove"></param>
-        private void DrawSquare(Graphics g, ChessSquare aChessSquare, bool aIsHighlight, bool aIsLastMove)
+        private void DrawSquare(Graphics g, ChessSquare aChessSquare)   //, bool aIsHighlight, bool aIsLastMove)
         {
             if (aChessSquare != null)
             {
-                aChessSquare.Draw(g, squareFactory, aIsHighlight, aIsLastMove);
+                aChessSquare.Draw(g, squareFactory);  // , aIsHighlight, aIsLastMove);
 
                 ChessPiece chessPiece = (ChessPiece)aChessSquare.GetChessPiece();
 
@@ -345,7 +345,7 @@ namespace ChessByBird.ImagingProject
             for (int i = 0; i < ChessImageConstants.SquareCount; i++)
             {
                 chessSquare = (ChessSquare)squareList[i];
-                DrawSquare(g, chessSquare, false, chessSquare.GetIsLastMove());
+                DrawSquare(g, chessSquare); // , false, chessSquare.GetIsLastMove());
             }
         }
 
