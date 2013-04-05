@@ -89,7 +89,6 @@
     <Compile Include="ChessSquareLocator.cs" />
     <Compile Include="ChessSquareRectangle.cs" />
     <Compile Include="ChessWin32API.cs" />
-    <Compile Include="ImagerClient.cs" />
     <Compile Include="Program.cs">
       <SubType>Code</SubType>
     </Compile>
