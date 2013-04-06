@@ -136,21 +136,18 @@ namespace ChessByBird.ImagingProject
         /// Sizes
         /// </summary>
         public static int HighlightPenSize = 4;
-       
+
         public static int ChessPieceCount = 16;
+        public static int ChessPieceSize = 20;
+        public static int ChessPieceLeft = 10;
+        public static int ChessPieceTop = 10;
+        public static int ChessBoardSize = 20;
+        public static int ChessBoardLeft = 10;
+        public static int ChessBoardTop = 10;
+
         public static int SquareCount = 64;
+        public static int SquareSize = 40;
         public static int SquaresPerRow = 8;
-
-        // At SF = 2 (80*8 = 640 x 640 board)
-        public static int ScalerFactor = 2;
-        public static int SquareSize = 40 * ScalerFactor;         
-        public static int ChessPieceSize = 20 * ScalerFactor;
-        public static int ChessPieceLeft = 10 * ScalerFactor;
-        public static int ChessPieceTop = 10 * ScalerFactor;
-
-        public static int ChessBoardLeft = 7 * ScalerFactor; // Puts 6xSF boarder around squares
-        public static int ChessBoardTop = 7 * ScalerFactor;
-
 
         /// <summary>
         ///  Parser Globals

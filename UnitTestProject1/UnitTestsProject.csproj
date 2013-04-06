@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tweetsharp\src\TweetSharp.Net35\bin\Debug\Hammock.ClientProfile.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.XML" />
     <Reference Include="TweetSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
@@ -59,32 +63,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChessByBird\ChessByBird.csproj">
+      <Project>{1702431c-1eb6-4232-80f2-3cfc47b526b7}</Project>
+      <Name>ChessByBird</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DigitalAssets\ChessGameboard.PNG" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Chess\ChessProject.csproj">
-      <Project>{3b640cdb-09cb-4dcf-9938-065edbfaf827}</Project>
-      <Name>ChessProject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ClassLibraryProject\ClassLibraryProject.csproj">
-      <Project>{d32fd626-5c1f-493c-9780-0771b585f213}</Project>
-      <Name>ClassLibraryProject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Flicker\FlickrProject.csproj">
-      <Project>{5f37fa41-3aea-4b5d-b1f8-1743364dace9}</Project>
-      <Name>FlickrProject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Imager\ImagerProject.csproj">
-      <Project>{eac3fad3-cee7-44ec-80a4-15e9643ed672}</Project>
-      <Name>ImagerProject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Twitter\TwitterProject.csproj">
-      <Project>{9d1c593b-ed2d-4edf-bcfb-994679d10480}</Project>
-      <Name>TwitterProject</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

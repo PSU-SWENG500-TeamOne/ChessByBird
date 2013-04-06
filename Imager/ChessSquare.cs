@@ -23,6 +23,8 @@ namespace ChessByBird.ImagingProject
 		private ChessPiece chessPiece;
 		private Point chessLocation;
 		private Point startLocation;
+		private bool isHighlight;
+		private bool isLastMove;
 
         /// <summary>
         /// ChessSquare Constructor
@@ -32,6 +34,7 @@ namespace ChessByBird.ImagingProject
 			chessLocation = new Point(0,0);
 			startLocation = new Point(0,0);
 			chessPiece = null;
+			isLastMove = false;
             squareID = EnumSquareID.A1;
 		}
 
@@ -42,7 +45,7 @@ namespace ChessByBird.ImagingProject
         /// <param name="aChessSquareFactory"></param>
         /// <param name="aIsHighlight"></param>
         /// <param name="aIsLastMove"></param>
-        internal void Draw(Graphics g, ChessSquareFactory aChessSquareFactory)   // , bool aIsHighlight, bool aIsLastMove)
+        internal void Draw(Graphics g, ChessSquareFactory aChessSquareFactory, bool aIsHighlight, bool aIsLastMove)
         {
             StringBuilder title = new StringBuilder();
             ChessSquareRectangle chessSquareRectangle = aChessSquareFactory.GetSquareRectangle(squareColor);
@@ -52,7 +55,7 @@ namespace ChessByBird.ImagingProject
             else
                 title.Append(chessLocation.ToString() + '/' + chessPiece.GetPieceType().ToString());
 
-            chessSquareRectangle.Draw(g, startLocation.X, startLocation.Y, title.ToString() ); // , aIsHighlight, aIsLastMove);
+            chessSquareRectangle.Draw(g, startLocation.X, startLocation.Y, title.ToString(), aIsHighlight, aIsLastMove);
         }
 
         /// <summary>
@@ -213,41 +216,41 @@ namespace ChessByBird.ImagingProject
             chessPiece = aChessPiece;
 		}
 
-        ///// <summary>
-        ///// GetIsHighlight Accessor
-        ///// </summary>
-        ///// <returns></returns>
-        //public bool GetIsHighlight()
-        //{
-        //    return isHighlight;
-        //}
+        /// <summary>
+        /// GetIsHighlight Accessor
+        /// </summary>
+        /// <returns></returns>
+        public bool GetIsHighlight()
+        {
+            return isHighlight;
+        }
 
-        ///// <summary>
-        ///// SetIsHighlight Accessor
-        ///// </summary>
-        ///// <param name="aIsHighlight"></param>
-        //public void SetIsHighlight(bool aIsHighlight)
-        //{
-        //    isHighlight = aIsHighlight;
-        //}
+        /// <summary>
+        /// SetIsHighlight Accessor
+        /// </summary>
+        /// <param name="aIsHighlight"></param>
+        public void SetIsHighlight(bool aIsHighlight)
+		{
+			isHighlight = aIsHighlight;
+		}
 
-        ///// <summary>
-        ///// GetIsLastMove Accessor
-        ///// </summary>
-        ///// <returns></returns>
-        //public bool GetIsLastMove()
-        //{
-        //    return isLastMove;
-        //}
+        /// <summary>
+        /// GetIsLastMove Accessor
+        /// </summary>
+        /// <returns></returns>
+        public bool GetIsLastMove()
+        {
+            return isLastMove;
+        }
 
-        ///// <summary>
-        ///// SetIsLastMove Accessor
-        ///// </summary>
-        ///// <param name="aIsLastMove"></param>
-        //public void SetIsLastMove(bool aIsLastMove)
-        //{
-        //    isLastMove = aIsLastMove;
-        //}
+        /// <summary>
+        /// SetIsLastMove Accessor
+        /// </summary>
+        /// <param name="aIsLastMove"></param>
+        public void SetIsLastMove(bool aIsLastMove)
+		{
+			isLastMove = aIsLastMove;
+		}
 		
 	}
 }

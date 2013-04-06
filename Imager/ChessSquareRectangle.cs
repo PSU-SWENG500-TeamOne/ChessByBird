@@ -45,13 +45,24 @@ namespace ChessByBird.ImagingProject
         /// <param name="title"></param>
         /// <param name="squareHighlight"></param>
         /// <param name="squareLastMove"></param>
-		internal virtual void Draw(Graphics g, int x, int y, string title)  // , bool squareHighlight, bool squareLastMove)	
+		internal virtual void Draw(Graphics g, int x, int y, string title, bool squareHighlight, bool squareLastMove)	
 		{
             g.FillRectangle(brush, x, y, ChessImageConstants.SquareSize, ChessImageConstants.SquareSize);
 
-            // HighLighting
-            Pen lastPenMove = new Pen(Color.Transparent, ChessImageConstants.HighlightPenSize);
-            
+			// HighLighting
+			Pen pen;
+			Pen lastPenMove;
+
+			if (squareLastMove)
+				lastPenMove = new Pen(ChessImageConstants.LastMoveColor, ChessImageConstants.HighlightPenSize);
+			else
+                lastPenMove = new Pen(Color.Transparent, ChessImageConstants.HighlightPenSize);
+		
+			if (squareHighlight)
+                pen = new Pen(ChessImageConstants.HighlightPenColor, ChessImageConstants.HighlightPenSize);
+			else
+				pen = new Pen(Color.Transparent, ChessImageConstants.HighlightPenSize);
+
 			try
 			{
 				// Draw the last move
@@ -60,9 +71,17 @@ namespace ChessByBird.ImagingProject
 					y + 10 + ChessImageConstants.HighlightPenSize / 2, 
 					ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 20, 
 					ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 20 );
+
+				// Draw highlighted border around it
+				g.DrawRectangle(pen, 
+					x + 20 + (ChessImageConstants.HighlightPenSize / 2), 
+					y + 20 + ChessImageConstants.HighlightPenSize / 2, 
+					ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 40, 
+					ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 40 );
 			}
 			finally
 			{
+				pen.Dispose();
 				lastPenMove.Dispose();
 			}
 		}

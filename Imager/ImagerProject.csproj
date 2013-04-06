@@ -8,10 +8,9 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ChessByBird</RootNamespace>
-    <AssemblyName>ImagerProject</AssemblyName>
+    <AssemblyName>Imager</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,6 +23,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -47,7 +47,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ChessByBird.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -60,12 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChessBoard.cs" />
-    <Compile Include="ChessBoardForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChessBoardForm.Designer.cs">
-      <DependentUpon>ChessBoardForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChessBoardImageGenerator.cs" />
     <Compile Include="ChessBoardInitializer.cs" />
     <Compile Include="ChessBoardParser.cs" />
@@ -84,19 +79,30 @@
     <Compile Include="ChessPieceRectangle.cs" />
     <Compile Include="ChessPlayer.cs" />
     <Compile Include="ChessResourseWriter.cs" />
+    <Compile Include="ChesssBoardImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChesssBoardImageForm.Designer.cs">
+      <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChessSquare.cs" />
     <Compile Include="ChessSquareFactory.cs" />
     <Compile Include="ChessSquareLocator.cs" />
     <Compile Include="ChessSquareRectangle.cs" />
     <Compile Include="ChessWin32API.cs" />
+    <Compile Include="ImageClient.cs" />
     <Compile Include="Program.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ChessBoardForm.resx">
-      <DependentUpon>ChessBoardForm.cs</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ChesssBoardImageForm.resx">
+      <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Resources\Chess.resources" />
     <EmbeddedResource Include="Images\Chess.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -107,18 +113,23 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\ChessBoard.png" />
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="DigitalAssets\CBBImage.png" />
+    <Content Include="Images\ColsRedNew.bmp" />
+    <Content Include="Images\RowsRed.bmp" />
+    <Content Include="Resources\ColsRedNew.bmp" />
+    <Content Include="Resources\RowsRed.bmp" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
@@ -135,19 +146,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DigitalAssets\GameBoardImage0.png" />
-    <Content Include="DigitalAssets\GameBoardImage1.png" />
-    <Content Include="DigitalAssets\GameBoardImage2.png" />
-    <Content Include="DigitalAssets\GameBoardImage3.png" />
-    <Content Include="Images\Letters.bmp" />
-    <Content Include="Images\Numbers.bmp" />
-    <Content Include="Images\SquareCentricBoardRepresentation.jpg" />
-    <Content Include="SquareCentricBoardRepresentation.jpg" />
-    <None Include="Resources\SquareCentricBoardRepresentation.jpg" />
-    <None Include="Resources\Numbers.bmp" />
-    <None Include="Resources\Letters.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
