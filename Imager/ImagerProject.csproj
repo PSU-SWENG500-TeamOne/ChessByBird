@@ -144,7 +144,6 @@
     <Content Include="Images\Letters.bmp" />
     <Content Include="Images\Numbers.bmp" />
     <Content Include="Images\SquareCentricBoardRepresentation.jpg" />
-    <Content Include="SquareCentricBoardRepresentation.jpg" />
     <None Include="Resources\SquareCentricBoardRepresentation.jpg" />
     <None Include="Resources\Numbers.bmp" />
     <None Include="Resources\Letters.bmp" />
