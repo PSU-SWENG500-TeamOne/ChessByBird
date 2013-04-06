@@ -1,13 +1,4 @@
-﻿/*******************************************************************************
- *  Penn State University Software Engineering Graduate Program
- *  Authors: Team 1: Zachary Carson, Aaron Eugene, Steve Haggerty, Joseph Oakes
- *  Date: Spring 2013
- *  Course: SWENG 500 Software Engineering Studio
- *  Professor: Mohamad Kassab
- *  Project: Chess By Bird Capstone group project
-*******************************************************************************/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +6,6 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 using ChessByBird.ImagingProject;
-using ChessByBird.FlickrProject;
-using ChessByBird.TwitterProject;
 
 namespace ChessByBird
 {
@@ -50,9 +39,9 @@ namespace ChessByBird
 
             string dummyText = "System live! Random key: " + randomText.ToString();
 
-            TwitterClient.postTweet(0, dummyText);
+            TwitterClient.TwitterClient.postTweet(0, dummyText);
             System.Threading.Thread.Sleep(5000); //wait for twitter to catch up
-            long referentialID = TwitterClient.getNewestTweetFromMe();
+            long referentialID = TwitterClient.TwitterClient.getNewestTweetFromMe();
             long newestTweet = 0;
 
 
@@ -61,12 +50,12 @@ namespace ChessByBird
             {
                 try
                 {
-                    newestTweet = TwitterClient.areNewTweets(referentialID);
+                    newestTweet = TwitterClient.TwitterClient.areNewTweets(referentialID);
                     if (newestTweet > 0)
                     {
                         //grab information about the tweet
                         Console.WriteLine("Begin processing " + newestTweet.ToString());
-                        Dictionary<String, String> myInformation = TwitterClient.getTweetInfo(newestTweet); //dictionary[currentPlayer,otherPlayer,imageURL,moveString]
+                        Dictionary<String, String> myInformation = TwitterClient.TwitterClient.getTweetInfo(newestTweet); //dictionary[currentPlayer,otherPlayer,imageURL,moveString]
                         #region logging
                         Console.WriteLine("Data:");
                         Console.WriteLine("  Sender: " + myInformation["currentPlayer"].ToString());
@@ -91,7 +80,7 @@ namespace ChessByBird
                         }
                         else
                         {
-                            gameBoardState = FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
+                            gameBoardState = FlickrClient.FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
                             Console.WriteLine();
                             Console.WriteLine("  Got previous state: " + gameBoardState);
                         }
@@ -113,23 +102,23 @@ namespace ChessByBird
                         //send new boardstate to processImage
                         if (whitesTurn)
                         {
-                            assetPath = ImagerClient.processImage(updatedGameBoardState, myInformation["otherPlayer"], myInformation["currentPlayer"]);
+                            assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["otherPlayer"], myInformation["currentPlayer"]);
                         }
                         else
                         {
-                            assetPath = ImagerClient.processImage(updatedGameBoardState, myInformation["currentPlayer"], myInformation["otherPlayer"]);
+                            assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["currentPlayer"], myInformation["otherPlayer"]);
                         }
 
                         Console.WriteLine();
                         Console.WriteLine("  Image built");
 
                         //post the new image to Flickr, and get the URL
-                        Uri imageUri = FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
+                        Uri imageUri = FlickrClient.FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
                         Console.WriteLine();
                         Console.WriteLine("  Uploaded. Image at " + imageUri.ToString());
 
                         //post link to Twitter to the important party
-                        TwitterClient.postTweet(newestTweet, "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri);
+                        TwitterClient.TwitterClient.postTweet(newestTweet, "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri);
                         Console.WriteLine();
                         Console.WriteLine("  Tweeted!");
 
