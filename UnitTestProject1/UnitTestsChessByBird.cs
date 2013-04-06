@@ -1,20 +1,11 @@
-﻿/*******************************************************************************
- *  Penn State University Software Engineering Graduate Program
- *  Authors: Team 1: Zachary Carson, Aaron Eugene, Steve Haggerty, Joseph Oakes
- *  Date: Spring 2013
- *  Course: SWENG 500 Software Engineering Studio
- *  Professor: Mohamad Kassab
- *  Project: Chess By Bird Capstone group project
-*******************************************************************************/
-
-using System;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.IO;
 using ChessByBird.TwitterClient;
 using ChessByBird.FlickrClient;
 using ChessByBird.ChessClient;
-using ChessByBird.ImagerClient;
+using ChessByBird.ImageClient;
 
 namespace UnitTestsProject
 {
@@ -25,19 +16,19 @@ namespace UnitTestsProject
         string gameState = "";
         string whitePlayerName = "Zach";
         string blackPlayerName = "Joe";
-        string assetPath = @"..\DigitalAssets\GameBoardImage.png";
+        string assetPath = "";
         
         [TestMethod]
         public void t_NewMentions()
         {
-            long results = ChessByBird.TwitterClient.areNewTweets(800, 291383000000000000); //will just grab the first mention ever
+            long results = ChessByBird.TwitterClient.TwitterClient.areNewTweets(800, 291383000000000000); //will just grab the first mention ever
             Assert.AreEqual(results, 291382951072120832);
         }
 
         [TestMethod]
         public void t_NoNewMentions()
         {
-            long results = ChessByBird.TwitterClient.areNewTweets(9223372036854775807); //highest possible long value. no mentions after it!
+            long results = ChessByBird.TwitterClient.TwitterClient.areNewTweets(9223372036854775807); //highest possible long value. no mentions after it!
             Assert.AreEqual(results, 0);
         }
 
