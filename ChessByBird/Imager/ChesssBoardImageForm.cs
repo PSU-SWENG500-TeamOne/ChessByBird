@@ -11,7 +11,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
-using ChessByBird.ImagingProject;
+using ChessByBird.ImageClient;
 
 namespace ChessByBird
 {
@@ -94,11 +94,6 @@ namespace ChessByBird
                     this.Close(); // Closes the parent form. 
                 }
             }
-        }
-
-        private void pictureBoxRightNumbers_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

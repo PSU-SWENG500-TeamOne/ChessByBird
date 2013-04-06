@@ -9,7 +9,7 @@
 
 using System.Collections;
 
-namespace ChessByBird.ImagingProject
+namespace ChessByBird.ImageClient
 {
 	public class ChessPlayer
 	{

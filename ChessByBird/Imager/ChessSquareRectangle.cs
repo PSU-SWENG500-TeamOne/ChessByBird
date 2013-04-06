@@ -9,7 +9,7 @@
 
 using System.Drawing;
 
-namespace ChessByBird.ImagingProject
+namespace ChessByBird.ImageClient
 {
     /// <summary>
     /// ChessSquareRectangle class
@@ -45,23 +45,23 @@ namespace ChessByBird.ImagingProject
         /// <param name="title"></param>
         /// <param name="squareHighlight"></param>
         /// <param name="squareLastMove"></param>
-		internal virtual void Draw(Graphics g, int x, int y, string title)  // , bool squareHighlight, bool squareLastMove)	
+		internal virtual void Draw(Graphics g, int x, int y, string title, bool squareHighlight, bool squareLastMove)	
 		{
             g.FillRectangle(brush, x, y, ChessImageConstants.SquareSize, ChessImageConstants.SquareSize);
 
-            //// HighLighting
-            Pen pen;
-            Pen lastPenMove;
+			// HighLighting
+			Pen pen;
+			Pen lastPenMove;
 
-            //if (squareLastMove)
-            //    lastPenMove = new Pen(ChessImageConstants.LastMoveColor, ChessImageConstants.HighlightPenSize);
-            //else
-            lastPenMove = new Pen(Color.Transparent, ChessImageConstants.HighlightPenSize);
+			if (squareLastMove)
+				lastPenMove = new Pen(ChessImageConstants.LastMoveColor, ChessImageConstants.HighlightPenSize);
+			else
+                lastPenMove = new Pen(Color.Transparent, ChessImageConstants.HighlightPenSize);
 		
-            //if (squareHighlight)
-            //    pen = new Pen(ChessImageConstants.HighlightPenColor, ChessImageConstants.HighlightPenSize);
-            //else
-            //    pen = new Pen(Color.Transparent, ChessImageConstants.HighlightPenSize);
+			if (squareHighlight)
+                pen = new Pen(ChessImageConstants.HighlightPenColor, ChessImageConstants.HighlightPenSize);
+			else
+				pen = new Pen(Color.Transparent, ChessImageConstants.HighlightPenSize);
 
 			try
 			{
@@ -72,16 +72,16 @@ namespace ChessByBird.ImagingProject
 					ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 20, 
 					ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 20 );
 
-                //// Draw highlighted border around it
-                //g.DrawRectangle(pen, 
-                //    x + 20 + (ChessImageConstants.HighlightPenSize / 2), 
-                //    y + 20 + ChessImageConstants.HighlightPenSize / 2, 
-                //    ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 40, 
-                //    ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 40 );
+				// Draw highlighted border around it
+				g.DrawRectangle(pen, 
+					x + 20 + (ChessImageConstants.HighlightPenSize / 2), 
+					y + 20 + ChessImageConstants.HighlightPenSize / 2, 
+					ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 40, 
+					ChessImageConstants.SquareSize - ChessImageConstants.HighlightPenSize - 40 );
 			}
 			finally
 			{
-				//pen.Dispose();
+				pen.Dispose();
 				lastPenMove.Dispose();
 			}
 		}

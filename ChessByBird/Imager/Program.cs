@@ -7,7 +7,7 @@
  *  Project: Chess By Bird Capstone group project
 *******************************************************************************/
 
-using ChessByBird.ImagingProject;
+using ChessByBird.ImageClient;
 using System;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -23,56 +23,52 @@ namespace ChessByBird
          */
 
         [STAThread]
-        static void Main()
+        static void MainForDev()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // Setup Objects
+            ChessBoardImageForm cbbForm = new ChessBoardImageForm();
+            ChessBoardImageGenerator cbbImgGen = new ChessBoardImageGenerator(cbbForm);
+            cbbForm.ImageGenerator = cbbImgGen;
+
+            // Setup Output Fields
+            cbbImgGen.FileNameImageFormat = ImageFormat.Png;
+            cbbImgGen.ImageFileName = @"..\..\DigitalAssets\ChessBoardImage.png";
+
+            // Setup Input Fields
+            cbbImgGen.WhitePlayerLabel = "Zach";
+            cbbImgGen.BlackPlayerLabel = "Joe";
+
+            // Expected Chess Board States in Forsyth-Edwards Notation
+            string FENState;
             int example = 0;  // Change this to test various valid string
-            while (example < 4)
+            if (false)
             {
-                // Setup Objects
-                ChessBoardForm cbbForm = new ChessBoardForm();
-                ChessBoardImageGenerator cbbImgGen = new ChessBoardImageGenerator(cbbForm);
-                cbbForm.ImageGenerator = cbbImgGen;
-
-                // Setup Output Fields
-                cbbImgGen.FileNameImageFormat = ImageFormat.Png;
-                cbbImgGen.ImageFileName = @"..\..\DigitalAssets\CBBImage.png";
-
-                // Setup Input Fields
-                cbbImgGen.WhitePlayerLabel = "Zach";
-                cbbImgGen.BlackPlayerLabel = "Joe";
-
-                if (cbbImgGen.ImageFileName.Length > 0)
-                {
-                    int index = cbbImgGen.ImageFileName.IndexOf(".png");
-                    string newFileName = cbbImgGen.ImageFileName.Insert(index, example.ToString());
-                    cbbImgGen.ImageFileName = newFileName;
-                }
-                // Expected Chess Board States in Forsyth-Edwards Notation
-                string FENState = "";
-                switch (example)
-                {
-                    case 1:
-                        FENState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";    // Another state - Black's Turn
-                        break;
-                    case 2:
-                        FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";  // Another state - White's Turn
-                        break;
-                    case 3:
-                        FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"; // Another state - Black's Turn
-                        break;
-                    default:
-                        FENState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";       // Initial state - White's Turn
-                        break;
-                }
-                cbbForm.ChessBoardStateFEN = FENState;
-
-                Application.Run(cbbForm);
-                example++;
-                Application.Exit();
+                int index = cbbImgGen.ImageFileName.IndexOf(".png");
+                string newFileName = cbbImgGen.ImageFileName.Insert(index, example.ToString());
+                cbbImgGen.ImageFileName = newFileName;
             }
+            switch (example)
+            {
+                case 1:
+                    FENState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";    // Another state - Black's Turn
+                    break;
+                case 2:
+                    FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";  // Another state - White's Turn
+                    break;
+                case 3:
+                    FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"; // Another state - Black's Turn
+                    break;
+                default:
+                    FENState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";       // Initial state - White's Turn
+                    break;
+            }
+            cbbForm.ChessBoardStateFEN = FENState;
+
+            Thread.
+            Application.Run(cbbForm);
         }
     }
 }
