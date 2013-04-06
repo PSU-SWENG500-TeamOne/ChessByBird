@@ -44,34 +44,30 @@ namespace ChessByBird
             // Expected Chess Board States in Forsyth-Edwards Notation
             string FENState = "";
             int example = 0;  // Change this to test various valid string
-            while (example < 4)
+            if (FENState.Length > 0 )
             {
-                if (cbbImgGen.ImageFileName.Length > 0)
-                {
-                    int index = cbbImgGen.ImageFileName.IndexOf(".png");
-                    string newFileName = cbbImgGen.ImageFileName.Insert(index, example.ToString());
-                    cbbImgGen.ImageFileName = newFileName;
-                }
-                switch (example)
-                {
-                    case 1:
-                        FENState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";    // Another state - Black's Turn
-                        break;
-                    case 2:
-                        FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";  // Another state - White's Turn
-                        break;
-                    case 3:
-                        FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"; // Another state - Black's Turn
-                        break;
-                    default:
-                        FENState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";       // Initial state - White's Turn
-                        break;
-                }
-                cbbForm.ChessBoardStateFEN = FENState;
-
-                Application.Run(cbbForm);
-                Application.Restart();
+                int index = cbbImgGen.ImageFileName.IndexOf(".png");
+                string newFileName = cbbImgGen.ImageFileName.Insert(index, example.ToString());
+                cbbImgGen.ImageFileName = newFileName;
             }
+            switch (example)
+            {
+                case 1:
+                    FENState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";    // Another state - Black's Turn
+                    break;
+                case 2:
+                    FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";  // Another state - White's Turn
+                    break;
+                case 3:
+                    FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"; // Another state - Black's Turn
+                    break;
+                default:
+                    FENState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";       // Initial state - White's Turn
+                    break;
+            }
+            cbbForm.ChessBoardStateFEN = FENState;
+
+            Application.Run(cbbForm);
         }
     }
 }

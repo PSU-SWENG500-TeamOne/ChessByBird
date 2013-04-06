@@ -14,7 +14,6 @@ using System.Windows.Forms;
 
 namespace ChessByBird.ImagingProject
 {
-
     /// <summary>
     /// ChessBoard class
     /// </summary>
