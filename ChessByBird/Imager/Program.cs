@@ -51,28 +51,27 @@ namespace ChessByBird
                     cbbImgGen.ImageFileName = newFileName;
                 }
                 // Expected Chess Board States in Forsyth-Edwards Notation
-                string gameState = "";
+                string FENState = "";
                 switch (example)
                 {
                     case 1:
-                        gameState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";    // Another state - Black's Turn
+                        FENState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";    // Another state - Black's Turn
                         break;
                     case 2:
-                        gameState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";  // Another state - White's Turn
+                        FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";  // Another state - White's Turn
                         break;
                     case 3:
-                        gameState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"; // Another state - Black's Turn
+                        FENState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"; // Another state - Black's Turn
                         break;
                     default:
-                        gameState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";       // Initial state - White's Turn
+                        FENState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";       // Initial state - White's Turn
                         break;
                 }
-                cbbForm.ChessBoardStateFEN = gameState;
+                cbbForm.ChessBoardStateFEN = FENState;
 
-                Application.Run(cbbForm);                
-                Application.Exit();
-
+                Application.Run(cbbForm);
                 example++;
+                Application.Exit();
             }
         }
     }
