@@ -58,6 +58,20 @@ namespace UnitTestsProject
         }
 
         [TestMethod]
+        public void t_IsNewGame()
+        {
+            Dictionary<string, string> resultsDictionary = ChessByBird.TwitterClient.TwitterClient.getTweetInfo(318862778024738816);
+
+            Dictionary<string, string> expectedDictionary = new Dictionary<string, string>();
+            expectedDictionary.Add("currentPlayer", "ZacharyACarson");
+            expectedDictionary.Add("otherPlayer", "ZachCarsonTest");
+            expectedDictionary.Add("imageURL", "new game");
+            expectedDictionary.Add("moveString", "b2 b4");
+
+            CollectionAssert.AreEquivalent(expectedDictionary, resultsDictionary);
+        }
+
+        [TestMethod]
         public void i_ProcessImageBadFENInputString()
         {
             try
