@@ -7,7 +7,7 @@ namespace ChessByBird.ChessClient
       
         internal Square[] Squares;
               
-        internal bool InsufficientMaterial;
+        //internal bool InsufficientMaterial;
 
         internal int Score;
 
