@@ -148,8 +148,8 @@ namespace ChessByBird.ImagingProject
         public static int ChessPieceLeft = 10 * ScalerFactor;
         public static int ChessPieceTop = 10 * ScalerFactor;
 
-        public static int ChessBoardLeft = 7 * ScalerFactor; // Puts 7 x SF boarder around squares
-        public static int ChessBoardTop = 7 * ScalerFactor;
+        public static int ChessBoardLeft = 0;
+        public static int ChessBoardTop = 0;
 
 
         /// <summary>
