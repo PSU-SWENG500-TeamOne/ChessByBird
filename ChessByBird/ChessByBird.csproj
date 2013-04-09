@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ChessByBird.ImagerProgram</StartupObject>
+    <StartupObject>ChessByBird.ChessByBird</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -71,7 +71,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ChessByBird_TemporaryKey.pfx" />
-    <None Include="Imager\App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -172,6 +171,7 @@
     <Content Include="Imager\DigitalAssets\GameBoardImage1.png" />
     <Content Include="Imager\DigitalAssets\GameBoardImage2.png" />
     <Content Include="Imager\DigitalAssets\GameBoardImage3.png" />
+    <Content Include="Imager\DigitalAssets\GameBoardImage4.png" />
     <Content Include="Images\ColsRed.bmp" />
     <Content Include="Images\ColsRedNew.bmp" />
     <Content Include="Images\Letters.bmp" />
