@@ -62,8 +62,8 @@ namespace ChessByBird.ImagingProject
             squareFactory = new ChessSquareFactory();
             squareLocator = new ChessSquareLocator();
 
-            chessBoardInitializer = new ChessBoardInitializer(
-                this, squareList, whitePieceList, blackPieceList, squareFactory, chessPieceFactory, squareLocator);
+            chessBoardInitializer = new ChessBoardInitializer(this,
+                squareList, whitePieceList, blackPieceList, squareFactory, chessPieceFactory, squareLocator);
 
             chessBoardInitializer.Initialize();
             chessBoardBox.Paint += new PaintEventHandler(paint);
@@ -81,7 +81,7 @@ namespace ChessByBird.ImagingProject
             Graphics g = mouseEvent.Graphics;
             try
             {
-                 Draw(g);
+                Draw(g);
             }
             finally
             {
@@ -114,22 +114,6 @@ namespace ChessByBird.ImagingProject
         }
 
         //////////////////// Getters ////////////////////////////
-
-        /// <summary>
-        /// GetSize method
-        /// </summary>
-        /// <returnsSizereturns>
-        public Size GetSize()
-        {
-            int height = 20;
-            int width = 20;
-
-            height = (ChessImageConstants.SquareSize * ChessImageConstants.SquaresPerRow)
-                + (ChessImageConstants.ChessBoardLeft * 2);
-
-            width = height;
-            return new Size(width, height);
-        }
 
         /// <summary>
         /// GetSquare method
@@ -181,7 +165,7 @@ namespace ChessByBird.ImagingProject
         public ChessSquare GetSquareByID(EnumSquareID aSquareID)
         {
             ChessSquare square;
-            for (int i = ChessImageConstants.SquareCount-1; i > -1; i--)
+            for (int i = 0; i < ChessImageConstants.SquareCount; i++)
             {
                 square = (ChessSquare)squareList[i];
 
@@ -303,13 +287,11 @@ namespace ChessByBird.ImagingProject
         /// </summary>
         /// <param name="g"></param>
         /// <param name="aChessSquare"></param>
-        /// <param name="aIsHighlight"></param>
-        /// <param name="aIsLastMove"></param>
-        private void DrawSquare(Graphics g, ChessSquare aChessSquare, bool aIsHighlight, bool aIsLastMove)
+        private void DrawSquare(Graphics g, ChessSquare aChessSquare)
         {
             if (aChessSquare != null)
             {
-                aChessSquare.Draw(g, squareFactory, aIsHighlight, aIsLastMove);
+                aChessSquare.Draw(g, squareFactory);
 
                 ChessPiece chessPiece = (ChessPiece)aChessSquare.GetChessPiece();
 
@@ -344,7 +326,7 @@ namespace ChessByBird.ImagingProject
             for (int i = 0; i < ChessImageConstants.SquareCount; i++)
             {
                 chessSquare = (ChessSquare)squareList[i];
-                DrawSquare(g, chessSquare, false, chessSquare.GetIsLastMove());
+                DrawSquare(g, chessSquare);
             }
         }
 
@@ -358,7 +340,7 @@ namespace ChessByBird.ImagingProject
 
             for (int i = 0; i < ChessImageConstants.SquareCount; i++)
             {
-                ((ChessSquare) squareList[i]).SetChessPiece(null);
+                ((ChessSquare)squareList[i]).SetChessPiece(null);
             }
 
             try
@@ -428,13 +410,13 @@ namespace ChessByBird.ImagingProject
         {
             ChessSquare chessSquare;
 
-            for (int counter = 0; counter < ChessImageConstants.SquareCount; counter++ )
+            for (int counter = 0; counter < ChessImageConstants.SquareCount; counter++)
             {
                 EnumSquareID key = (EnumSquareID)counter;
                 chessSquare = this.GetSquareByID(key);
                 EnumPieceID value = ChessImageConstants.parserChessBoardSquares[key];
-                CreateChessPiece(chessSquare, value);                
-            }            
+                CreateChessPiece(chessSquare, value);
+            }
         }
 
         /// <summary>
@@ -446,18 +428,21 @@ namespace ChessByBird.ImagingProject
         /// <returns>ChessPiece</returns>
         private ChessPiece CreateChessPiece(ChessSquare aChessSquare, EnumPieceID aPieceID)
         {
-            EnumPieceColor chessPieceColor = EnumPieceColor.White;
+            int whitePieceOffset = (int)EnumPieceColor.White;
+            int blackPieceOffset = (int)EnumPieceColor.Black;
+
+            EnumPieceColor chessPieceColor = EnumPieceColor.None;
             EnumPieceType chessPieceType = EnumPieceType.None;
 
             int pieceNumber = (int)aPieceID;
-            if( pieceNumber >= 11 && pieceNumber <= 16) 
+            if (pieceNumber >= whitePieceOffset + 1 && pieceNumber <= whitePieceOffset + 6)
             {
-                pieceNumber -= 10;
+                pieceNumber -= (int)EnumPieceColor.White;
                 chessPieceColor = EnumPieceColor.White;
             }
-            else if (pieceNumber >= 21 && pieceNumber <= 26)
+            else if (pieceNumber >= blackPieceOffset + 1 && pieceNumber <= blackPieceOffset + 6)
             {
-                pieceNumber -= 20;
+                pieceNumber -= (int)EnumPieceColor.Black;
                 chessPieceColor = EnumPieceColor.Black;
             }
             else
@@ -477,7 +462,7 @@ namespace ChessByBird.ImagingProject
                 case 6: chessPieceType = EnumPieceType.Pawn; break;
                 default: chessPieceType = EnumPieceType.None; break;
             }
-                
+
             ChessPiece chessPiece = new ChessPiece(chessPieceColor, chessPieceType, aChessSquare);
             EnumSquareID squareID = aChessSquare.GetSquareID();
 

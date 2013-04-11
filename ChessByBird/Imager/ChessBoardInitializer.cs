@@ -76,11 +76,12 @@ namespace ChessByBird.ImagingProject
 
                 // Empty the ChessBoard squares
                 ChessImageConstants.parserChessBoardSquares.Clear();
-                for (EnumSquareID sid = EnumSquareID.H8; sid >= EnumSquareID.A1; sid = ChessSquareID.DecrementEnumSquareID(sid))
+                for (EnumSquareID sid = EnumSquareID.A1; sid <= EnumSquareID.H8; sid = ChessSquareID.IncrementEnumSquareID(sid))
                 {
-                    //Console.WriteLine(sid);
                     ChessImageConstants.parserChessBoardSquares.Add(sid, EnumPieceID.Empty);
                 }
+                string initialGameState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+                ChessBoardParser.SetFEN(initialGameState);
             }
             catch (Exception E)
             {
@@ -120,7 +121,7 @@ namespace ChessByBird.ImagingProject
 
             ChessSquare chessSquare;
 
-            int row = -1;
+            int row = 8;
             int column = 0;
 
             squareLocator.Reset();
@@ -133,7 +134,7 @@ namespace ChessByBird.ImagingProject
 
                 if (squareLocator.IsNewLine())
                 {
-                    row++;
+                    row--;
                     column = 0;
                 }
                 else
@@ -226,13 +227,13 @@ namespace ChessByBird.ImagingProject
         private ChessPiece CreateChessPiece(ChessSquare aChessSquare, EnumPieceID aPieceID)
         {
             EnumPieceColor chessPieceColor = EnumPieceColor.White;
-            EnumPieceType chessPieceType = EnumPieceType.None;
+            EnumPieceType chessPieceType = EnumPieceType.Rook;
 
             int pieceNumber = (int)aPieceID;
             int whiteOffset = (int)EnumPieceColor.White;
             int blackOffset = (int)EnumPieceColor.Black;
 
-            if (pieceNumber >= whiteOffset + 1 && pieceNumber <= whiteOffset + 1)
+            if (pieceNumber >= whiteOffset + 1 && pieceNumber <= whiteOffset + 6)
             {
                 pieceNumber -= whiteOffset;
                 chessPieceColor = EnumPieceColor.White;

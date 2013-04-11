@@ -50,16 +50,6 @@ using System.Linq;
 /// The function splits the FEN string into its substrings and loops through the 
 /// squares of the ChessBoard filling the squares data structure with the content of the string.
 ///
-/// Examples
-/// 
-/// Place White Pieces at Bottom of Board and Black Pieces at the Top.
-///
-/// RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr w KQkq - 0 1              // Initial Position (White on Bottom and Black at Top)
-/// RNBQKBNR/PPPP1PPP/8/4P3/8/8/pppppppp/rnbqkbnr b KQkq e3 0 1           // White moves Pawn
-/// RNBQKBNR/PPPP1PPP/8/4P3/2p5/8/pp1ppppp/rnbqkbnr w KQkq c6 0 2         // Black moves pawn
-/// RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/8/pppp1ppp/rnbqkbnr b KQkq - 1 2        // White moves Rook
-/// RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/5n2/pppp1ppp/rnbqkb1r w KQkq - 1 2      // Black moves Rook
-///
 /// </Remarks>
 
 namespace ChessByBird.ImagingProject
@@ -69,16 +59,11 @@ namespace ChessByBird.ImagingProject
     /// </summary>
     public static class ChessBoardParser
     {
-        /**
-        ///Examples
-        ///Reversed to place White Pieces at Bottom of Board and Black Pieces at the Top.
-        ///
-        ///RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr w KQkq - 0 1
-        ///RNBQKBNR/PPPP1PPP/8/4P3/8/8/pppppppp/rnbqkbnr b KQkq e3 0 1
-        ///RNBQKBNR/PPPP1PPP/8/4P3/2p5/8/pp1ppppp/rnbqkbnr w KQkq c6 0 2
-        ///RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/8/pppp1ppp/rnbqkbnr b KQkq - 1 2
-        ///RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/5n2/pppp1ppp/rnbqkb1r w KQkq - 1 2
-         */
+
+        /// Examples
+        /// 
+        /// Place White Pieces at Bottom of Board and Black Pieces at the Top.
+
 
         /// <summary>
         ///  Reset the ChessBoard and set its position to the one specified by the FEN string   
@@ -97,14 +82,6 @@ namespace ChessByBird.ImagingProject
             ArrayList tokenList = new ArrayList(aFEN.Split(" ".ToCharArray(),
                 StringSplitOptions.RemoveEmptyEntries));
 
-            // Empty the ChessBoard squares
-            ChessImageConstants.parserChessBoardSquares.Clear();
-            for (EnumSquareID sid = EnumSquareID.A1; sid <= EnumSquareID.H8; sid = ChessSquareID.IncrementEnumSquareID(sid))
-            {
-                //Console.WriteLine(sid);
-                ChessImageConstants.parserChessBoardSquares.Add(sid, EnumPieceID.Empty);
-            }
-
             // 1. Piece placement on squares (A8 B8 .. G1 H1) Each piece is identified by a letter 
             //   taken from the standard English names (white upper-case, black lower-case). 
             //   Blank squares are noted using digits 1 through 8 (the number of blank squares), 
@@ -115,7 +92,7 @@ namespace ChessByBird.ImagingProject
 
             // The variable i marks the current position in the FEN string.
             // The variable j walks through the ChessBoard in the direction the 
-            // FEN squares occur (A8 .. H1).
+            // FEN squares occur (A1 .. H8) or (0 .. 63)
 
             j = 1;
             i = 0;

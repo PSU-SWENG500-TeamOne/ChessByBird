@@ -37,7 +37,18 @@ namespace ChessByBird.ImagingProject
         A8, B8, C8, D8, E8, F8, G8, H8,
         ER
     };
-
+    //public enum EnumSquareID
+    //{
+    //    A8, B8, C8, D8, E8, F8, G8, H8,
+    //    A7, B7, C7, D7, E7, F7, G7, H7,
+    //    A6, B6, C6, D6, E6, F6, G6, H6,
+    //    A5, B5, C5, D5, E5, F5, G5, H5,
+    //    A4, B4, C4, D4, E4, F4, G4, H4,
+    //    A3, B3, C3, D3, E3, F3, G3, H3,
+    //    A2, B2, C2, D2, E2, F2, G2, H2,
+    //    A1, B1, C1, D1, E1, F1, G1, H1,
+    //    ER
+    //};
     /// <summary>
     /// Enumerated Colors
     /// </summary>
@@ -124,8 +135,6 @@ namespace ChessByBird.ImagingProject
         public static Color WhiteSquareColor = Color.PeachPuff;
         public static Color WhiteSquareColor2 = Color.PeachPuff;
         public static Color ChessBoardBorderColor = Color.Black;
-        public static Color HighlightPenColor = Color.Yellow;
-        public static Color LastMoveColor = Color.Blue;
 
         /// <summary>
         /// Modes
@@ -135,22 +144,21 @@ namespace ChessByBird.ImagingProject
         /// <summary>
         /// Sizes
         /// </summary>
-        public static int HighlightPenSize = 4;
+        //public static int HighlightPenSize = 4;
        
         public static int ChessPieceCount = 16;
         public static int SquareCount = 64;
         public static int SquaresPerRow = 8;
 
-        // At SF = 2 (80*8 = 640 x 640 board)
+        // At a Scaler Factor of 2 (80*8 = 640 x 640 board)
         public static int ScalerFactor = 2;
         public static int SquareSize = 40 * ScalerFactor;         
         public static int ChessPieceSize = 20 * ScalerFactor;
         public static int ChessPieceLeft = 10 * ScalerFactor;
         public static int ChessPieceTop = 10 * ScalerFactor;
 
-        public static int ChessBoardLeft = 0;
-        public static int ChessBoardTop = 0;
-
+        public static int ChessBoardLeft = 10;
+        public static int ChessBoardTop = 10;
 
         /// <summary>
         ///  Parser Globals

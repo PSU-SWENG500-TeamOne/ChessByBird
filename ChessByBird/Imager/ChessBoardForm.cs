@@ -40,7 +40,6 @@ namespace ChessByBird
 
         public void RenderChessBoard()
         {
-
             try
             {
                 imageGenerator.ProcessImage(chessBoardStateFEN);

@@ -54,11 +54,17 @@ using System.Windows.Forms;
 /// 
 /// Place White Pieces at Bottom of Board and Black Pieces at the Top.
 ///
-/// RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr w KQkq - 0 1              // Initial Position (White on Bottom and Black at Top)
-/// RNBQKBNR/PPPP1PPP/8/4P3/8/8/pppppppp/rnbqkbnr b KQkq e3 0 1           // White moves Pawn
-/// RNBQKBNR/PPPP1PPP/8/4P3/2p5/8/pp1ppppp/rnbqkbnr w KQkq c6 0 2         // Black moves Pawn
-/// RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/8/pppp1ppp/rnbqkbnr b KQkq - 1 2        // White moves Rook
-/// RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/5n2/pppp1ppp/rnbqkb1r w KQkq - 1 2      // Black moves Rook
+/// Initial State
+/// rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+///
+/// Here is the FEN after the move 1. e4:
+/// rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1
+///
+/// And then after 1. ... c5:
+/// rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2
+///
+/// And then after 2. Nf3:
+/// rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2
 ///
 /// </Remarks>
 
@@ -104,22 +110,22 @@ namespace ChessByBird
                 switch (example)
                 {
                     case 0:         // Rank 1 Rank 2   3 4 5 6 Rank 7   Rank 8
-                        gameState = "RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr w KQkq - 0 1";       // Initial state - White has the Honor
+                        gameState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";       // Initial state - White has the Honor
                         break;
                     case 1:
-                        gameState = "RNBQKBNR/PPPP1PPP/8/4P3/8/8/pppppppp/rnbqkbnr b KQkq e3 0 1";    // Another state - White's Turn
+                        gameState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";    // Another state - White's Turn
                         break;
                     case 2:
-                        gameState = "RNBQKBNR/PPPP1PPP/8/4P3/2p5/8/pp1ppppp/rnbqkbnr w KQkq c6 0 2";  // Another state - Black's Turn
+                        gameState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";  // Another state - Black's Turn
                         break;
                     case 3:
-                        gameState = "RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/8/pppp1ppp/rnbqkbnr b KQkq - 1 2"; // Another state - White's Turn
+                        gameState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"; // Another state - White's Turn
                         break;
                     case 4:
-                        gameState = "RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/5n2/pppp1ppp/rnbqkb1r w KQkq - 1 2"; // Another state - Black's Turn
+                        gameState = "rnbqkb1r/pp1ppppp/2n5/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"; // Another state - Black's Turn
                         break;
                     default:
-                        gameState = "RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr w KQkq - 0 1";       // Initial state - White has the Honor
+                        gameState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";       // Initial state - White has the Honor
                         break;
                 }
                 cbbForm.ChessBoardStateFEN = gameState;
