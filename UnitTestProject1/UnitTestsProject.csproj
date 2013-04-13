@@ -70,9 +70,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DigitalAssets\ChessGameboard.PNG" />
+    <Content Include="Images\ColsRed.bmp" />
+    <Content Include="Images\ColsRedNew.bmp" />
+    <Content Include="Images\Letters.bmp" />
+    <Content Include="Images\Numbers.bmp" />
+    <Content Include="Images\RowsRed.bmp" />
+    <Content Include="Images\SquareCentricBoardRepresentation.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Chess.resources" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
