@@ -80,8 +80,8 @@ namespace ChessByBird.ImagingProject
                 {
                     ChessImageConstants.parserChessBoardSquares.Add(sid, EnumPieceID.Empty);
                 }
-                string initialGameState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-                ChessBoardParser.SetFEN(initialGameState);
+                //string initialGameState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+                //ChessBoardParser.SetFEN(initialGameState);
             }
             catch (Exception E)
             {
