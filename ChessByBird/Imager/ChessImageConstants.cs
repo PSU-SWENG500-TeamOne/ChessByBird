@@ -151,14 +151,14 @@ namespace ChessByBird.ImagingProject
         public static int SquaresPerRow = 8;
 
         // At a Scaler Factor of 2 (80*8 = 640 x 640 board)
-        public static int ScalerFactor = 2;
-        public static int SquareSize = 40 * ScalerFactor;         
-        public static int ChessPieceSize = 20 * ScalerFactor;
-        public static int ChessPieceLeft = 10 * ScalerFactor;
-        public static int ChessPieceTop = 10 * ScalerFactor;
+        public static int ScalerFactor =1;
+        public static int SquareSize = 60;//40 * ScalerFactor;         
+        public static int ChessPieceSize = 30;//20 * ScalerFactor;
+        public static int ChessPieceLeft = 15;// * ScalerFactor;
+        public static int ChessPieceTop = 15;//10 * ScalerFactor;
 
-        public static int ChessBoardLeft = 10;
-        public static int ChessBoardTop = 10;
+        public static int ChessBoardLeft = 0;
+        public static int ChessBoardTop = 00;
 
         /// <summary>
         ///  Parser Globals
