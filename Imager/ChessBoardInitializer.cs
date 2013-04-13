@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- *  Penn State University Software Engineering Graduate Program
+ *  Penn State University Software Engineering Graduate ImagerProgram
  *  Authors: Team 1: Zachary Carson, Aaron Eugene, Steve Haggerty, Joseph Oakes
  *  Date: Spring 2013
  *  Course: SWENG 500 Software Engineering Studio
@@ -41,9 +41,9 @@ namespace ChessByBird.ImagingProject
         /// <param name="aSquareFactory"></param>
         /// <param name="aPieceFactory"></param>
         /// <param name="aSquareLocator"></param>
-        public ChessBoardInitializer(ChessBoard aChessBoard, 
+        public ChessBoardInitializer(ChessBoard aChessBoard,
             ArrayList aSquareList, ArrayList aWhitePieceList, ArrayList aBlackPieceList,
-            ChessSquareFactory aSquareFactory, ChessPieceFactory aPieceFactory, 
+            ChessSquareFactory aSquareFactory, ChessPieceFactory aPieceFactory,
             ChessSquareLocator aSquareLocator)
         {
             chessBoard = aChessBoard;
@@ -146,7 +146,7 @@ namespace ChessByBird.ImagingProject
 
                 squareList.Add(chessSquare);
                 squareColor = chessSquare.GetColor();
-                squareLocator.Increment ();
+                squareLocator.Increment();
             }
         }
 
@@ -212,8 +212,8 @@ namespace ChessByBird.ImagingProject
                 EnumSquareID key = (EnumSquareID)counter;
                 chessSquare = chessBoard.GetSquareByID(key);
                 EnumPieceID value = ChessImageConstants.parserChessBoardSquares[key];
-                CreateChessPiece(chessSquare, value);                
-            }            
+                CreateChessPiece(chessSquare, value);
+            }
         }
 
         /// <summary>
@@ -225,19 +225,22 @@ namespace ChessByBird.ImagingProject
         /// <returns>ChessPiece</returns>
         private ChessPiece CreateChessPiece(ChessSquare aChessSquare, EnumPieceID aPieceID)
         {
-            EnumPieceColor chessPieceColor = EnumPieceColor.Black;
+            EnumPieceColor chessPieceColor = EnumPieceColor.White;
             EnumPieceType chessPieceType = EnumPieceType.None;
 
             int pieceNumber = (int)aPieceID;
-            if( pieceNumber >= 11 && pieceNumber <= 16) 
+            int whiteOffset = (int)EnumPieceColor.White;
+            int blackOffset = (int)EnumPieceColor.Black;
+
+            if (pieceNumber >= whiteOffset + 1 && pieceNumber <= whiteOffset + 1)
             {
-                pieceNumber -= 10;
-                chessPieceColor = EnumPieceColor.Black;
-            }
-            else if (pieceNumber >= 21 && pieceNumber <= 26)
-            {
-                pieceNumber -= 20;
+                pieceNumber -= whiteOffset;
                 chessPieceColor = EnumPieceColor.White;
+            }
+            else if (pieceNumber >= blackOffset + 1 && pieceNumber <= blackOffset + 6)
+            {
+                pieceNumber -= blackOffset;
+                chessPieceColor = EnumPieceColor.Black;
             }
             else
             {
@@ -256,7 +259,7 @@ namespace ChessByBird.ImagingProject
                 case 6: chessPieceType = EnumPieceType.Pawn; break;
                 default: chessPieceType = EnumPieceType.None; break;
             }
-                
+
             ChessPiece chessPiece = new ChessPiece(chessPieceColor, chessPieceType, aChessSquare);
             EnumSquareID squareID = aChessSquare.GetSquareID();
 

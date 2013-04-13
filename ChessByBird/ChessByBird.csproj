@@ -11,6 +11,7 @@
     <AssemblyName>ChessByBird</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -36,6 +36,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,11 +48,33 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ChessByBird.ChessByBird</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>194C19C9316AC5D6A6F2671EAAF9C2B6FF4E77A1</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ChessByBird_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ChessByBird_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\Settings.settings" />
+    <None Include="ChessByBird_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChessByBird.cs" />
@@ -64,41 +88,51 @@
     <Compile Include="Chess\PieceValidMoves.cs" />
     <Compile Include="Chess\Square.cs" />
     <Compile Include="Flickr\FlickrClient.cs" />
-    <Compile Include="ImageClient\ChessBoard.cs" />
-    <Compile Include="ImageClient\ChessBoardImageGenerator.cs" />
-    <Compile Include="ImageClient\ChessBoardInitializer.cs" />
-    <Compile Include="ImageClient\ChessBoardParser.cs" />
-    <Compile Include="ImageClient\ChessHelper.cs" />
-    <Compile Include="ImageClient\ChessImageConstants.cs" />
-    <Compile Include="ImageClient\ChessLocationCalculator.cs" />
-    <Compile Include="ImageClient\ChessLocationCalculatorBishop.cs" />
-    <Compile Include="ImageClient\ChessLocationCalculatorFactory.cs" />
-    <Compile Include="ImageClient\ChessLocationCalculatorKing.cs" />
-    <Compile Include="ImageClient\ChessLocationCalculatorKnight.cs" />
-    <Compile Include="ImageClient\ChessLocationCalculatorPawn.cs" />
-    <Compile Include="ImageClient\ChessLocationCalculatorQueen.cs" />
-    <Compile Include="ImageClient\ChessLocationCalculatorRook.cs" />
-    <Compile Include="ImageClient\ChessPiece.cs" />
-    <Compile Include="ImageClient\ChessPieceFactory.cs" />
-    <Compile Include="ImageClient\ChessPieceRectangle.cs" />
-    <Compile Include="ImageClient\ChessPlayer.cs" />
-    <Compile Include="ImageClient\ChessResourseWriter.cs" />
-    <Compile Include="ImageClient\ChesssBoardImageForm.cs">
+    <Compile Include="Imager\ChessBoard.cs" />
+    <Compile Include="Imager\ChessBoardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImageClient\ChesssBoardImageForm.Designer.cs">
-      <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
+    <Compile Include="Imager\ChessBoardForm.Designer.cs">
+      <DependentUpon>ChessBoardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageClient\ChessSquare.cs" />
-    <Compile Include="ImageClient\ChessSquareFactory.cs" />
-    <Compile Include="ImageClient\ChessSquareLocator.cs" />
-    <Compile Include="ImageClient\ChessSquareRectangle.cs" />
-    <Compile Include="ImageClient\ChessWin32API.cs" />
-    <Compile Include="ImageClient\ImageClient.cs" />
-    <Compile Include="ImageClient\Program.cs" />
+    <Compile Include="Imager\ChessBoardImageGenerator.cs" />
+    <Compile Include="Imager\ChessBoardInitializer.cs" />
+    <Compile Include="Imager\ChessBoardParser.cs" />
+    <Compile Include="Imager\ChessHelper.cs" />
+    <Compile Include="Imager\ChessImageConstants.cs" />
+    <Compile Include="Imager\ChessLocationCalculator.cs" />
+    <Compile Include="Imager\ChessLocationCalculatorBishop.cs" />
+    <Compile Include="Imager\ChessLocationCalculatorFactory.cs" />
+    <Compile Include="Imager\ChessLocationCalculatorKing.cs" />
+    <Compile Include="Imager\ChessLocationCalculatorKnight.cs" />
+    <Compile Include="Imager\ChessLocationCalculatorPawn.cs" />
+    <Compile Include="Imager\ChessLocationCalculatorQueen.cs" />
+    <Compile Include="Imager\ChessLocationCalculatorRook.cs" />
+    <Compile Include="Imager\ChessPiece.cs" />
+    <Compile Include="Imager\ChessPieceFactory.cs" />
+    <Compile Include="Imager\ChessPieceRectangle.cs" />
+    <Compile Include="Imager\ChessPlayer.cs" />
+    <Compile Include="Imager\ChessResourseWriter.cs" />
+    <Compile Include="Imager\ChessSquare.cs" />
+    <Compile Include="Imager\ChessSquareFactory.cs" />
+    <Compile Include="Imager\ChessSquareLocator.cs" />
+    <Compile Include="Imager\ChessSquareRectangle.cs" />
+    <Compile Include="Imager\ChessWin32API.cs" />
+    <Compile Include="Imager\ImageClient.cs" />
+    <Compile Include="Imager\ImagerProgram.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs" />
-    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Twitter\TwitterClient.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +154,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="TweetSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -132,16 +167,28 @@
     <Content Include="DLL\Hammock.ClientProfile.dll" />
     <Content Include="DLL\Newtonsoft.Json.dll" />
     <Content Include="DLL\TweetSharp.dll" />
+    <Content Include="Imager\DigitalAssets\GameBoardImage0.png" />
+    <Content Include="Imager\DigitalAssets\GameBoardImage1.png" />
+    <Content Include="Imager\DigitalAssets\GameBoardImage2.png" />
+    <Content Include="Imager\DigitalAssets\GameBoardImage3.png" />
+    <Content Include="Imager\DigitalAssets\GameBoardImage4.png" />
     <Content Include="Images\ColsRed.bmp" />
+    <Content Include="Images\ColsRedNew.bmp" />
+    <Content Include="Images\Letters.bmp" />
+    <Content Include="Images\Numbers.bmp" />
     <Content Include="Images\RowsRed.bmp" />
+    <Content Include="Images\SquareCentricBoardRepresentation.jpg" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Images\Chess.resources" />
-    <EmbeddedResource Include="ImageClient\ChesssBoardImageForm.resx">
-      <DependentUpon>ChesssBoardImageForm.cs</DependentUpon>
+    <EmbeddedResource Include="Imager\ChessBoardForm.resx">
+      <DependentUpon>ChessBoardForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="Images\Chess.resources" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

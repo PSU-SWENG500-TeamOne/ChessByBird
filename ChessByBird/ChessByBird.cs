@@ -44,8 +44,6 @@ namespace ChessByBird
             //post start up tweet, save its value for referencing
             Guid randomText = Guid.NewGuid();
 
-            //assetPath = ImageClient.ImageClient.processImage("RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/5n2/pppp1ppp/rnbqkb1r w KQkq - 1 2", "player1", "player2");
-
             string dummyText = "System live! Random key: " + randomText.ToString();
 
             TwitterClient.TwitterClient.postTweet(0, dummyText);
@@ -167,6 +165,7 @@ namespace ChessByBird
                     {
                         TwitterClient.TwitterClient.postTweet(newestTweet, "Something went wrong, please wait a few minutes and try again");
                     }
+                    TwitterClient.TwitterClient.postTweet(newestTweet, "Something went wrong, please wait a few minutes and try again");
                     //increment the counter to get away from the erroneous tweet
                     referentialID = newestTweet;
                     //do normal sleeping

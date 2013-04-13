@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- *  Penn State University Software Engineering Graduate Program
+ *  Penn State University Software Engineering Graduate ImagerProgram
  *  Authors: Team 1: Zachary Carson, Aaron Eugene, Steve Haggerty, Joseph Oakes
  *  Date: Spring 2013
  *  Course: SWENG 500 Software Engineering Studio
@@ -56,8 +56,8 @@ namespace ChessByBird.ImagingProject
     public enum EnumPieceID
     {
         Empty=0,
-        BlackKing = 11, BlackQueen, BlackRook, BlackBishop, BlackKnight, BlackPawn,
-        WhiteKing = 21, WhiteQueen, WhiteRook, WhiteBishop, WhiteKnight, WhitePawn,
+        WhiteKing = 11, WhiteQueen, WhiteRook, WhiteBishop, WhiteKnight, WhitePawn,
+        BlackKing = 21, BlackQueen, BlackRook, BlackBishop, BlackKnight, BlackPawn,
         Invalid
     };
 
@@ -136,18 +136,21 @@ namespace ChessByBird.ImagingProject
         /// Sizes
         /// </summary>
         public static int HighlightPenSize = 4;
-
+       
         public static int ChessPieceCount = 16;
-        public static int ChessPieceSize = 20;
-        public static int ChessPieceLeft = 10;
-        public static int ChessPieceTop = 10;
-        public static int ChessBoardSize = 20;
-        public static int ChessBoardLeft = 10;
-        public static int ChessBoardTop = 10;
-
         public static int SquareCount = 64;
-        public static int SquareSize = 40;
         public static int SquaresPerRow = 8;
+
+        // At SF = 2 (80*8 = 640 x 640 board)
+        public static int ScalerFactor = 2;
+        public static int SquareSize = 40 * ScalerFactor;         
+        public static int ChessPieceSize = 20 * ScalerFactor;
+        public static int ChessPieceLeft = 10 * ScalerFactor;
+        public static int ChessPieceTop = 10 * ScalerFactor;
+
+        public static int ChessBoardLeft = 0;
+        public static int ChessBoardTop = 0;
+
 
         /// <summary>
         ///  Parser Globals

@@ -12,7 +12,7 @@ namespace ChessByBird.ImageClient
     {
         
         /// <summary>
-        /// Builds image for game state
+        /// Builds image for game state 
         /// </summary>
         /// <param name="gameState">FEN Value of the current game state</param>
         /// <param name="playerCurrentTurn">Name for the player who's turn it now is</param>

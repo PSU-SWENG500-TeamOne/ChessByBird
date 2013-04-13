@@ -77,7 +77,7 @@ namespace UnitTestsProject
             try
             {
                 gameState = "rnbqkbnr/aaaaaa/8/8/4P3/8/PPPP1PPP/RNBQKB"; // "Hacked" incomplete FEN String to test error response
-                assetPath = ImageClient.processImage(gameState, whitePlayerName, blackPlayerName);
+                assetPath = ChessByBird.ImageClient.ImageClient.processImage(gameState, whitePlayerName, blackPlayerName);
                 Assert.Fail(); // If it gets to this line, no exception was thrown
             }
             catch (Exception ex)
@@ -91,7 +91,7 @@ namespace UnitTestsProject
             try
             {
                 gameState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
-                assetPath = ImageClient.processImage(gameState, whitePlayerName, blackPlayerName);
+                assetPath = ChessByBird.ImageClient.ImageClient.processImage(gameState, whitePlayerName, blackPlayerName);
                 Assert.IsTrue(assetPath.Length != 0);
             }
             catch (Exception ex)
@@ -106,8 +106,23 @@ namespace UnitTestsProject
             try
             {
                 gameState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";
-                assetPath = ImageClient.processImage(gameState, whitePlayerName, blackPlayerName);
+                assetPath = ChessByBird.ImageClient.ImageClient.processImage(gameState, whitePlayerName, blackPlayerName);
                 Assert.IsTrue(assetPath.Length != 0);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void i_CreateImage()
+        {
+            try
+            {
+                gameState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2";
+                assetPath = ChessByBird.ImageClient.ImageClient.processImage(gameState, "player 1", "player 2");
+                Assert.IsTrue(true);
             }
             catch (Exception ex)
             {

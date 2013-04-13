@@ -1,10 +1,10 @@
 ﻿/*******************************************************************************
- *  Penn State University Software Engraphics.neeringraphics.Graduate Prographics.am
- *  Authors: Team 1: Zachary Carson, Aaron Eugraphics.ne, Steve Hagraphics.erty, Joseph Oakes
- *  Date: Springraphics.2013
- *  Course: SWENG 500 Software Engraphics.neeringraphics.Studio
+ *  Penn State University Software Engineering Graduate ImagerProgram
+ *  Authors: Team 1: Zachary Carson, Aaron Eugene, Steve Haggerty, Joseph Oakes
+ *  Date: Spring 2013
+ *  Course: SWENG 500 Software Engineering Studio
  *  Professor: Mohamad Kassab
- *  Project: Chess By Bird Capstone g.oup project
+ *  Project: Chess By Bird Capstone group project
 *******************************************************************************/
 
 using System;
@@ -13,63 +13,53 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <Remarks>
-/**
- * References:
- * http://en.wikipedia.org/wiki/Chess
- * http://www.fam-petzke.de/cp_board_en.shtml
- * 
- * 
- * Chess Board FEN parser class
- * 
- * 
- * Forsyth-Edwards Notation (FEN) describes a Chess Position. It is an one-line ASCII-string. FEN is based on a system 
- * created by Scotsman David Forsyth in the 19th century. Steven Edwards specified the FEN standard for computer chess 
- * applications as part of the Portable Game Notation [1].
- * 
- * Explanation:
- * 
- * Forsyth–Edwards Notation (FEN) is a standard notation for describing a particular 
- * ChessBoard position of a chess game. The purpose of FEN is to provide all the necessary
- * information to restart a game from a particular position. 
- * A FEN record contains six fields. The separator between fields is a space.
- * 
- * The six fields are:
- * 1. Piece placement on squares (A8 B8 .. G1 H1) Each piece is identified by a letter 
- *    taken from the standard English names (white upper-case, black lower-case). 
- *    Blank squares are noted using digits 1 through 8 (the number of blank squares), 
- *    and "/" separate ranks.
- * 2. Active color. "w" means white moves next, "b" means black.
- * 3. Castling availability. Either - if no side can castle or a letter (K,Q,k,q) for 
- *    each side and castle possibility.
- * 4. En passant target square in algebraic notation or "-".
- * 5. Halfmove (or parserPly) clock: This is the number of halfmoves since the last pawn advance or capture.
- * 6. Fullmove number: The number of the current full move.
- * 
- * The FEN parser
- * 
- * We implement a public method in our ChessBoard class called setFEN(string aFEN).
- * This method only accepts a valid FEN input if invalid it returns a syntax error.
- * The function splits the FEN string into its substrings and loops through the 
- * squares of the ChessBoard filling the squares data structure with the content of the string.
- * 
- * Samples
- * FEN strings of Starting Position and after 1.e4 c5 2.Nf3:
- *  rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
- *  rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1
- *  rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2
- *  rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2
- * 
- * Examples 
- * Here is the FEN for the starting position:
- *  rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
- * Here is the FEN after the move 1. e4:
- *  rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1
- * And then after 1. ... c5:
- *  rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2
- * And then after 2. Nf3:
- *  nbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2
- * 
- */
+/// References:
+/// http://en.wikipedia.org/wiki/Chess
+/// http://www.fam-petzke.de/cp_board_en.shtml
+///
+///
+/// Chess Board FEN parser class
+///
+/// Forsyth-Edwards Notation (FEN) describes a Chess Position. It is an one-line ASCII-string. FEN is based on a system 
+/// created by Scotsman David Forsyth in the 19th century. Steven Edwards specified the FEN standard for computer chess 
+/// applications as part of the Portable Game Notation [1].
+///
+/// Explanation:
+///
+/// Forsyth–Edwards Notation (FEN) is a standard notation for describing a particular 
+/// ChessBoard position of a chess game. The purpose of FEN is to provide all the necessary
+/// information to restart a game from a particular position. 
+/// A FEN record contains six fields. The separator between fields is a space.
+///
+/// The six fields are:
+/// 1. Piece placement on squares (A8 B8 .. G1 H1) Each piece is identified by a letter 
+///    taken from the standard English names (white upper-case, black lower-case). 
+///    Blank squares are noted using digits 1 through 8 (the number of blank squares), 
+///    and "/" separate ranks.
+/// 2. Active color. "w" means white moves next, "b" means black.
+/// 3. Castling availability. Either - if no side can castle or a letter (K,Q,k,q) for 
+///    each side and castle possibility.
+/// 4. En passant target square in algebraic notation or "-".
+/// 5. Halfmove (or parserPly) clock: This is the number of halfmoves since the last pawn advance or capture.
+/// 6. Fullmove number: The number of the current full move.
+///
+/// The FEN parser
+///
+/// We implement a public method in our ChessBoard class called setFEN(string aFEN).
+/// This method only accepts a valid FEN input if invalid it returns a syntax error.
+/// The function splits the FEN string into its substrings and loops through the 
+/// squares of the ChessBoard filling the squares data structure with the content of the string.
+///
+/// Examples
+/// 
+/// Place White Pieces at Bottom of Board and Black Pieces at the Top.
+///
+/// RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr w KQkq - 0 1              // Initial Position (White on Bottom and Black at Top)
+/// RNBQKBNR/PPPP1PPP/8/4P3/8/8/pppppppp/rnbqkbnr b KQkq e3 0 1           // White moves Pawn
+/// RNBQKBNR/PPPP1PPP/8/4P3/2p5/8/pp1ppppp/rnbqkbnr w KQkq c6 0 2         // Black moves pawn
+/// RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/8/pppp1ppp/rnbqkbnr b KQkq - 1 2        // White moves Rook
+/// RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/5n2/pppp1ppp/rnbqkb1r w KQkq - 1 2      // Black moves Rook
+///
 /// </Remarks>
 
 namespace ChessByBird.ImagingProject
@@ -80,8 +70,14 @@ namespace ChessByBird.ImagingProject
     public static class ChessBoardParser
     {
         /**
-         * Example: Set the Initial Position for a chess game like so...
-         * "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        ///Examples
+        ///Reversed to place White Pieces at Bottom of Board and Black Pieces at the Top.
+        ///
+        ///RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr w KQkq - 0 1
+        ///RNBQKBNR/PPPP1PPP/8/4P3/8/8/pppppppp/rnbqkbnr b KQkq e3 0 1
+        ///RNBQKBNR/PPPP1PPP/8/4P3/2p5/8/pp1ppppp/rnbqkbnr w KQkq c6 0 2
+        ///RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/8/pppp1ppp/rnbqkbnr b KQkq - 1 2
+        ///RNBQKB1R/PPPP1PPP/5N2/4P3/2p5/5n2/pppp1ppp/rnbqkb1r w KQkq - 1 2
          */
 
         /// <summary>
@@ -109,11 +105,11 @@ namespace ChessByBird.ImagingProject
                 ChessImageConstants.parserChessBoardSquares.Add(sid, EnumPieceID.Empty);
             }
 
-            /** 1. Piece placement on squares (A8 B8 .. G1 H1) Each piece is identified by a letter 
-              *    taken from the standard English names (white upper-case, black lower-case). 
-              *    Blank squares are noted using digits 1 through 8 (the number of blank squares), 
-              *    and "/" separate ranks.
-              */
+            // 1. Piece placement on squares (A8 B8 .. G1 H1) Each piece is identified by a letter 
+            //   taken from the standard English names (white upper-case, black lower-case). 
+            //   Blank squares are noted using digits 1 through 8 (the number of blank squares), 
+            //   http://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SCD_algebraic_notation.svg/242px-SCD_algebraic_notation.svg.png
+            //   and "/" separate ranks.
 
             // 1. Read the ChessBoard & translate each loop index into a ChessBoard square
 

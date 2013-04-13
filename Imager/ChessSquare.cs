@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- *  Penn State University Software Engineering Graduate Program
+ *  Penn State University Software Engineering Graduate ImagerProgram
  *  Authors: Team 1: Zachary Carson, Aaron Eugene, Steve Haggerty, Joseph Oakes
  *  Date: Spring 2013
  *  Course: SWENG 500 Software Engineering Studio
@@ -13,30 +13,30 @@ using System.Text;
 
 namespace ChessByBird.ImagingProject
 {
-	public class ChessSquare
-	{
+    public class ChessSquare
+    {
         /// <summary>
         /// Class Variables
         /// </summary>
         private EnumSquareID squareID;
-		private EnumSquareColor squareColor;
-		private ChessPiece chessPiece;
-		private Point chessLocation;
-		private Point startLocation;
-		private bool isHighlight;
-		private bool isLastMove;
+        private EnumSquareColor squareColor;
+        private ChessPiece chessPiece;
+        private Point chessLocation;
+        private Point startLocation;
+        private bool isHighlight;
+        private bool isLastMove;
 
         /// <summary>
         /// ChessSquare Constructor
         /// </summary>
         public ChessSquare()
-		{
-			chessLocation = new Point(0,0);
-			startLocation = new Point(0,0);
-			chessPiece = null;
-			isLastMove = false;
+        {
+            chessLocation = new Point(0, 0);
+            startLocation = new Point(0, 0);
+            chessPiece = null;
+            isLastMove = false;
             squareID = EnumSquareID.A1;
-		}
+        }
 
         /// <summary>
         /// Draw Square Method
@@ -93,36 +93,36 @@ namespace ChessByBird.ImagingProject
         /// </summary>
         /// <returns></returns>
         public EnumSquareColor GetColor()
-		{
-			return squareColor;
-		}
+        {
+            return squareColor;
+        }
 
         /// <summary>
         /// SetColor Accessor
         /// </summary>
         /// <param name="aSquareColor"></param>
         public void SetColor(EnumSquareColor aSquareColor)
-		{
-			squareColor = aSquareColor;
-		}
+        {
+            squareColor = aSquareColor;
+        }
 
         /// <summary>
         /// GetStartLocation Accessor
         /// </summary>
         /// <returns></returns>
         public Point GetStartLocation()
-		{
-			return startLocation;
-		}
+        {
+            return startLocation;
+        }
 
         /// <summary>
         /// SetStartLocation Accessor
         /// </summary>
         /// <param name="aLocation"></param>
         public void SetStartLocation(Point aLocation)
-		{
+        {
             startLocation = aLocation;
-		}
+        }
         /// <summary>
         /// GetChessSquareID Accessor
         /// </summary>
@@ -186,35 +186,35 @@ namespace ChessByBird.ImagingProject
         /// </summary>
         /// <param name="aLocation"></param>
         public void SetChessLocation(Point aLocation)
-		{
+        {
             if ((aLocation.X < 0) || (aLocation.X > 7) || (aLocation.Y < 0) || (aLocation.Y > 7))
                 throw (new Exception(String.Format(
                     "Square.SetChessLocation : Invalid Location ({0},{1})", aLocation.X, aLocation.Y)));
-           
+
             // the new FEN AN way
             squareID = GetSquareIDfromLocation(aLocation);
 
             // the original location way
             chessLocation = aLocation;
-		}
+        }
 
         /// <summary>
         /// GetChessPiece Accessor
         /// </summary>
         /// <returns></returns>
         public ChessPiece GetChessPiece()
-		{
-			return chessPiece;
-		}
+        {
+            return chessPiece;
+        }
 
         /// <summary>
         /// SetChessPiece Accessor
         /// </summary>
         /// <param name="aChessPiece"></param>
         public void SetChessPiece(ChessPiece aChessPiece)
-		{
+        {
             chessPiece = aChessPiece;
-		}
+        }
 
         /// <summary>
         /// GetIsHighlight Accessor
@@ -230,9 +230,9 @@ namespace ChessByBird.ImagingProject
         /// </summary>
         /// <param name="aIsHighlight"></param>
         public void SetIsHighlight(bool aIsHighlight)
-		{
-			isHighlight = aIsHighlight;
-		}
+        {
+            isHighlight = aIsHighlight;
+        }
 
         /// <summary>
         /// GetIsLastMove Accessor
@@ -248,10 +248,10 @@ namespace ChessByBird.ImagingProject
         /// </summary>
         /// <param name="aIsLastMove"></param>
         public void SetIsLastMove(bool aIsLastMove)
-		{
-			isLastMove = aIsLastMove;
-		}
-		
-	}
+        {
+            isLastMove = aIsLastMove;
+        }
+
+    }
 }
 

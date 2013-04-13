@@ -35,7 +35,7 @@ namespace ChessByBird
 
             // Setup Output Fields
             cbbImgGen.FileNameImageFormat = ImageFormat.Png;
-            cbbImgGen.ImageFileName = @"..\..\DigitalAssets\CBBImage.png";
+            cbbImgGen.ImageFileName = @"..\..\DigitalAssets\ChessBoardImage.png";
 
             // Setup Input Fields
             cbbImgGen.WhitePlayerLabel = "Zach";
