@@ -159,15 +159,16 @@ namespace ChessByBird
                     //report to the user that something screwed up
                     if (sender.Length > 0)
                     {
-                        TwitterClient.TwitterClient.postTweet(newestTweet, "@" + sender + " Something went wrong, please wait a few minutes and try again");
+                        TwitterClient.TwitterClient.postTweet(newestTweet, "@" + sender + " Please ensure you sent a valid move, and try again");
                     }
                     else
                     {
-                        TwitterClient.TwitterClient.postTweet(newestTweet, "Something went wrong, please wait a few minutes and try again");
+                        TwitterClient.TwitterClient.postTweet(newestTweet, "Please ensure you sent a valid move, and try again");
                     }
-                    TwitterClient.TwitterClient.postTweet(newestTweet, "Something went wrong, please wait a few minutes and try again");
+                    //TwitterClient.TwitterClient.postTweet(newestTweet, "Something went wrong, please wait a few minutes and try again");
                     //increment the counter to get away from the erroneous tweet
                     referentialID = newestTweet;
+                    sender = "";
                     //do normal sleeping
                     System.Threading.Thread.Sleep(65000);
                 }
