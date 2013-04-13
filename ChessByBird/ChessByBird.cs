@@ -90,17 +90,34 @@ namespace ChessByBird
 
                                //send previous game board state to processChess, with new move
                                updatedGameBoardState = ChessClient.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
+                               
                                bool whitesTurn = ChessClient.Process.IsWhiteMove(updatedGameBoardState);
-                               Console.WriteLine();
-                               Console.WriteLine("  Move is ok, new state is " + updatedGameBoardState);
-                               if (whitesTurn)
+
+                               bool blackmate = false;
+                               bool whitemate = false;
+                               bool stalemate = false;
+
+                             if (whitesTurn)
                                {
-                                   Console.WriteLine("  and it is White's turn");
+                                   ChessClient.Process.SearchForMate(ChessClient.ChessPieceColor.White, ChessClient.Process.board(updatedGameBoardState), ref blackmate, ref  whitemate, ref stalemate);
                                }
                                else
                                {
-                                   Console.WriteLine("  and it is Black's turn");
+                                   ChessClient.Process.SearchForMate(ChessClient.ChessPieceColor.Black, ChessClient.Process.board(updatedGameBoardState), ref blackmate, ref  whitemate, ref stalemate);
                                }
+                             if (blackmate)
+                             {
+                                 //black is in check if this true
+                             }
+                             if (whitemate)
+                             {
+                                 //white is in check if this true
+                             }
+                             if (stalemate)
+                             {
+                                 //games is stale mate if this is true
+                             }
+
                            
                                //send new boardstate to processImage
                                if (whitesTurn)

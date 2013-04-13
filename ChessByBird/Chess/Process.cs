@@ -344,7 +344,14 @@ namespace ChessByBird.ChessClient
             return move;
 
         }
-        public static bool SearchForMate(ChessPieceColor movingSide, Board examineBoard, bool blackMate, bool whiteMate, bool staleMate)
+        public static Board board(String Fn)
+        {
+             Engine engine = new Engine(Fn);
+             return engine.ChessBoard;
+        }
+
+
+        public static bool SearchForMate(ChessPieceColor movingSide, Board examineBoard, ref bool blackMate, ref bool whiteMate, ref bool staleMate)
         {
             bool foundNonCheckBlack = false;
             bool foundNonCheckWhite = false;
