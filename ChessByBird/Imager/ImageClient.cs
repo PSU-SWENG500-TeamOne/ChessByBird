@@ -49,19 +49,19 @@ namespace ChessByBird.ImageClient
             // Setup Input Fields
             if (whtePlayerName.Length > 0)
             {
-                cbbImgGen.WhitePlayerButtonText = whtePlayerName;
+                cbbImgGen.WhitePlayerButtonText = cbbImgGen.WhitePlayerName = whtePlayerName;
             }
             else
             {
-                cbbImgGen.WhitePlayerButtonText = "White Player";
+                cbbImgGen.WhitePlayerButtonText = cbbImgGen.WhitePlayerName = "White Player";
             }
             if (blackPlayerName.Length > 0)
             {
-                cbbImgGen.BlackPlayerButtonText = blackPlayerName;
+                cbbImgGen.BlackPlayerButtonText = cbbImgGen.BlackPlayerName = blackPlayerName;
             }
             else
             {
-                cbbImgGen.BlackPlayerButtonText = "Black Player";
+                cbbImgGen.BlackPlayerButtonText = cbbImgGen.BlackPlayerName = "Black Player";
             }
 
             cbbForm.ChessBoardStateFEN = gameState;
