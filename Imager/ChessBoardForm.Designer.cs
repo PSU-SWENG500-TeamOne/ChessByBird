@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelForm = new System.Windows.Forms.Panel();
+            this.buttonBlackPlayer = new System.Windows.Forms.Button();
+            this.buttonWhitePlayer = new System.Windows.Forms.Button();
             this.panelOuterBox = new System.Windows.Forms.Panel();
             this.pictureBoxRightNumbers = new System.Windows.Forms.PictureBox();
             this.pictureBoxLeftNumbers = new System.Windows.Forms.PictureBox();
@@ -42,8 +44,6 @@
             this.panelCenter = new System.Windows.Forms.Panel();
             this.pictureBoxCenter = new System.Windows.Forms.PictureBox();
             this.timerSnapShot = new System.Windows.Forms.Timer(this.components);
-            this.buttonWhitePlayer = new System.Windows.Forms.Button();
-            this.buttonBlackPlayer = new System.Windows.Forms.Button();
             this.panelForm.SuspendLayout();
             this.panelOuterBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRightNumbers)).BeginInit();
@@ -67,6 +67,44 @@
             this.panelForm.Name = "panelForm";
             this.panelForm.Size = new System.Drawing.Size(840, 840);
             this.panelForm.TabIndex = 0;
+            // 
+            // buttonBlackPlayer
+            // 
+            this.buttonBlackPlayer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonBlackPlayer.BackColor = System.Drawing.Color.SteelBlue;
+            this.buttonBlackPlayer.Enabled = false;
+            this.buttonBlackPlayer.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
+            this.buttonBlackPlayer.FlatAppearance.BorderSize = 0;
+            this.buttonBlackPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBlackPlayer.Font = new System.Drawing.Font("MS Reference Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBlackPlayer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonBlackPlayer.Location = new System.Drawing.Point(0, 0);
+            this.buttonBlackPlayer.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonBlackPlayer.Name = "buttonBlackPlayer";
+            this.buttonBlackPlayer.Size = new System.Drawing.Size(840, 50);
+            this.buttonBlackPlayer.TabIndex = 4;
+            this.buttonBlackPlayer.Text = "Black Player";
+            this.buttonBlackPlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.buttonBlackPlayer.UseVisualStyleBackColor = false;
+            // 
+            // buttonWhitePlayer
+            // 
+            this.buttonWhitePlayer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonWhitePlayer.BackColor = System.Drawing.Color.SteelBlue;
+            this.buttonWhitePlayer.Enabled = false;
+            this.buttonWhitePlayer.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
+            this.buttonWhitePlayer.FlatAppearance.BorderSize = 0;
+            this.buttonWhitePlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonWhitePlayer.Font = new System.Drawing.Font("MS Reference Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonWhitePlayer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonWhitePlayer.Location = new System.Drawing.Point(0, 790);
+            this.buttonWhitePlayer.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonWhitePlayer.Name = "buttonWhitePlayer";
+            this.buttonWhitePlayer.Size = new System.Drawing.Size(840, 50);
+            this.buttonWhitePlayer.TabIndex = 3;
+            this.buttonWhitePlayer.Text = "White Player";
+            this.buttonWhitePlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.buttonWhitePlayer.UseVisualStyleBackColor = false;
             // 
             // panelOuterBox
             // 
@@ -206,11 +244,11 @@
             this.pictureBoxCenter.BackColor = System.Drawing.Color.Black;
             this.pictureBoxCenter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxCenter.Enabled = false;
+            this.pictureBoxCenter.Image = global::ChessByBird.Properties.Resources.ChessBoardImage;
             this.pictureBoxCenter.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxCenter.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxCenter.Name = "pictureBoxCenter";
             this.pictureBoxCenter.Size = new System.Drawing.Size(640, 640);
-            this.pictureBoxCenter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxCenter.TabIndex = 0;
             this.pictureBoxCenter.TabStop = false;
             // 
@@ -218,44 +256,6 @@
             // 
             this.timerSnapShot.Interval = 3000;
             this.timerSnapShot.Tick += new System.EventHandler(this.timerSnipIt_Tick);
-            // 
-            // buttonWhitePlayer
-            // 
-            this.buttonWhitePlayer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonWhitePlayer.BackColor = System.Drawing.Color.SteelBlue;
-            this.buttonWhitePlayer.Enabled = false;
-            this.buttonWhitePlayer.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
-            this.buttonWhitePlayer.FlatAppearance.BorderSize = 0;
-            this.buttonWhitePlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonWhitePlayer.Font = new System.Drawing.Font("MS Reference Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonWhitePlayer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonWhitePlayer.Location = new System.Drawing.Point(0, 790);
-            this.buttonWhitePlayer.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonWhitePlayer.Name = "buttonWhitePlayer";
-            this.buttonWhitePlayer.Size = new System.Drawing.Size(840, 50);
-            this.buttonWhitePlayer.TabIndex = 3;
-            this.buttonWhitePlayer.Text = "White Player";
-            this.buttonWhitePlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.buttonWhitePlayer.UseVisualStyleBackColor = false;
-            // 
-            // buttonBlackPlayer
-            // 
-            this.buttonBlackPlayer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonBlackPlayer.BackColor = System.Drawing.Color.SteelBlue;
-            this.buttonBlackPlayer.Enabled = false;
-            this.buttonBlackPlayer.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
-            this.buttonBlackPlayer.FlatAppearance.BorderSize = 0;
-            this.buttonBlackPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBlackPlayer.Font = new System.Drawing.Font("MS Reference Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBlackPlayer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonBlackPlayer.Location = new System.Drawing.Point(0, 0);
-            this.buttonBlackPlayer.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonBlackPlayer.Name = "buttonBlackPlayer";
-            this.buttonBlackPlayer.Size = new System.Drawing.Size(840, 50);
-            this.buttonBlackPlayer.TabIndex = 4;
-            this.buttonBlackPlayer.Text = "Black Player";
-            this.buttonBlackPlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.buttonBlackPlayer.UseVisualStyleBackColor = false;
             // 
             // ChessBoardForm
             // 
@@ -283,7 +283,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomLetters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTopLetters)).EndInit();
             this.panelCenter.ResumeLayout(false);
-            this.panelCenter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCenter)).EndInit();
             this.ResumeLayout(false);
 

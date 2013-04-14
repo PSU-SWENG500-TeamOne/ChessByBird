@@ -12,6 +12,8 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
 using ChessByBird.ImagingProject;
+using System.Drawing.Drawing2D;
+using System.Drawing;
 
 namespace ChessByBird
 {
@@ -63,6 +65,7 @@ namespace ChessByBird
             {
                 if (imageGenerator != null)
                 {
+                    SetTargetImage(pictureBoxCenter);
                     imageGenerator.CaptureAndSaveFormImage(this);
                 }
             }
@@ -78,6 +81,97 @@ namespace ChessByBird
                 }
             }
         }
+
+        /// <summary>
+        /// Calculate Image Dimensions
+        /// Provide currentWidth & currentHeight from our image, and the finalWidth & finalHeight from the 
+        /// dimensions of the PictureBox housing the image. Also ensure the proper scaling using a multip
+        /// that is calculated based on whether the image is in landscape or portrait mode.
+        /// </summary>
+        /// 
+        /// <param name="currentWidth"></param>
+        /// <param name="currentHeight"></param>
+        /// <param name="finalWidth"></param>
+        /// <param name="finalHeight"></param>
+        /// <returns></returns>
+        public Size CalculateImageDimensions(int currentWidth, int currentHeight, int finalWidth, int finalHeight)
+        {
+            double scaleFactor = 0; // final scale factor to use when scaling the image
+            string layoutMode;
+
+            // determine if it's Portrait or Landscape Mode
+            if (currentHeight > currentWidth) layoutMode = "portrait";
+            else layoutMode = "landscape";
+
+            switch (layoutMode.ToLower())
+            {
+                case "portrait":
+                    // calculate scaleFactor on heights
+                    if (finalHeight > finalWidth)
+                    {
+                        scaleFactor = (double)finalWidth / (double)currentWidth;
+                    }
+                    else
+                    {
+                        scaleFactor = (double)finalHeight / (double)currentHeight;
+                    }
+                    break;
+                case "landscape":
+                    // calculate scaleFactor on widths
+                    if (finalHeight > finalWidth)
+                    {
+                        scaleFactor = (double)finalWidth / (double)currentWidth;
+                    }
+                    else
+                    {
+                        scaleFactor = (double)finalHeight / (double)currentHeight;
+                    }
+                    break;
+            }
+
+            // return the new image dimensions
+            return new Size((int)(currentWidth * scaleFactor), (int)(currentHeight * scaleFactor));
+        }
+
+        /// <summary>
+        /// Set the target image scaled appropriately for the target pictureBox
+        /// </summary>
+        /// <param name="targetPictureBox"></param>
+        private void SetTargetImage(PictureBox targetPictureBox)
+        {
+            try
+            {
+                // Temporary image
+                Image temporaryImage = targetPictureBox.Image;
+
+                // Calculate image size
+                Size imageSize = CalculateImageDimensions(temporaryImage.Width, temporaryImage.Height, this.pictureBoxCenter.Width, this.pictureBoxCenter.Height);
+
+                // Make a new Bitmap with the proper dimensions
+                Bitmap finalImage = new Bitmap(temporaryImage, imageSize.Width, imageSize.Height);
+
+                // Create a Graphics object from the image
+                Graphics g = Graphics.FromImage(temporaryImage);
+
+                // Clean up the image by take care of any image loss from resizing. HighQualityBicubic mode is used to make sure the 
+                // quality stays constant while shrinking the image.
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+                // Empty the PictureBox
+                targetPictureBox.Image = null;
+
+                // Center the new image
+                targetPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+
+                // Set the new image
+                targetPictureBox.Image = finalImage;
+            }
+            catch (System.Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
 
         private ChessBoardImageGenerator imageGenerator;
 

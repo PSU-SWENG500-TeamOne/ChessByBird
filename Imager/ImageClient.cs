@@ -20,10 +20,11 @@ namespace ChessByBird.ImageClient
     ///
     /// Expected Chess Board States in Forsyth-Edwards Notation
 
-    //string gameState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";       // Initial state - White's Turn
-    //string gameState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";    // Another state - Black's Turn
-    //string gameState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";  // Another state - White's Turn
-    //string FENSgameStatetate = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"; // Another state - Black's Turn
+    //string gameState = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";          // Initial state - White's Turn
+    //string gameState = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";       // Another state - Black's Turn
+    //string gameState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";     // Another state - White's Turn
+    //string gameState = "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2";    // Another state - Black's Turn
+    //string gameState = "rnbqkb1r/pp1ppppp/5n2/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 1 2";  // Another state - White's Turn
 
     public class ImageClient
     {
@@ -31,10 +32,10 @@ namespace ChessByBird.ImageClient
         /// Builds image for game state
         /// </summary>
         /// <param name="gameState">FEN Value of the current game state</param>
-        /// <param name="playerCurrentTurn">Name for the player who's turn it now is</param>
-        /// <param name="playerNowWaiting">Name for player who just went</param>
+        /// <param name="whtePlayerName">Name of the white player</param>
+        /// <param name="blackPlayerName">Name of the black player</param>
         /// <returns>asset path for the new image</returns>
-        public static string processImage(string gameState, string playerCurrentTurn, string playerNowWaiting)
+        public static string processImage(string gameState, string whtePlayerName, string blackPlayerName)
         {
             // Setup Objects
             ChessBoardForm cbbForm = new ChessBoardForm();
@@ -46,21 +47,21 @@ namespace ChessByBird.ImageClient
             cbbImgGen.ImageFileName = @"..\..\DigitalAssets\GameBoardImage.png";
 
             // Setup Input Fields
-            if (playerCurrentTurn.Length > 0)
+            if (whtePlayerName.Length > 0)
             {
-                cbbImgGen.WhitePlayerButtonText = playerCurrentTurn;
+                cbbImgGen.WhitePlayerButtonText = cbbImgGen.WhitePlayerName = whtePlayerName;
             }
             else
             {
-                cbbImgGen.WhitePlayerButtonText = "Current Player";
+                cbbImgGen.WhitePlayerButtonText = cbbImgGen.WhitePlayerName = "White Player";
             }
-            if (playerNowWaiting.Length > 0)
+            if (blackPlayerName.Length > 0)
             {
-                cbbImgGen.BlackPlayerButtonText = playerNowWaiting;
+                cbbImgGen.BlackPlayerButtonText = cbbImgGen.BlackPlayerName = blackPlayerName;
             }
             else
             {
-                cbbImgGen.BlackPlayerButtonText = "Waiting Player";
+                cbbImgGen.BlackPlayerButtonText = cbbImgGen.BlackPlayerName = "Black Player";
             }
 
             cbbForm.ChessBoardStateFEN = gameState;

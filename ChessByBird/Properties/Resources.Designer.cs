@@ -61,16 +61,16 @@ namespace ChessByBird.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zach Carson, Joe Oakes, Aaron Eugene, Steve Haggerty.
+        ///   Looks up a localized string similar to Steve Haggerty.
         /// </summary>
-        internal static string AppAuthors {
+        internal static string AppAuthor {
             get {
-                return ResourceManager.GetString("AppAuthors", resourceCulture);
+                return ResourceManager.GetString("AppAuthor", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ChessByBird.
+        ///   Looks up a localized string similar to Imager.
         /// </summary>
         internal static string AppTitle {
             get {
@@ -91,19 +91,9 @@ namespace ChessByBird.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ColsRed {
+        internal static System.Drawing.Bitmap ChessBoardImage {
             get {
-                object obj = ResourceManager.GetObject("ColsRed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ColsRedNew {
-            get {
-                object obj = ResourceManager.GetObject("ColsRedNew", resourceCulture);
+                object obj = ResourceManager.GetObject("ChessBoardImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -124,16 +114,6 @@ namespace ChessByBird.Properties {
         internal static System.Drawing.Bitmap Numbers {
             get {
                 object obj = ResourceManager.GetObject("Numbers", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RowsRed {
-            get {
-                object obj = ResourceManager.GetObject("RowsRed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

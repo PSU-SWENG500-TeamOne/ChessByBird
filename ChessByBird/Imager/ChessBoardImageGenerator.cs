@@ -10,6 +10,7 @@
 using System;
 using System.Collections;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
@@ -109,7 +110,7 @@ namespace ChessByBird.ImagingProject
         }
 
         /// <summary>
-        /// paint method
+        /// Paint method
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventArgs"></param>
@@ -124,10 +125,10 @@ namespace ChessByBird.ImagingProject
             {
                 // g.Dispose(); // Can not dispose here
             }
-        }
+        } 
 
         /// <summary>
-        /// FindControl
+        /// Find UI Control
         /// </summary>
         /// <param name="strControlName"></param>
         /// <returns></returns>
@@ -141,7 +142,7 @@ namespace ChessByBird.ImagingProject
         }
 
         /// <summary>
-        /// InitializeImageGenerator
+        /// Initialize Image Generator Object
         /// </summary>
         public void InitializeImageGenerator()
         {
@@ -222,7 +223,7 @@ namespace ChessByBird.ImagingProject
         }
 
         /// <summary>
-        /// SetChessBoardPlayerButtonText
+        /// Set the ChessBoard Player Button Text for each opponnent
         /// </summary>
         private void SetChessBoardPlayerButtonText()
         {
@@ -246,7 +247,7 @@ namespace ChessByBird.ImagingProject
         }
 
         /// <summary>
-        /// EnsureDirectoryExists
+        /// Method to ensure an output directory exists (i.e. create if required)
         /// </summary>
         /// <param name="path"></param>
         public static void EnsureDirectoryExists(string path)
@@ -267,7 +268,7 @@ namespace ChessByBird.ImagingProject
         }
 
         /// <summary>
-        /// EnableChessPieces method
+        /// Enable Chess Pieces method
         /// </summary>
         internal void EnableChessPieces()
         {
@@ -352,7 +353,6 @@ namespace ChessByBird.ImagingProject
                 throw new Exception(errorMsg);
             }
         }
-
         /// <summary>
         /// Take a SnapShot of the application window
         /// </summary>

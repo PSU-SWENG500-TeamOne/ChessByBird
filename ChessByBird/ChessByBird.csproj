@@ -162,7 +162,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DigitalAssets\ChessGameboard.PNG" />
     <Content Include="DLL\FlickrNet.dll" />
     <Content Include="DLL\Hammock.ClientProfile.dll" />
     <Content Include="DLL\Newtonsoft.Json.dll" />
@@ -179,7 +178,9 @@
     <Content Include="Images\RowsRed.bmp" />
     <Content Include="Images\SquareCentricBoardRepresentation.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DigitalAssets\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Imager\ChessBoardForm.resx">
       <DependentUpon>ChessBoardForm.cs</DependentUpon>

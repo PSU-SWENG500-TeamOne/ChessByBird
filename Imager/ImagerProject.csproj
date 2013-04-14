@@ -125,9 +125,11 @@
     <Content Include="DigitalAssets\GameBoardImage3.png" />
     <Content Include="DigitalAssets\GameBoardImage4.png" />
     <Content Include="Images\2000px-SCD_algebraic_notation_svg.png" />
+    <None Include="Images\ChessBoardImage.PNG" />
     <Content Include="Images\Letters.bmp" />
     <Content Include="Images\Numbers.bmp" />
     <Content Include="Images\SquareCentricBoardRepresentation.jpg" />
+    <Content Include="Resources\ChessBoardImage.PNG" />
     <Content Include="Resources\Letters.bmp" />
     <Content Include="Resources\Numbers.bmp" />
   </ItemGroup>
