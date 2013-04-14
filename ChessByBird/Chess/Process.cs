@@ -17,7 +17,7 @@ namespace ChessByBird.ChessClient
         }
         /*
          * This is the process Driver This class handles all the checkes at the top most level
-         * Each failed check throws the exception.
+         * Each failed check throws the exception. 
          */
         public static String processChess(String move, String board)
         {
@@ -344,7 +344,14 @@ namespace ChessByBird.ChessClient
             return move;
 
         }
-        public static bool SearchForMate(ChessPieceColor movingSide, Board examineBoard, bool blackMate, bool whiteMate, bool staleMate)
+        public static Board board(String Fn)
+        {
+             Engine engine = new Engine(Fn);
+             return engine.ChessBoard;
+        }
+
+
+        public static bool SearchForMate(ChessPieceColor movingSide, Board examineBoard, ref bool blackMate, ref bool whiteMate, ref bool staleMate)
         {
             bool foundNonCheckBlack = false;
             bool foundNonCheckWhite = false;
