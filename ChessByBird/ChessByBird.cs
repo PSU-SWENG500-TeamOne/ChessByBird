@@ -23,7 +23,6 @@ namespace ChessByBird
         static void Main()
         {
             //TODO: these will all be removed later
-<<<<<<< HEAD
             //string gameBoardState ="";
             //string PhotoID = "";
             //string assetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\DigitalAssets\ChessGameboard.PNG");
@@ -105,8 +104,8 @@ namespace ChessByBird
 
 						if (whitesTurn)
 						{
-							Console.WriteLine("  and it is White's turn"); 
-							ChessClient.Process.SearchForMate(ChessClient.ChessPieceColor.White, ChessClient.Process.board(updatedGameBoardState), ref blackmate, ref  whitemate, ref stalemate);
+                            Console.WriteLine("  and it is White's turn"); 
+                            ChessClient.Process.SearchForMate(ChessClient.ChessPieceColor.White, ChessClient.Process.board(updatedGameBoardState), ref blackmate, ref  whitemate, ref stalemate);
 						}
 						else
 						{
@@ -116,14 +115,17 @@ namespace ChessByBird
 						if (blackmate)
 						{
 							//black is in check if this true
+                            Console.WriteLine("black is in check");
 						}
 						if (whitemate)
 						{
 							//white is in check if this true
+                            Console.WriteLine("white is in check");
 						}
 						if (stalemate)
 						{
 							//games is stale mate if this is true
+                            Console.WriteLine("stalemate");
 						}
 
 					   
