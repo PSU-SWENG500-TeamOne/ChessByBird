@@ -247,6 +247,51 @@ namespace UnitTestsProject
             Assert.IsTrue(engine.MovePiece(3, 6, 3, 4));
 
         }
+
+        [TestMethod]
+        public void c_CheckForMateWhite()
+        {
+            //var engine = new Engine("rnb1kbnr/pppp1ppp/4p3/8/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq -1 7");
+            bool whiteMate = false;
+            bool blackMate = false;
+            bool staleMate = false;
+
+           var board = ChessByBird.ChessClient.Process.board("rnb1kbnr/pppp1ppp/4p3/8/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq -1 7");
+           ChessByBird.ChessClient.Process.SearchForMate(ChessPieceColor.White, board, ref blackMate, ref whiteMate, ref staleMate);
+           Assert.IsTrue(whiteMate);
+           Assert.IsFalse(blackMate);
+           Assert.IsFalse(staleMate);
+        }
+
+        [TestMethod]
+        public void c_CheckForStaleMate()
+        {
+            
+            bool whiteMate = false;
+            bool blackMate = false;
+            bool staleMate = false;
+
+            var board = ChessByBird.ChessClient.Process.board("8/8/8/8/5q2/8/5k2/7K w - - 0 1");
+           
+            ChessByBird.ChessClient.Process.SearchForMate(ChessPieceColor.White, board, ref blackMate, ref whiteMate, ref staleMate);
+            Assert.IsFalse(whiteMate);
+            Assert.IsFalse(blackMate);
+            Assert.IsTrue(staleMate);
+        }
+        [TestMethod]
+        public void c_CheckForMateBlack()
+        {
+            bool whiteMate = false;
+            bool blackMate = false;
+            bool staleMate = false;
+
+            var board = ChessByBird.ChessClient.Process.board("rnbqkbnr/ppppp2p/8/5ppQ/P3P3/81PPP1PPP/RNB1KBNR b KQkq -1 8");
+           
+            ChessByBird.ChessClient.Process.SearchForMate(ChessPieceColor.Black, board, ref blackMate, ref whiteMate, ref staleMate);
+            Assert.IsFalse(whiteMate);
+            Assert.IsTrue(blackMate);
+            Assert.IsFalse(staleMate);
+        }
         
     }
 }
