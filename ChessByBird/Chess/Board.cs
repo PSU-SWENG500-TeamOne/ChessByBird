@@ -2,7 +2,7 @@ using System;
 
 namespace ChessByBird.ChessClient
 {
-    internal sealed class Board
+    public sealed class Board
     {
       
         internal Square[] Squares;
