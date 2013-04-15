@@ -22,6 +22,7 @@ namespace ChessByBird
 
         static void Main()
         {
+            Console.WriteLine("System coming alive");
             //TODO: these will all be removed later
             //string gameBoardState ="";
             //string PhotoID = "";
@@ -46,11 +47,14 @@ namespace ChessByBird
 
             string dummyText = "System live! Random key: " + randomText.ToString();
 
+            Console.WriteLine("Testing twitter connection...");
             TwitterClient.TwitterClient.postTweet(0, dummyText);
             System.Threading.Thread.Sleep(5000); //wait for twitter to catch up
             long referentialID = TwitterClient.TwitterClient.getNewestTweetFromMe();
             long newestTweet = 0;
             string sender = "";
+            Console.WriteLine("  Good to go, waiting for new tweets");
+            Console.WriteLine("");
 
             //Processing Loop
             while (true)
@@ -101,6 +105,7 @@ namespace ChessByBird
 						bool blackmate = false;
 						bool whitemate = false;
 						bool stalemate = false;
+                        string checkString = "";
 
 						if (whitesTurn)
 						{
@@ -116,11 +121,13 @@ namespace ChessByBird
 						{
 							//black is in check if this true
                             Console.WriteLine("black is in check");
-						}
+                            checkString = "and you are in CHECK";
+                        }
 						if (whitemate)
 						{
 							//white is in check if this true
                             Console.WriteLine("white is in check");
+                            checkString = "and you are in CHECK";
 						}
 						if (stalemate)
 						{
@@ -148,15 +155,8 @@ namespace ChessByBird
 						Console.WriteLine("  Uploaded. Image at " + imageUri.ToString());
 
                         //post link to Twitter to the important party
-                        string tweetString = "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri;
-                        if (whitesTurn && whitemate)
-                        {
-                            tweetString += " and you are in CHECK";
-                        }
-                        if (!whitesTurn && blackmate)
-                        {
-                            tweetString += " and you are in CHECK";
-                        }
+                        string tweetString = "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + checkString + " " + imageUri;
+                        
                         TwitterClient.TwitterClient.postTweet(newestTweet, tweetString);
                         Console.WriteLine();
                         Console.WriteLine("  Tweeted!");
