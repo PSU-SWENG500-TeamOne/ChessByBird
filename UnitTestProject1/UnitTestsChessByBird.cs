@@ -136,7 +136,7 @@ namespace UnitTestsProject
             try
             {
                 string photoDescription;  //This will hold the Chess FEN or Error message
-                photoDescription = FlickrClient.getFlickrPic("8465703185");
+                photoDescription = ChessByBird.FlickrClient.FlickrClient.getFlickrPic("8465703185");
                 //Make sure the value returned is equal
                 Assert.AreEqual("Move3: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1", photoDescription);
             }
