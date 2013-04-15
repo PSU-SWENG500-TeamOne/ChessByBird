@@ -148,7 +148,16 @@ namespace ChessByBird
 						Console.WriteLine("  Uploaded. Image at " + imageUri.ToString());
 
                         //post link to Twitter to the important party
-                        TwitterClient.TwitterClient.postTweet(newestTweet, "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri);
+                        string tweetString = "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri;
+                        if (whitesTurn && whitemate)
+                        {
+                            tweetString += " and you are in CHECK";
+                        }
+                        if (!whitesTurn && blackmate)
+                        {
+                            tweetString += " and you are in CHECK";
+                        }
+                        TwitterClient.TwitterClient.postTweet(newestTweet, tweetString);
                         Console.WriteLine();
                         Console.WriteLine("  Tweeted!");
 
