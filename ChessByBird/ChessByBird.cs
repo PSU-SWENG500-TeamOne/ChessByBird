@@ -81,52 +81,83 @@ namespace ChessByBird
                         //grab the previous game board state
                         //new game board states are null
                         if (myInformation["imageURL"].ToString() == "new game")
-                        {
-                            gameBoardState = null;
-                            Console.WriteLine();
-                            Console.WriteLine("  New game, building a new board");
-                        }
-                        else
-                        {
-                            gameBoardState = FlickrClient.FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
-                            Console.WriteLine();
-                            Console.WriteLine("  Got previous state: " + gameBoardState);
-                        }
+						{
+							gameBoardState = null;
+							Console.WriteLine();
+							Console.WriteLine("  New game, building a new board");
+						}
+						else
+						{
+							gameBoardState = FlickrClient.FlickrClient.getFlickrPic(myInformation["imageURL"].ToString());
+							Console.WriteLine();
+							Console.WriteLine("  Got previous state: " + gameBoardState);
+						}
 
-                        //send previous game board state to processChess, with new move
-                        updatedGameBoardState = ChessClient.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
-                        bool whitesTurn = ChessClient.Process.IsWhiteMove(updatedGameBoardState);
-                        Console.WriteLine();
-                        Console.WriteLine("  Move is ok, new state is " + updatedGameBoardState);
-                        if (whitesTurn)
-                        {
-                            Console.WriteLine("  and it is White's turn");
-                        }
-                        else
-                        {
-                            Console.WriteLine("  and it is Black's turn");
-                        }
+						//send previous game board state to processChess, with new move
+						updatedGameBoardState = ChessClient.Process.processChess(myInformation["moveString"].ToString(), gameBoardState);
+					   
+						bool whitesTurn = ChessClient.Process.IsWhiteMove(updatedGameBoardState);
 
-                        //send new boardstate to processImage
-                        if (whitesTurn)
-                        {
-                            assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["otherPlayer"], myInformation["currentPlayer"]);
-                        }
-                        else
-                        {
-                            assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["currentPlayer"], myInformation["otherPlayer"]);
-                        }
+						bool blackmate = false;
+						bool whitemate = false;
+						bool stalemate = false;
 
-                        Console.WriteLine();
-                        Console.WriteLine("  Image built");
+						if (whitesTurn)
+						{
+                            Console.WriteLine("  and it is White's turn"); 
+                            ChessClient.Process.SearchForMate(ChessClient.ChessPieceColor.White, ChessClient.Process.board(updatedGameBoardState), ref blackmate, ref  whitemate, ref stalemate);
+						}
+						else
+						{
+							Console.WriteLine("  and it is Blacks's turn"); 
+							ChessClient.Process.SearchForMate(ChessClient.ChessPieceColor.Black, ChessClient.Process.board(updatedGameBoardState), ref blackmate, ref  whitemate, ref stalemate);
+						}
+						if (blackmate)
+						{
+							//black is in check if this true
+                            Console.WriteLine("black is in check");
+						}
+						if (whitemate)
+						{
+							//white is in check if this true
+                            Console.WriteLine("white is in check");
+						}
+						if (stalemate)
+						{
+							//games is stale mate if this is true
+                            Console.WriteLine("stalemate");
+						}
 
-                        //post the new image to Flickr, and get the URL
-                        Uri imageUri = FlickrClient.FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
-                        Console.WriteLine();
-                        Console.WriteLine("  Uploaded. Image at " + imageUri.ToString());
+					   
+						//send new boardstate to processImage
+						if (whitesTurn)
+						{
+							assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["otherPlayer"], myInformation["currentPlayer"]);
+						}
+						else
+						{
+							assetPath = ImageClient.ImageClient.processImage(updatedGameBoardState, myInformation["currentPlayer"], myInformation["otherPlayer"]);
+						}
+					   
+						Console.WriteLine();
+						Console.WriteLine("  Image built");
+
+						//post the new image to Flickr, and get the URL
+						Uri imageUri = FlickrClient.FlickrClient.postFlickrPic(assetPath, updatedGameBoardState);
+						Console.WriteLine();
+						Console.WriteLine("  Uploaded. Image at " + imageUri.ToString());
 
                         //post link to Twitter to the important party
-                        TwitterClient.TwitterClient.postTweet(newestTweet, "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri);
+                        string tweetString = "@" + myInformation["otherPlayer"].ToString() + " there is a new move for you from @" + myInformation["currentPlayer"].ToString() + " " + imageUri;
+                        if (whitesTurn && whitemate)
+                        {
+                            tweetString += " and you are in CHECK";
+                        }
+                        if (!whitesTurn && blackmate)
+                        {
+                            tweetString += " and you are in CHECK";
+                        }
+                        TwitterClient.TwitterClient.postTweet(newestTweet, tweetString);
                         Console.WriteLine();
                         Console.WriteLine("  Tweeted!");
 
