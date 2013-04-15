@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessByBird.ChessClient
 {
-    class Process
+    public sealed class Process
     {
         /*
          * Default constrcutor
