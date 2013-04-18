@@ -120,14 +120,14 @@ namespace ChessByBird
 						if (blackmate)
 						{
 							//black is in check if this true
-                            Console.WriteLine("black is in check");
-                            checkString = "and you are in CHECK";
+                            Console.WriteLine("black is in checkmate");
+                            checkString = ". CHECKMATE";
                         }
 						if (whitemate)
 						{
 							//white is in check if this true
-                            Console.WriteLine("white is in check");
-                            checkString = "and you are in CHECK";
+                            Console.WriteLine("white is in checkmate");
+                            checkString = ". CHECKMATE";
 						}
 						if (stalemate)
 						{
@@ -180,6 +180,7 @@ namespace ChessByBird
                 //Catch all issues
                 catch (Exception ex)
                 {
+                    Guid randomness = Guid.NewGuid();
                     //report the error
                     Console.WriteLine();
                     Console.WriteLine("ERROR OCCURED");
@@ -190,11 +191,11 @@ namespace ChessByBird
                     //report to the user that something screwed up
                     if (sender.Length > 0)
                     {
-                        TwitterClient.TwitterClient.postTweet(newestTweet, "@" + sender + " Please ensure you sent a valid move, and try again");
+                        TwitterClient.TwitterClient.postTweet(newestTweet, "@" + sender + " Please ensure you sent a valid move, and try again. ECode: " + randomness.ToString());
                     }
                     else
                     {
-                        TwitterClient.TwitterClient.postTweet(newestTweet, "Please ensure you sent a valid move, and try again");
+                        TwitterClient.TwitterClient.postTweet(newestTweet, "Please ensure you sent a valid move, and try again. ECode: " + randomness.ToString());
                     }
                     //TwitterClient.TwitterClient.postTweet(newestTweet, "Something went wrong, please wait a few minutes and try again");
                     //increment the counter to get away from the erroneous tweet
